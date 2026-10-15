@@ -1,6 +1,6 @@
 # Throttle — Stage A build plan
 
-Status: **waiting on answers to §5 before any code is written.**
+Status: **§5 answered (see §7). Waiting on the new repo before Phase (a).**
 
 This plan follows the spec in `claude-code-prompt-moto-app.md`. Where the spec is wrong, contradictory, or missing something, I say so in §4 (decisions I'll make unless you object) and §5 (questions only you can answer).
 
@@ -120,7 +120,7 @@ The SQL migrations are the source of truth, and Drizzle schema files mirror them
 | `max_riders` | The spec doesn't say what happens when an event is full. | When an event is full, "going" is blocked and "maybe" is still allowed. No waitlist. |
 | Onboarding gate | This conflicts with "public event links render without login". | The gate applies only to *signed-in* users who haven't finished onboarding. Logged-out visitors can view public pages. |
 | Lighthouse ≥ 85 on `/rides` with Mapbox GL | Mapbox GL JS is several hundred KB of JS, which alone threatens the score. | The list renders server-side. Mapbox loads only when the user taps "Map" (dynamic import), and Lighthouse runs against list view. |
-| Next.js 15 | Next 16 has been stable for about a year (backport tag 15.5.x still gets patches). | I'll pin `next@15.5.x` as specified. Say so if you'd rather start on 16. Staying on 15 means a migration later. |
+| Next.js 15 | Next 16 has been stable for about a year (backport tag 15.5.x still gets patches). | **Decided: Next 16** (Q8 below). |
 
 ---
 
@@ -173,3 +173,19 @@ Each phase ends with:
 - `pnpm typecheck && pnpm lint && pnpm test`
 - 375px screenshots of the new screens
 - a short "verified / deferred / not verifiable in sandbox" note
+
+---
+
+## 7. Decisions (answered 2026-10-15)
+
+| Q | Decision |
+|---|---|
+| Repo | Brennan creates an empty repo (e.g. `BrennanKM/throttle`); the app is built there, not in the profile repo. |
+| Day-7 return | User counts as returned if they have a `session_start` on any of days 7–13 after signup. Grouped by signup week; a group counts toward the gate only once it has ≥ 20 users. |
+| Check-in gate | Denominator: published, non-cancelled events whose start time has passed. Organizer's own check-in doesn't count toward the 3. Organizer gets a "Who showed up?" notification ~2h after the event ends. |
+| Vercel plan | Hobby. One daily cron at ~9am PT sends "your ride is tomorrow" for `going` RSVPs on events starting 15–39h later. Moving to hourly (Pro) is a one-line `vercel.json` change plus a window constant. |
+| Naming | Ride-posts table is `ride_posts` (Drizzle `ridePosts`). URLs unchanged from spec. |
+| Event invites | Signing up via an event invite sets `invited_by` and logs `invite_accepted`, unless `invited_by` is already set (first touch wins). |
+| Feed order | Events rank by publish time, same as posts. Cursor = `(published_at, id)`. |
+| Next.js | Next 16 (current stable), deviating from the spec's 15. |
+| Keys | Mapbox, Resend, Google OAuth, Supabase keys are added later as environment secrets, never pasted in chat. Not needed for phases (a)–(i). |
