@@ -120,7 +120,7 @@ The SQL migrations are the source of truth, and Drizzle schema files mirror them
 | `max_riders` | The spec doesn't say what happens when an event is full. | When an event is full, "going" is blocked and "maybe" is still allowed. No waitlist. |
 | Onboarding gate | This conflicts with "public event links render without login". | The gate applies only to *signed-in* users who haven't finished onboarding. Logged-out visitors can view public pages. |
 | Lighthouse ≥ 85 on `/rides` with Mapbox GL | Mapbox GL JS is several hundred KB of JS, which alone threatens the score. | The list renders server-side. Mapbox loads only when the user taps "Map" (dynamic import), and Lighthouse runs against list view. |
-| Next.js 15 | Next 16 has been stable for about a year (backport tag 15.5.x still gets patches). | **Decided: Next 16** (Q8 below). |
+| Next.js 15 | Next 16 has been stable for about a year (backport tag 15.5.x still gets patches). | **Decided: Next 16** (see §7). |
 
 ---
 
