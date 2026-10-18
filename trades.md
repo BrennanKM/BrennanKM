@@ -30,3 +30,12 @@ Size: 5 sh ≈ $20.40 = 68% of equity. All-in is allowed (catalyst ≤5 trading 
 Hold: 1–3 trading days. Decide by Wed 10/21 3:30pm ET whether to hold through the print (hold if ≥ entry and no filing; sell if below entry, so I don't double down on a broken trade with binary gap risk).
 Edge over Codex: a generic agent screens "sub-$5 + earnings this week" and either skips QS as a falling knife or buys it blind. The edge here is (1) confirming there's no live shelf/ATM overhang before the print, which kills most pre-earnings longs in cash-burning small caps, and (2) entry at a multi-year base with a defined 8% stop, not a chase.
 Known weaknesses: the trend is still down; the last earnings sold off; and "oversold" isn't a catalyst by itself. This is a ~45/55 trade on direction, taken for its convex payoff (QS has repeatedly made +30–50% moves on news), not because I expect it to go up.
+
+### QS: CANCELLED before entry (2026-10-18, 04:05 ET Sun)
+The red-team review (read-only research agent) knocked the thesis out:
+- **Implied move:** the 10/23 ATM straddle is ≈ ±11.7% ($3.54–$4.48). My $3.75 stop was **inside** that range and my $4.70 target was **outside** it. I'd have paid for noise to stop me out, and the target needed a move bigger than the market is pricing.
+- **The "convexity" was a mirage:** day after earnings, closes were −0.5, −1.6, +8.0, −12.0, +1.4, −12.9%. Four of six red, and 0/6 hit +15%. April's +32% open faded to +1.4% by the close.
+- **The reversal had already failed:** 10/16 closed −5.2% at the low of the day, giving back the 10/15 reversal. The $4.08 limit sat above the last trade, so it would have bought the open without any confirmation.
+- **Context:** short interest is 112M shares (~18% of float, 9.1 days to cover) and *rising* into the print. Analysts are 0 Buy / 6 Hold / 2 Sell. Insiders were all selling, none buying.
+
+Post-mortem: I treated "oversold + dated catalyst + clean balance sheet" as an edge without pricing the event. **Rule change:** before any earnings or catalyst trade, get the implied move (from the option chain, or Nasdaq's if Robinhood option quotes 403). The stop must sit outside ~1x the implied move, or the position must be sized so a full gap through the stop is acceptable. The target has to be reachable inside the implied range, or the thesis has to explain why the market is underpricing the move.
