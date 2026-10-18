@@ -2,11 +2,11 @@
 
 | Field | Value |
 |---|---|
-| As of | 2026-10-18 12:14 ET (Sun weekend check-in) |
+| As of | 2026-10-18 17:21 ET (Sun) |
 | Capital contributed | $130.00 ($30 start 10/18 + $100 deposit 10/18 ~03:56 ET) |
-| Account equity | $129.13 |
-| **Return on contributed capital** | **−0.67%** |
-| Cash | $90.01 ($45 reserved by ETH $30 + SOL $15 limits → $45.01 buying power); crypto held $39.12 |
+| Account equity | $128.95 · **Codex: $134.00 (+3.1%), we trail by $5.05** (user-reported 17:20 ET) |
+| **Return on contributed capital** | **−0.81%** |
+| Cash | $60.01 ($25 reserved by BTC add + $15 SOL limit → $20.01 buying power, reserved for SOXL); crypto held $68.94 |
 | Trades closed | 0 |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
@@ -27,12 +27,13 @@
 | Asset | Qty | Avg cost | Stop | Target | Notes |
 |---|---|---|---|---|---|
 | ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,020 GTC (id 6ad4f058-34ac-42f7-9261-e1bca53bf035) | $1,200 | crypto sleeve, trend leader; both halves filled |
+| ETH | 0.012738 | $2,354.99 ($30) | stop order $2,240 GTC (id 6ad5384a-fb70-4e3c-9ac0-a48f5008badc) | $2,580 | out before FOMC 10/28 2pm unless ≥ +5% |
 | BTC | 0.00024285 | $82,354.09 ($20) | stop order $78,900 GTC (id 6ad48095-9b1b-41b9-b508-62475232d2b0) | $85,000 (set a sell limit at a check-in if within ~1.5%; cancel the stop first) | crypto sleeve |
 
 ## Open orders
 | Asset | Side | Type | Size | Price | TIF | Order id |
 |---|---|---|---|---|---|---|
-| ETH-USD | buy | limit | $30 (0.012738 ETH) | $2,355 | GTC | 6ad47bb7-284d-4f72-b839-148098c268ad |
+| ETH | sell | stop order | 0.012738 | trigger $2,240 | GTC | 6ad5384a-fb70-4e3c-9ac0-a48f5008badc |
 | SOL-USD | buy | limit | $15 (0.15075 SOL) | $99.50 | GTC | 6ad4808a-abfc-421d-ad10-41034f09ba53 |
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
 | BTC-USD | buy | limit | $25 (0.00031036 BTC) | $80,550 | GTC | 6ad51d48-f5dd-472f-9d61-0f0143b3a0ca |
@@ -45,7 +46,8 @@
 - **PRIMARY: SOXL reversal trigger, checked at EVERY 3:22pm check-in from Mon 10/19.** Get SOXX/SOXL quotes vs prior close (SOX proxy: SOXX; 11,100 ≈ SOXX $490). Trigger = (a) the session traded below 11,100 / SOXX $490 and is now green, OR (b) SOX/SOXX ≥ +2% on the day after 8 down sessions. If triggered and SOXL is in $85–95: write the fill into trades.md and buy ~70% of equity with a marketable limit. Then set the stop rule (daily close < $80) and the T1 sell-half at $110. No trigger means no trade. **Do not buy at the 9:47 open check-in.**
 - **Wed 10/21 3:22pm:** METU variance bet per trades.md (only if META ≥ $700 and SOX isn't at new lows). Exit Thu 10/22 at the open.
 - **Mon 10/19 open:** QS is dropped. Don't re-enter unless there's a daily close above $4.25 AND the new pricing rule passes (see trades.md post-mortem). Act on the research agents' shortlists in trades.md / research notes. Run the scan below. Every catalyst trade needs the implied move checked first.
-- **ETH (spot, resting):** kept as weekend flush coverage only. **Mon 10/19 open: if still unfilled, cancel it** and re-express any ETH view through ETHU (2x, penny spreads) per Mandate v2.
+- **ETH:** filled 10/18 15:40 ET with its stop placed. Manage: sell limit at $2,580; exit before FOMC 10/28 2pm unless ≥ +5%.
+- **Rival:** when the user reports Codex's value, update dashboard/rival.json, upload it, and update datasets/rival.
 - **ETH:** if filled, place a GTC limit sell of the full quantity at $2,580. Check the daily close vs $2,240 (exit if below). Exit before 2pm ET 10/28 (FOMC) unless ≥ +5%. If unfilled by 10/27, cancel it: the setup is stale into FOMC.
 - **Options:** retry `review_option_order` (1 lot, TSLA 10/23 $355C id 1d90fde3-84c7-4b46-97a9-5893cdb900c6, $0.50 limit, review only) to see whether the 403 has cleared. If it still 403s on Mon, tell the user.
 - Robinhood option *quotes* return 403 on this account (no options level). Use Nasdaq's public chain to get implied moves.

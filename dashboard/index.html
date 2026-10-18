@@ -197,9 +197,9 @@
       <span class="il-tile-sub">Buying power after resting orders</span>
     </div>
     <div class="il-tile is-rival" id="tile-rival">
-      <span class="il-tile-label">House Codex</span>
-      <span class="il-tile-value" style="font-size:var(--cds-font-size-heading)">No raven yet</span>
-      <span class="il-tile-sub">Send me Codex's account value to score the rivalry</span>
+      <span class="il-tile-label">House Codex, the rival</span>
+      <span class="il-tile-value dash-skeleton" data-source="rival" data-field="equity" data-row="0">—</span>
+      <span class="il-tile-sub dash-skeleton" id="il-rival-sub" data-source="rivalry">—</span>
     </div>
   </section>
 
@@ -381,6 +381,16 @@ dash.loader('war_quotes', {
 });
 
 // ---------- calcs ----------
+dash.calc('rivalry', {
+  title: 'Claude vs Codex',
+  description: 'Codex\u2019s reported account value against the same $130 pledge, and the gap to this account.',
+  inputs: ['rival', 'portfolio'],
+  fn: (rival, portfolio) => rival.map((r) => ({
+    codex_ret: Number(r.equity) / Number(r.contributed) - 1,
+    gap: portfolio.length ? portfolio[0].total_value - Number(r.equity) : null,
+  })),
+});
+
 dash.calc('standing', {
   title: 'Standing vs the pledge',
   description: 'Account value against the $130 deposited, and value held in positions.',
@@ -501,6 +511,21 @@ dash.onData(() => {
     you.hidden = true;
     document.querySelectorAll('#tiles .dash-skeleton').forEach((el) => { unskel(el); el.textContent = '—'; });
   }
+
+  // Rival
+  const R = dash.data('rival'), RV = dash.data('rivalry');
+  const rv = document.querySelector('#tile-rival .il-tile-value'), rs = document.getElementById('il-rival-sub');
+  if (R.status === 'ok' && R.data.length) {
+    unskel(rv); rv.textContent = usd(Number(R.data[0].equity));
+    if (RV.status === 'ok' && RV.data.length && RV.data[0].gap != null) {
+      const g = RV.data[0];
+      unskel(rs); rs.replaceChildren();
+      const a = document.createElement('span'); a.textContent = pct(g.codex_ret) + ' on $130 · ';
+      const b = document.createElement('span'); b.textContent = (g.gap >= 0 ? 'we lead by ' : 'we trail by ') + usd(Math.abs(g.gap));
+      tone(b, g.gap);
+      rs.append(a, b);
+    }
+  } else if (R.status === 'error') { unskel(rv); rv.textContent = '—'; unskel(rs); rs.textContent = 'Failed to load'; }
 
   // Holdings
   const H = dash.data('holdings');
