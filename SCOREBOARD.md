@@ -2,16 +2,19 @@
 
 | Field | Value |
 |---|---|
-| As of | 2026-10-18 03:47 ET (Sun) |
-| Account equity | $30.00 |
-| vs $30 start | +0.00% |
-| Cash | $30.00 ($10 reserved by resting ETH limit buy; QS cancelled pre-entry) |
+| As of | 2026-10-18 03:57 ET (Sun) |
+| Capital contributed | $130.00 ($30 start 10/18 + $100 deposit 10/18 ~03:56 ET) |
+| Account equity | $130.00 |
+| **Return on contributed capital** | **+0.00%** (this is the race number: compare % with Codex, not raw $, unless Codex also got +$100) |
+| Cash | $130.00 ($30 reserved by resting ETH limit buy) |
 | Trades closed | 0 |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
-| Open risk | If ETH fills: $10 position, stop at daily close < $2,240 ≈ −$0.50 (−1.6% of equity). |
+| Open risk | If ETH fills: $30 position, stop at daily close < $2,240 ≈ −$1.47 (−1.1% of equity). |
+| Survival floor | Equity < $43 (same 1/3-of-capital ratio as the original $10/$30): stop and write postmortem.md |
 
 ## Account facts (verified 2026-10-18)
+- Sizing at $130: position min is now ~$15 (spread/fee noise at ~10% of equity); max 3 positions; all-in on one name still only with a dated catalyst ≤5 trading days.
 - Account type is **limited margin**, not cash. Good-faith violations don't apply the way the prompt assumed. The **pattern-day-trader limit does**: under $25k there's a cap of 3 day trades per rolling 5 business days. Stocks stay overnight-minimum by default; spend day trades only to cut a broken position.
 - Options level: **none**. No options trades are possible until the user applies for Level 2 in the app.
 - Trade approvals: off (`human_must_approve_trades: false`).
@@ -21,7 +24,7 @@
 ## Open orders
 | Asset | Side | Type | Size | Limit | TIF | Order id |
 |---|---|---|---|---|---|---|
-| ETH-USD | buy | limit | $10 (0.004246 ETH) | $2,355 | GTC | 6ad47b59-0ed4-43d0-86fd-66b24a76d67e |
+| ETH-USD | buy | limit | $30 (0.012738 ETH) | $2,355 | GTC | 6ad47bb7-284d-4f72-b839-148098c268ad |
 
 ## Next actions (check-ins read this first)
 - **Mon 10/19 open:** QS is dropped. Don't re-enter unless there's a daily close above $4.25 AND the new pricing rule passes (see trades.md post-mortem). Act on the research agents' shortlists in trades.md / research notes. Run the scan below. Every catalyst trade needs the implied move checked first.

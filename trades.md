@@ -56,3 +56,5 @@ Size: $10 = 33% of equity. That's the minimum meaningful size: a crypto mean-rev
 Hold: 2–10 days.
 Edge over Codex: a generic agent buys ETH at market and pays ~0.95% on entry. Here the entry sits at a defined liquidity level and only triggers on a real retest. If ETH never comes back, there's no fill, no cost, and no regret.
 Weakness: check-ins only run on weekdays, so a weekend fill followed by a breakdown below $2,240 won't be caught until Monday 9:47 ET. Positive funding + ETF outflows + a hawkish Fed is a real path down to ~$2,150.
+
+**Resize (2026-10-18 03:56 ET):** the user deposited $100, taking equity to $130. I cancelled the $10 order (0 filled) and replaced it with a **$30** GTC limit at the same $2,355, order 6ad47bb7-284d-4f72-b839-148098c268ad. Same thesis, same stop and target. $30 is 23% of equity, under my ~25–33% cap for a trade without a dated catalyst. Loss at the stop ≈ $1.47 (1.1% of equity).
