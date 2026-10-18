@@ -82,3 +82,33 @@ Condition: only if META ≥ ~$700 and SOX isn't making new lows on 10/21.
 Entry: Wed 10/21 by 3:50pm ET, limit order, ~$22–26 (15–20% of equity). Exit: Thu 10/22 at the open or within the first 30 minutes, whatever the outcome. This is a planned overnight hold, not a day trade.
 Expected: METU ±15–20% → ±$4–5. ~45–50% up. **No directional edge.** It's taken only because Mandate v2's threshold goal rewards variance at small size. Skip it if SOXL is already on at ≥ 70% and losing.
 Skipped: NFXL (implied move rich vs realized, illiquid), TSLL through earnings (fairly priced, no edge).
+
+---
+
+# CRYPTO SLEEVE: small "learn by trading" positions (user request 2026-10-18)
+Budget: ≤ $65 total including the resting ETH order. **SOXL has priority:** if the SOXL trigger fires and cash is short, sell sleeve positions to fund it.
+Known cost: Market Maker Routing ≈ 0.95% per side (measured), so every round trip starts −1.9%. These trades are partly tuition. The lesson I'm testing: do range-edge entries with hard stops beat a 1.9% toll?
+
+## 2026-10-18 BTC-USD LONG (market, live)
+Catalyst: no dated catalyst. Range-bottom mean reversion, and the US ETF-flow window reopens Mon 10/19.
+Evidence:
+- `get_equity_historicals` IBIT daily 9/18–10/16: 4-week range $45.11 (10/15 low) to $49.39 (10/2 high) ≈ BTC $79.8K–$87.3K (IBIT×1,768). IBIT closed 10/16 at $46.15 ≈ $81.6K, lower third of the range. The 10/15 flush low was bought: IBIT closed $46.59 off a $45.11 low.
+- `get_crypto_quotes` 04:16 ET: BTC mark $81,579, bid $80,808 / ask $82,350 (1.89%).
+- Web (research agent): ETF net outflows ≈ $228M 10/12–16, Fear & Greed 53 (down from 71). Sentiment has cooled, but there's no capitulation.
+Entry: market buy $20 (expect ≈ $82,350 = ask).
+Target: $85,000 (+3.2% from fill, upper-middle of the range). Sell limit is set at check-ins; it can't sit alongside the stop on the same coins.
+Invalidation: **GTC stop order (sell) at $78,900**, below the 10/15 range low with a buffer: −4.2% from fill ≈ −$0.84.
+Size: $20 = 15% of equity.
+Hold: 1–5 days. Must not block SOXL capital.
+Lesson being tested: buying the range bottom on market-maker routing. If it's stopped out, the range broke and I paid ~1% extra to learn the spread on top.
+
+## 2026-10-18 SOL-USD LONG (resting limit: stop-hunt buy)
+Catalyst: none dated. A sweep of the 10/15 low / $100 round number.
+Evidence:
+- `get_equity_historicals` BSOL daily: lower highs since 10/2 ($17.03 → $14.70); 10/15 low $13.91 ≈ SOL $100.4 (BSOL×7.22); now $14.28 ≈ $103. Weakest of BTC/ETH/SOL (−6.2% over 5 sessions).
+- `get_crypto_quotes` 04:16 ET: SOL mark $103.10, bid $102.12 / ask $104.08.
+Entry: limit buy $15 at **$99.50** (GTC). It only fills if the ask trades below the 10/15 low and $100, i.e. a liquidity sweep where weak longs get stopped.
+Target: $108 (+8.5%).
+Invalidation: $95 (−4.5%). Below that the sweep became a breakdown.
+Size: $15 (11.5%).
+Lesson being tested: does a sweep-of-the-low limit buy beat buying now? Compare with the BTC market entry.
