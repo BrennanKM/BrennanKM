@@ -128,3 +128,5 @@ Target: $1,200 (+6–10% depending on fills).
 Invalidation: $1,020 (−9% from the market fill). A parabolic leader needs room: the stop sits below a ~10% pullback, and size is kept small to pay for that room. GTC stop order on the market-fill coins now; add the dip-fill coins to it if that order fills.
 Size: $20 total (15% of equity).
 Lesson being tested: **leader vs. laggard.** ZEC (strongest trend, bought on a dip) vs SOL (weakest, bought on a sweep) vs BTC (range bottom, market).
+
+**ZEC fill (04:20 ET):** 0.00881 ZEC @ **$1,134.45** ($10.00). Mark was $1,122.61, so +1.05% over mid (slightly worse than BTC). Stop order: sell 0.00881 @ trigger $1,020 GTC, id 6ad48150-410b-42e3-b573-e20fdcc2ecb4 (collar floor $969). Dip limit: buy 0.00917 ZEC @ $1,090 GTC, id 6ad48148-d42f-4e3a-8873-4814655cfda4.
