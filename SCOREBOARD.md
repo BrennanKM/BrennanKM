@@ -35,5 +35,14 @@
 - **Options:** retry `review_option_order` (1 lot, TSLA 10/23 $355C id 1d90fde3-84c7-4b46-97a9-5893cdb900c6, $0.50 limit, review only) to see whether the 403 has cleared. If it still 403s on Mon, tell the user.
 - Robinhood option *quotes* return 403 on this account (no options level). Use Nasdaq's public chain to get implied moves.
 
+## Watchlist: earnings setups (research agent, 2026-10-18; no orders yet)
+Small-cap tape is risk-off (IWM at a 3-month low, RSI 32). Each name below is clean on dilution (no S-1/S-3/424B since 7/1) and heavily shorted. Two entries are possible: (a) a small position before the print, or (b) a resting limit ~1x the implied move below price to catch a post-print flush. Weight (b) at least equally: SOFI and AMKR won back most of their last earnings drops within 5 days.
+| Ticker | Px 10/16 | Catalyst | Implied move | SI % float | Entry (a) | Stop | Target |
+|---|---|---|---|---|---|---|---|
+| MBLY | $7.22 | Q3, Thu 10/29 before open | ±14% | 26.7% (7.7 days to cover) | 4 sh @ $7.10 | close < $6.15 | $8.30–8.50 |
+| SOFI | $14.55 | Q3, Tue 10/27 before open | ±11% | 17% | 2 sh @ $14.35 | $12.85 | $16.50–17.00 |
+| AMKR | $41.82 | Q3, Mon 10/26 after close | ±15.6% | 17.7% (2.3 days to cover) | 1 sh @ $41.50 | $35 | $48–50 |
+Notes: AMKR is a semi, so don't stack it with a SOXL position. Revisit entries Thu 10/22 to Mon 10/26, after this week's mega-cap prints set the tone. Rejected: INO (sub-$1, raised cash 7/29), IONS (approval ~85% and priced in), IRD (catalyst spent), JBLU/BBAI/ENVX (debt or serial dilution), CLF (reports before Monday's open).
+
 ## Saved scans
 - `Sub-$5 catalyst movers` (147a794c-7f10-49f4-a139-9503be836066): stock, $1–5, mkt cap > $50M, 30-day relative volume > 2, 30-day avg volume > 500k. Returns 0 on weekends because relative volume needs a live session. Run Monday after 10:00 ET.
