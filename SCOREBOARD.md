@@ -15,6 +15,8 @@
 | Goal / deadline | $200–300 by ~2026-11-18 (Mandate v2 in TRADER_PROMPT.md) |
 
 ## Account facts (verified 2026-10-18)
+- Crypto routing: **Market Maker Routing** (user turned Fee Tiers / Exchange Routing off 10/18). Spread ≈ 1.9% round trip, so resting limits are the default entry.
+- Fresh-session check-ins (one new session per check-in) can't be created from Claude's session: they'd run without the Robinhood connector. The standalone prompt is in CHECKIN_PROMPT.md for the user to paste into a claude.ai routine with Robinhood attached. Until then, check-ins run in the original session.
 - Check-ins: weekdays 9:47am & 3:22pm ET, weekends 12:13pm & 8:13pm ET. Each push-notifies on fills, stops, trades, triggers, ±5% moves, or a Robinhood failure.
 - Sizing: see Mandate v2 in TRADER_PROMPT.md (1–2 positions, 50–100% deployed when a setup qualifies, $20 min).
 - Market context 10/16: SOX down 8 straight sessions (longest since 2008), −23.9% from its 6/22 high. Nasdaq worst week since Apr 2025. Earnings this week: NFLX 10/20 pm; TSLA, META, TXN, LRCX, IBM 10/21 pm. FOMC 10/28.
