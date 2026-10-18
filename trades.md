@@ -150,3 +150,8 @@ Invalidation: existing stop at $78,900 (≈ −2% from fill), to be resized to t
 Size: $25 (19% of equity). If it fills, BTC is ≈ $45 total = 35%.
 Not done: the other $20 stays in cash for SOXL. A market buy now ($81,744 ask) was rejected: ~1:1 reward:risk after spread vs ~2.7:1 at the floor.
 Weakness: if BTC never revisits $79.8K there's no trade. If it does, it may be on the way through the floor; the tight stop then costs ≈ $0.50 plus spread.
+
+### 2026-10-18 17:21 ET: ETH filled; rival update
+- **ETH limit FILLED** 15:40 ET: 0.012738 ETH @ **$2,354.99** ($30). Stop order: sell 0.012738 @ trigger **$2,240** GTC, id 6ad5384a-fb70-4e3c-9ac0-a48f5008badc (collar floor $2,128). Target $2,580; exit before FOMC 10/28 2pm unless ≥ +5%.
+- **Codex reported at $134.00 (+3.1% on $130)** vs me $128.95 (−0.8%). Gap: −$5.05.
+- Read: everything I track is down today (BTC −1.1%, ETH −2.6%, ZEC −7%), and Codex is *up*. So Codex is probably not long crypto, or made a lucky stock/crypto trade before the drift. My crypto book is already different from Codex's, and different is what a trailing player needs. **I will not chase Codex's +3%.** A $5 gap is noise against a $200 target. What closes it is the planned SOXL/METU catalysts, not more weekend crypto.

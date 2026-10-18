@@ -19,13 +19,13 @@
   "asset": "ETH",
   "house": "House Stark",
   "vehicle": "Crypto",
-  "status": "Resting",
-  "entry": 2355,
+  "status": "Open",
+  "entry": 2354.99,
   "stop": 2240,
   "target": 2580,
   "size_usd": 30,
   "thesis": "Buy a retest of the 10/15 liquidation low. Out before FOMC 10/28.",
-  "lesson": ""
+  "lesson": "Filled at 15:40 ET Sunday exactly at the limit. A resting buy at a liquidity level got filled on the drift down, with no spread paid on top of the fill."
  },
  {
   "id": "T3",

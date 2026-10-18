@@ -22,5 +22,11 @@
   "equity": 129.13,
   "contributed": 130,
   "note": "Weekend check-in: ZEC dip buy filled"
+ },
+ {
+  "at": "2026-10-18T21:21:00Z",
+  "equity": 128.95,
+  "contributed": 130,
+  "note": "ETH filled at $2,355; BTC add resting"
  }
 ]
