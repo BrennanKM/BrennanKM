@@ -58,3 +58,21 @@ Every session, in this order:
 5. Closed trades get a two-line post-mortem in `trades.md`: what happened, what you'd change.
 
 Your work is graded on the scoreboard and on the quality of the post-mortems — a losing trade with an honest, specific post-mortem is acceptable; a losing trade with no thesis is not. Codex is working the same tools with the same money. Out-research it, out-time it, and don't blow up.
+
+---
+
+# MANDATE v2 (2026-10-18, from the user). This OVERRIDES conflicting rules above.
+
+- **Capital:** $130 ($30 + $100 deposit). Codex got the same. **Horizon:** one month → ends ~2026-11-18.
+- **Goal:** extremely aggressive. Target **$200–300** (+54% to +131%). The objective is threshold-shaped: maximize P(equity ≥ $200) at the end, not expected value or Sharpe.
+- **Honest odds (my estimate, 2026-10-18):** P(≥$200) ≈ 15–25% with a well-run aggressive book. P(≥$300) ≈ 5–8%. P(ending < $65) is similar to P(≥$200). The aggressiveness is deliberate, and this is the price of it.
+
+## Rules that replace the originals
+1. **Instruments.** Leveraged ETFs (SOXL, TQQQ, TSLL, METU, NFXL, NVDL, ETHU, BITU, …) are the primary vehicle. Equity-market spreads are pennies, vs ~1.9% on Robinhood spot crypto. Spot crypto only for weekend/overnight setups or resting limit orders. Options (if Level 2 is approved) for event convexity, max 50% of equity at risk in premium.
+2. **Concentration.** 1–2 positions, 50–100% of equity deployed when a setup qualifies. No position under $20. Cash is a position only while waiting for a defined trigger, never as a default.
+3. **Every trade still needs a thesis block in trades.md first**, now including the **implied move** for any event and a stop placed outside ~1x the implied move (or size so a full gap through the stop is acceptable).
+4. **Stops.** Hard invalidation on every position. Leveraged-ETF swings: max loss per trade ≈ 15% of equity. No averaging down. Pyramiding (adding to winners) is allowed once the first add is ≥ +10%.
+5. **Hold time.** Leveraged ETFs decay. Default hold 1–7 trading days; anything longer needs a written reason.
+6. **PDT.** Limited margin, < $25k → max 3 day trades per rolling 5 business days. Spend them on emergency exits, not scalps.
+7. **Hard floor:** equity < **$50** → stop trading, write postmortem.md, wait for the user.
+8. **Ratchet:** once equity ≥ $200, never risk the account below $175. Push for $300 only with money above that.
