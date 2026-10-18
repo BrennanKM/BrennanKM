@@ -117,3 +117,14 @@ Lesson being tested: does a sweep-of-the-low limit buy beat buying now? Compare 
 Lesson 1 (immediate): a market buy on MM routing is a guaranteed −1.9% mark-to-bid. The "price" field on a market order ($83,175.91) is the +1% collar ceiling, not the fill.
 Stop order placed: sell 0.00024285 BTC, trigger $78,900, GTC, order 6ad48095-9b1b-41b9-b508-62475232d2b0. Worst-case fill floor shown is $74,955 (−5% collar). A stop triggered on a fast weekend wick can fill well below $78,900.
 SOL limit placed: buy $15 (0.15075 SOL) @ $99.50 GTC, order 6ad4808a-abfc-421d-ad10-41034f09ba53.
+
+## 2026-10-18 ZEC-USD LONG (trend leader, scale-in: half market + half dip limit)
+Catalyst: none dated. Momentum: buy the strongest trend in crypto on a pullback day.
+Evidence:
+- Web (delta.app / The Block): ZEC ≈ $488–493 in early/mid Aug 2026. `get_crypto_quotes` 04:19 ET: mark $1,122.61. That's **+128% in ~2 months**, the strongest trend of any pair I've checked.
+- `get_crypto_quotes`: ZEC −2.5% on the day (open $1,151), the biggest daily dip among 20 pairs scanned, so it's a pullback inside the trend. Spread 1.89%, the tightest on Robinhood.
+Entry: (1) market buy $10 now (≈ ask $1,133); (2) limit buy $10 at **$1,090** GTC (fills when the ask reaches $1,090, mid ≈ $1,080, −3.8%).
+Target: $1,200 (+6–10% depending on fills).
+Invalidation: $1,020 (−9% from the market fill). A parabolic leader needs room: the stop sits below a ~10% pullback, and size is kept small to pay for that room. GTC stop order on the market-fill coins now; add the dip-fill coins to it if that order fills.
+Size: $20 total (15% of equity).
+Lesson being tested: **leader vs. laggard.** ZEC (strongest trend, bought on a dip) vs SOL (weakest, bought on a sweep) vs BTC (range bottom, market).
