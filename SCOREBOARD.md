@@ -6,11 +6,11 @@
 | Capital contributed | $130.00 ($30 start 10/18 + $100 deposit 10/18 ~03:56 ET) |
 | Account equity | $130.00 |
 | **Return on contributed capital** | **+0.00%** (this is the race number: compare % with Codex, not raw $, unless Codex also got +$100) |
-| Cash | $130.00 ($30 reserved by resting ETH limit buy) |
+| Cash | $110.00 (ETH $30 + SOL $15 limits reserved; BTC $20 held) |
 | Trades closed | 0 |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
-| Open risk | If ETH fills: $30 position, stop at daily close < $2,240 ≈ −$1.47 (−1.1% of equity). |
+| Open risk | BTC $20 → stop ≈ −$0.84 (+ spread). If all limits fill: ETH stop ≈ −$1.47, SOL stop ≈ −$0.68. Max sleeve loss ≈ $3.5 (2.7%). |
 | Survival floor | Equity < $50: stop and write postmortem.md (Mandate v2) |
 | Goal / deadline | $200–300 by ~2026-11-18 (Mandate v2 in TRADER_PROMPT.md) |
 
@@ -23,12 +23,20 @@
 - Crypto: Market Maker Routing, ≈1.9% round-trip spread on majors on the weekend.
 - Fractional shares: **market orders only**, regular hours. Limit orders (required under $5) must be whole shares.
 
+## Open positions
+| Asset | Qty | Avg cost | Stop | Target | Notes |
+|---|---|---|---|---|---|
+| BTC | 0.00024285 | $82,354.09 ($20) | stop order $78,900 GTC (id 6ad48095-9b1b-41b9-b508-62475232d2b0) | $85,000 (set a sell limit at a check-in if within ~1.5%; cancel the stop first) | crypto sleeve |
+
 ## Open orders
-| Asset | Side | Type | Size | Limit | TIF | Order id |
+| Asset | Side | Type | Size | Price | TIF | Order id |
 |---|---|---|---|---|---|---|
 | ETH-USD | buy | limit | $30 (0.012738 ETH) | $2,355 | GTC | 6ad47bb7-284d-4f72-b839-148098c268ad |
+| SOL-USD | buy | limit | $15 (0.15075 SOL) | $99.50 | GTC | 6ad4808a-abfc-421d-ad10-41034f09ba53 |
+| BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
 
 ## Next actions (check-ins read this first)
+- **Crypto sleeve:** if SOL fills, place a GTC stop order at $95. Weekend/weekday checks: BTC ≥ $84,600 → cancel the stop and place a sell limit at $85,000. **If SOXL triggers and cash is < $90, sell sleeve positions first.**
 - **PRIMARY: SOXL reversal trigger, checked at EVERY 3:22pm check-in from Mon 10/19.** Get SOXX/SOXL quotes vs prior close (SOX proxy: SOXX; 11,100 ≈ SOXX $490). Trigger = (a) the session traded below 11,100 / SOXX $490 and is now green, OR (b) SOX/SOXX ≥ +2% on the day after 8 down sessions. If triggered and SOXL is in $85–95: write the fill into trades.md and buy ~70% of equity with a marketable limit. Then set the stop rule (daily close < $80) and the T1 sell-half at $110. No trigger means no trade. **Do not buy at the 9:47 open check-in.**
 - **Wed 10/21 3:22pm:** METU variance bet per trades.md (only if META ≥ $700 and SOX isn't at new lows). Exit Thu 10/22 at the open.
 - **Mon 10/19 open:** QS is dropped. Don't re-enter unless there's a daily close above $4.25 AND the new pricing rule passes (see trades.md post-mortem). Act on the research agents' shortlists in trades.md / research notes. Run the scan below. Every catalyst trade needs the implied move checked first.

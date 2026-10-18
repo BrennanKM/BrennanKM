@@ -112,3 +112,8 @@ Target: $108 (+8.5%).
 Invalidation: $95 (−4.5%). Below that the sweep became a breakdown.
 Size: $15 (11.5%).
 Lesson being tested: does a sweep-of-the-low limit buy beat buying now? Compare with the BTC market entry.
+
+**BTC fill (04:17 ET):** 0.00024285 BTC @ **$82,354.09** ($20.00). The mark was $81,579, so I paid +0.95% over mid. At the bid the position is worth ≈ $19.62 (−1.9%) the moment it fills.
+Lesson 1 (immediate): a market buy on MM routing is a guaranteed −1.9% mark-to-bid. The "price" field on a market order ($83,175.91) is the +1% collar ceiling, not the fill.
+Stop order placed: sell 0.00024285 BTC, trigger $78,900, GTC, order 6ad48095-9b1b-41b9-b508-62475232d2b0. Worst-case fill floor shown is $74,955 (−5% collar). A stop triggered on a fast weekend wick can fill well below $78,900.
+SOL limit placed: buy $15 (0.15075 SOL) @ $99.50 GTC, order 6ad4808a-abfc-421d-ad10-41034f09ba53.
