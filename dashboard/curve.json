@@ -1,5 +1,26 @@
 [
-  {"at":"2026-10-18T07:44:00Z","equity":30.00,"contributed":30,"note":"Opening stake"},
-  {"at":"2026-10-18T07:56:00Z","equity":130.00,"contributed":130,"note":"$100 deposit"},
-  {"at":"2026-10-18T08:25:00Z","equity":129.72,"contributed":130,"note":"BTC + ZEC filled, spread paid"}
+ {
+  "at": "2026-10-18T07:44:00Z",
+  "equity": 30.0,
+  "contributed": 30,
+  "note": "Opening stake"
+ },
+ {
+  "at": "2026-10-18T07:56:00Z",
+  "equity": 130.0,
+  "contributed": 130,
+  "note": "$100 deposit"
+ },
+ {
+  "at": "2026-10-18T08:25:00Z",
+  "equity": 129.72,
+  "contributed": 130,
+  "note": "BTC + ZEC filled, spread paid"
+ },
+ {
+  "at": "2026-10-18T16:14:00Z",
+  "equity": 129.13,
+  "contributed": 130,
+  "note": "Weekend check-in: ZEC dip buy filled"
+ }
 ]

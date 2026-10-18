@@ -130,3 +130,10 @@ Size: $20 total (15% of equity).
 Lesson being tested: **leader vs. laggard.** ZEC (strongest trend, bought on a dip) vs SOL (weakest, bought on a sweep) vs BTC (range bottom, market).
 
 **ZEC fill (04:20 ET):** 0.00881 ZEC @ **$1,134.45** ($10.00). Mark was $1,122.61, so +1.05% over mid (slightly worse than BTC). Stop order: sell 0.00881 @ trigger $1,020 GTC, id 6ad48150-410b-42e3-b573-e20fdcc2ecb4 (collar floor $969). Dip limit: buy 0.00917 ZEC @ $1,090 GTC, id 6ad48148-d42f-4e3a-8873-4814655cfda4.
+
+### Weekend check-in 2026-10-18 12:14 ET
+- **ZEC dip limit FILLED** at 11:40 ET: 0.00917 @ $1,088.68 ($9.99). Position is now 0.01798 ZEC, cost $19.99, avg ≈ $1,111.8. Mark $1,081 (−2.8%). ZEC fell from $1,151 to ~$1,070, so the "leader on a dip" kept dipping.
+- Old ZEC stop (0.00881) cancelled. **New stop order: sell 0.01798 ZEC @ trigger $1,020 GTC**, id 6ad4f058-34ac-42f7-9261-e1bca53bf035. Risk at the stop ≈ −$1.65 plus spread.
+- BTC mark $81,066 (−1.6% vs fill); stop at $78,900 untouched. ETH ask $2,392.77 vs my $2,355 limit: not filled, ~1.6% away. SOL ask $102.93 vs the $99.50 limit: not filled.
+- Equity $129.13 (−0.67% on $130). No invalidation hit. Floor $50 nowhere near.
+- Early lesson, ZEC: the dip-buy limit filled 4% below the market entry, so scaling in beat buying all at once. The dip was still a falling price, though; the stop decides whether it was a buy.
