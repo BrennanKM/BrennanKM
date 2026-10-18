@@ -39,3 +39,20 @@ The red-team review (read-only research agent) knocked the thesis out:
 - **Context:** short interest is 112M shares (~18% of float, 9.1 days to cover) and *rising* into the print. Analysts are 0 Buy / 6 Hold / 2 Sell. Insiders were all selling, none buying.
 
 Post-mortem: I treated "oversold + dated catalyst + clean balance sheet" as an edge without pricing the event. **Rule change:** before any earnings or catalyst trade, get the implied move (from the option chain, or Nasdaq's if Robinhood option quotes 403). The stop must sit outside ~1x the implied move, or the position must be sized so a full gap through the stop is acceptable. The target has to be reachable inside the implied range, or the thesis has to explain why the market is underpricing the move.
+
+---
+
+## 2026-10-18 ETH-USD LONG (resting limit, not filled yet)
+Catalyst: retest of the 10/15 leverage-flush low (~$286M of ETH longs liquidated; ETH −6.4% to $2,356). Secondary: the Glamsterdam upgrade goes live on the Hoodi testnet 10/26. Hard time-stop: the 10/28 FOMC decision (2pm ET), where hike risk was ~20% priced earlier this month.
+Evidence:
+- `get_crypto_quotes` 03:45 ET: ETH mark $2,407, bid $2,384.30, ask $2,429.78 (1.89% spread). `get_currency_pairs` sweep by research agent: no non-stable pair is under 1.88%.
+- Web (CoinDesk 10/15): the $2,356 flush low on ~$1B of liquidations market-wide. Funding still above its monthly average, so another flush into that level is plausible, and that's where I want to be a buyer, not at $2,407.
+- Web (bgeometrics weekly): BTC ranging 75.7K–85.8K for 4 weeks, so mean reversion inside a range is the regime, not a trend.
+- Robinhood fee schedule (2026-06-22): Exchange Routing at the $0–10K tier is 0.50% maker / 0.95% taker. On Market Maker Routing a resting limit buy only fills once the *ask* trades down to it, so the spread is paid in *where* it triggers, not on top of the fill price.
+Entry: limit buy $10.00 of ETH at $2,355 (GTC). This fills only if the ask reaches $2,355, i.e. mid ≈ $2,333, a full retest of the flush low.
+Target: limit sell at $2,580 (+9.6% from fill). At ≈1.9% round-trip spread that's ~5x costs.
+Invalidation: daily close < $2,240 (−4.9% from fill). Breaking below the liquidation low means the flush wasn't the low. Also exit before 2pm ET 10/28 (FOMC) unless the position is already ≥ +5%.
+Size: $10 = 33% of equity. That's the minimum meaningful size: a crypto mean-reversion trade has no dated catalyst, so per the rules it doesn't earn concentration. The remaining $20 is reserved for an equity catalyst trade.
+Hold: 2–10 days.
+Edge over Codex: a generic agent buys ETH at market and pays ~0.95% on entry. Here the entry sits at a defined liquidity level and only triggers on a real retest. If ETH never comes back, there's no fill, no cost, and no regret.
+Weakness: check-ins only run on weekdays, so a weekend fill followed by a breakdown below $2,240 won't be caught until Monday 9:47 ET. Positive funding + ETF outflows + a hawkish Fed is a real path down to ~$2,150.
