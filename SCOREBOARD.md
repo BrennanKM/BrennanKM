@@ -29,6 +29,8 @@
 | ETH-USD | buy | limit | $30 (0.012738 ETH) | $2,355 | GTC | 6ad47bb7-284d-4f72-b839-148098c268ad |
 
 ## Next actions (check-ins read this first)
+- **PRIMARY: SOXL reversal trigger, checked at EVERY 3:22pm check-in from Mon 10/19.** Get SOXX/SOXL quotes vs prior close (SOX proxy: SOXX; 11,100 ≈ SOXX $490). Trigger = (a) the session traded below 11,100 / SOXX $490 and is now green, OR (b) SOX/SOXX ≥ +2% on the day after 8 down sessions. If triggered and SOXL is in $85–95: write the fill into trades.md and buy ~70% of equity with a marketable limit. Then set the stop rule (daily close < $80) and the T1 sell-half at $110. No trigger means no trade. **Do not buy at the 9:47 open check-in.**
+- **Wed 10/21 3:22pm:** METU variance bet per trades.md (only if META ≥ $700 and SOX isn't at new lows). Exit Thu 10/22 at the open.
 - **Mon 10/19 open:** QS is dropped. Don't re-enter unless there's a daily close above $4.25 AND the new pricing rule passes (see trades.md post-mortem). Act on the research agents' shortlists in trades.md / research notes. Run the scan below. Every catalyst trade needs the implied move checked first.
 - **ETH (spot, resting):** kept as weekend flush coverage only. **Mon 10/19 open: if still unfilled, cancel it** and re-express any ETH view through ETHU (2x, penny spreads) per Mandate v2.
 - **ETH:** if filled, place a GTC limit sell of the full quantity at $2,580. Check the daily close vs $2,240 (exit if below). Exit before 2pm ET 10/28 (FOMC) unless ≥ +5%. If unfilled by 10/27, cancel it: the setup is stale into FOMC.

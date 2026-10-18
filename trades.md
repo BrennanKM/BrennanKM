@@ -58,3 +58,27 @@ Edge over Codex: a generic agent buys ETH at market and pays ~0.95% on entry. He
 Weakness: check-ins only run on weekdays, so a weekend fill followed by a breakdown below $2,240 won't be caught until Monday 9:47 ET. Positive funding + ETF outflows + a hawkish Fed is a real path down to ~$2,150.
 
 **Resize (2026-10-18 03:56 ET):** the user deposited $100, taking equity to $130. I cancelled the $10 order (0 filled) and replaced it with a **$30** GTC limit at the same $2,355, order 6ad47bb7-284d-4f72-b839-148098c268ad. Same thesis, same stop and target. $30 is 23% of equity, under my ~25–33% cap for a trade without a dated catalyst. Loss at the stop ≈ $1.47 (1.1% of equity).
+
+---
+
+## PLANNED (conditional; no order until trigger): SOXL LONG, semis capitulation bounce
+Catalyst: SOX down 8 straight sessions (longest since 2008), −11.4% on the week, −23.9% from its 6/22 record. Decisive event: **Tue 10/21 after close: LRCX (memory/capex), META (hyperscaler AI capex), TXN.** Time-stop: FOMC 10/28 2pm.
+Evidence (research agent, 2026-10-18; Yahoo SOX daily 1994–2026, Robinhood quotes/earnings, Nasdaq chains):
+- Analog screen "week ≤ −10% and 15–35% below 52-week high" (n=29): SOX forward 5 days +3.1% mean, 76% win (baseline 55%). SOXL forward 5 days +11.7% mean, 88% win (n=16). By 20 days it's a coin flip, and 38% of cases fell another 10%+ (≈ −30% SOXL) first.
+- Pure 8+ day streaks are bearish (n=6, 4 failed), but every one came deep in a bear market (SOX 47–82% below its record). Today's −24% matches the correction set.
+- Friday closed at the low (11,137) on the 9/14 low (11,131). RSI 31.8, not washed out. ASML/TSM beats got sold, so good news isn't being rewarded yet. **No reversal signal → no entry at the open.**
+Trigger (must happen first): (a) SOX trades below 11,100 (SOXX ≈ $490), then closes green; OR (b) the first SOX close ≥ +2% that breaks the streak (best case: after LRCX/META on 10/22). Judged at the 3:22pm ET check-in from price vs prior close. Enter with a marketable limit before 4pm, or at the next open if confirmed after hours.
+Entry: SOXL $85–95. Whole-share marketable limit at ask + $0.05.
+Target: T1 $110–112 (SOX ≈ 11,900): sell half and trail the stop to entry. T2 $117 (SOX 50-day ≈ 12,063).
+Invalidation: SOXL **daily close < $80** (SOX ≈ 10,600, the 200-day). Max loss ≈ −12% to −15% of the position.
+Size: **~70% of equity (~$90, ~1 sh at $90 or fractional market).** That's above the agent's 45% on purpose: under Mandate v2, P(reaching $200) requires concentration in the best setup of the month. A stop-out at $80 from a $91 entry ≈ −$11 (−8.5% of equity), within the 15% per-trade cap.
+Hold: 3–7 trading days. Trim to ≤ 35% of equity before 10/28 2pm (FOMC + MSFT/GOOGL capex that night) unless T1 is already hit and the stop trails.
+Edge over Codex: a generic aggressive agent either buys SOXL Monday morning into a falling knife or avoids it entirely. Here entry waits for a reversal *close* and is sized on base rates from 29 analog episodes. Decay is accounted for: ~0.14%/day at 34% vol.
+Weakness: n is small (16 SOXL episodes). Jul 2026 and Feb 2020 analogs both bounced and then broke down. 3x decay hurts in chop. A hot macro print or a hawkish Fed can override the bounce.
+
+## PLANNED (conditional, variance bet): METU through META earnings (10/21 pm)
+Evidence: META's implied move (10/23 straddle) is 7.3% vs a last-8 median realized move of 8.3%, and its last 5 moves were all ≥ 8%. It's the only one of NFLX/TSLA/META that's underpriced. Recent tilt is down (3 of the last 4). No drift after day 1.
+Condition: only if META ≥ ~$700 and SOX isn't making new lows on 10/21.
+Entry: Wed 10/21 by 3:50pm ET, limit order, ~$22–26 (15–20% of equity). Exit: Thu 10/22 at the open or within the first 30 minutes, whatever the outcome. This is a planned overnight hold, not a day trade.
+Expected: METU ±15–20% → ±$4–5. ~45–50% up. **No directional edge.** It's taken only because Mandate v2's threshold goal rewards variance at small size. Skip it if SOXL is already on at ≥ 70% and losing.
+Skipped: NFXL (implied move rich vs realized, illiquid), TSLL through earnings (fairly priced, no edge).
