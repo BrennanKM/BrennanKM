@@ -47,13 +47,13 @@
   "asset": "BTC",
   "house": "House Lannister",
   "vehicle": "Crypto",
-  "status": "Resting",
+  "status": "Cancelled",
   "entry": 80550,
   "stop": 78900,
   "target": 85000,
   "size_usd": 25,
   "thesis": "Add to BTC only at the range floor (~$79.8K mid). BTC is the strongest major on a down day.",
-  "lesson": ""
+  "lesson": "Cancelled unfilled: the extra coins would have sat outside the BTC stop. Re-place only when a check-in can resize the stop within hours."
  },
  {
   "id": "T4",
@@ -61,13 +61,13 @@
   "asset": "SOL",
   "house": "House Targaryen",
   "vehicle": "Crypto",
-  "status": "Resting",
+  "status": "Cancelled",
   "entry": 99.5,
   "stop": 95,
   "target": 108,
   "size_usd": 15,
   "thesis": "Weakest major. Only buys a sweep under the 10/15 low and $100.",
-  "lesson": ""
+  "lesson": "Never filled; the ask never reached $99.50. Cancelled so a fill couldn't sit without a stop between check-ins."
  },
  {
   "id": "T5",

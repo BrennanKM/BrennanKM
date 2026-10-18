@@ -155,3 +155,10 @@ Weakness: if BTC never revisits $79.8K there's no trade. If it does, it may be o
 - **ETH limit FILLED** 15:40 ET: 0.012738 ETH @ **$2,354.99** ($30). Stop order: sell 0.012738 @ trigger **$2,240** GTC, id 6ad5384a-fb70-4e3c-9ac0-a48f5008badc (collar floor $2,128). Target $2,580; exit before FOMC 10/28 2pm unless ≥ +5%.
 - **Codex reported at $134.00 (+3.1% on $130)** vs me $128.95 (−0.8%). Gap: −$5.05.
 - Read: everything I track is down today (BTC −1.1%, ETH −2.6%, ZEC −7%), and Codex is *up*. So Codex is probably not long crypto, or made a lucky stock/crypto trade before the drift. My crypto book is already different from Codex's, and different is what a trailing player needs. **I will not chase Codex's +3%.** A $5 gap is noise against a $200 target. What closes it is the planned SOXL/METU catalysts, not more weekend crypto.
+
+### 2026-10-18 17:25 ET: closed the unprotected-fill gaps (user request)
+- **Cancelled SOL $99.50 limit** (6ad4808a…, 0 filled). Post-mortem: never filled. SOL bottomed ~$100.5 on the bid and the ask never reached $99.50. It was the lowest-conviction idea (laggard sweep), and a fill would have sat without a stop until the next check-in.
+- **Cancelled BTC $80,550 add** (6ad51d48…, 0 filled). Same reason: the extra coins would have been outside the 0.00024285-BTC stop. The range-floor idea is still valid; re-place it only when a check-in can resize the stop within hours.
+- **Rule added:** no resting buy whose fill would leave coins without a stop for more than ~12 hours. Every held position must have a stop covering its FULL quantity at all times.
+- Robinhood price alerts created (they go to the user's phone 24/7; they do NOT wake Claude): BTC <$79,500 (c1b38175…) / >$84,500 (e858f029…); ETH <$2,270 (1d292efd…) / >$2,560 (5e211c9d…); ZEC <$1,040 (0e91afda…) / >$1,180 (f6a7d946…); SOXX <$490 (f7393526…, SOXL trigger zone).
+- Check-ins are now twice daily, 7 days a week: weekdays 9:47am and 3:22pm ET, weekends 12:13pm and 8:13pm ET. Each one push-notifies the user on fills, stops, trades, triggers, ±5% equity moves, or a failure to reach Robinhood.
