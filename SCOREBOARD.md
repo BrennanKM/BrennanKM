@@ -19,7 +19,7 @@
 - Sizing: see Mandate v2 in TRADER_PROMPT.md (1–2 positions, 50–100% deployed when a setup qualifies, $20 min).
 - Market context 10/16: SOX down 8 straight sessions (longest since 2008), −23.9% from its 6/22 high. Nasdaq worst week since Apr 2025. Earnings this week: NFLX 10/20 pm; TSLA, META, TXN, LRCX, IBM 10/21 pm. FOMC 10/28.
 - Account type is **limited margin**, not cash. Good-faith violations don't apply the way the prompt assumed. The **pattern-day-trader limit does**: under $25k there's a cap of 3 day trades per rolling 5 business days. Stocks stay overnight-minimum by default; spend day trades only to cut a broken position.
-- Options level: **option_level_2** (approved 2026-10-18). BUT `get_option_quotes` and `review_option_order` both return **403** right after approval. Instrument lookup works. Likely a propagation delay or an unaccepted agreement / agent-options permission in the app. Retry at each check-in; until it works, use the Nasdaq public chain for implied moves and leveraged ETFs for exposure.
+- Options level: **option_level_2, WORKING** (verified 2026-10-18 17:30 ET: `get_option_quotes` and `review_option_order` both succeed; fees ≈ $0.04/contract; account shows Gold). Reality check: most liquid options cost $100s per contract (TSLA ATM 10/23 call = $1,310). At $130, options are only usable as cheap OTM contracts (≤ ~$0.60 premium = ≤ $60) for event convexity. Before any catalyst trade, compare the option against the 2x/3x ETF.
 - Trade approvals: off (`human_must_approve_trades: false`).
 - Crypto: Market Maker Routing, ≈1.9% round-trip spread on majors on the weekend.
 - Fractional shares: **market orders only**, regular hours. Limit orders (required under $5) must be whole shares.
@@ -39,6 +39,7 @@
 | ZEC | sell | stop order | 0.01798 | trigger $1,020 | GTC | 6ad4f058-34ac-42f7-9261-e1bca53bf035 |
 
 ## Next actions (check-ins read this first)
+- **Strategy discipline (10/18 review):** fewer, bigger, better trades. Each small crypto round trip costs ~1.9% (≈ $0.40 on $20), so no new crypto trade unless it clears 3x spread with a defined level. Capital goes to the dated catalysts (SOXL trigger, META 10/21, the Sunday-sweep picks).
 - **Dashboard "The Iron Ledger"** (https://claude.ai/artifact/QXgQDxzX7dvyhKdskrY7j1): positions, orders, quotes and account value are live Robinhood queries. At EVERY check-in: (1) append `{at, equity, contributed, note}` to `dashboard/curve.json` from get_portfolio; (2) sync `dashboard/ledger.json` with trades.md (status, fills, lessons; keep the house names); (3) upload both with Artifact publish `asset:true` to that url, then ArtifactData `update` datasets/curve and datasets/ledger with the new `source.url` and `updated:{at,by:"Claude"}`. Also read data/users/me/check once and fix any page error it names.
 - **No resting buys** (SOL and the BTC add were cancelled 10/18 to close unprotected-fill gaps). Cash $60 is earmarked for SOXL (needs ~$90; sell crypto to top up if it triggers).
 - **Alerts:** Robinhood price alerts are live (see trades.md, 10/18 17:25). Update or delete them when stops or targets change.
@@ -49,8 +50,7 @@
 - **ETH:** filled 10/18 15:40 ET with its stop placed. Manage: sell limit at $2,580; exit before FOMC 10/28 2pm unless ≥ +5%.
 - **Rival:** when the user reports Codex's value, update dashboard/rival.json, upload it, and update datasets/rival.
 - **ETH:** if filled, place a GTC limit sell of the full quantity at $2,580. Check the daily close vs $2,240 (exit if below). Exit before 2pm ET 10/28 (FOMC) unless ≥ +5%. If unfilled by 10/27, cancel it: the setup is stale into FOMC.
-- **Options:** retry `review_option_order` (1 lot, TSLA 10/23 $355C id 1d90fde3-84c7-4b46-97a9-5893cdb900c6, $0.50 limit, review only) to see whether the 403 has cleared. If it still 403s on Mon, tell the user.
-- Robinhood option *quotes* return 403 on this account (no options level). Use Nasdaq's public chain to get implied moves.
+- **Options are live.** For the SOXL trigger and the META earnings bet, price a cheap OTM call (≤ $0.60) next to the leveraged ETF and pick whichever gives better payoff per dollar risked. Write both in the thesis block.
 
 ## Watchlist: earnings setups (research agent, 2026-10-18; no orders yet)
 Small-cap tape is risk-off (IWM at a 3-month low, RSI 32). Each name below is clean on dilution (no S-1/S-3/424B since 7/1) and heavily shorted. Two entries are possible: (a) a small position before the print, or (b) a resting limit ~1x the implied move below price to catch a post-print flush. Weight (b) at least equally: SOFI and AMKR won back most of their last earnings drops within 5 days.
