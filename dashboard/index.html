@@ -1,0 +1,667 @@
+<style>
+/* Layout: a single war-room column; header + throne road, tiles, then cards in a responsive grid. */
+#dash-root { --dash-gutter: clamp(12px, 3vw, 32px); }
+.il {
+  --il-gold: #b08a3e;
+  --il-gold-soft: color-mix(in oklab, #b08a3e 18%, var(--color-panel));
+  --il-blood: #9b2c2c;
+  --il-iron: color-mix(in oklab, var(--color-fg) 55%, var(--color-bg));
+  --il-rule: color-mix(in oklab, #b08a3e 45%, var(--color-border-line));
+  font-family: var(--font-anthropic-sans);
+  color: var(--color-fg);
+  max-width: 76rem;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--cds-gap-lg);
+  font-variant-numeric: tabular-nums;
+}
+.il-head { display: grid; gap: var(--cds-gap-xs); padding-block: var(--cds-pad-sm) 0; }
+.il-eyebrow {
+  font-size: var(--cds-font-size-caption);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--il-gold);
+}
+.il-title {
+  font-family: var(--font-anthropic-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: .02em;
+  font-variant: small-caps;
+  text-wrap: balance;
+}
+.il-takeaway { margin: 0; max-width: 62ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); line-height: 1.5; }
+.il-takeaway b { color: var(--color-fg); font-weight: 600; }
+
+/* The road to the throne */
+.il-road {
+  background: var(--color-panel);
+  border: 1px solid var(--il-rule);
+  border-radius: var(--cds-radius);
+  padding: var(--cds-pad-lg);
+  display: grid;
+  gap: var(--cds-gap-md);
+}
+.il-road-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--cds-gap-sm); align-items: baseline; }
+.il-h2 { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant: small-caps; letter-spacing: .03em; }
+.il-note { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.il-track { position: relative; height: 5.5rem; margin-inline: .5rem; }
+.il-track-line {
+  position: absolute; left: 0; right: 0; top: 2.1rem; height: 6px; border-radius: 3px;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--il-blood) 70%, var(--color-panel)) 0%, var(--il-iron) 16%, var(--il-iron) 60%, var(--il-gold) 100%);
+  opacity: .55;
+}
+.il-track-fill { position: absolute; left: 0; top: 2.1rem; height: 6px; border-radius: 3px; background: var(--il-gold); width: 0; }
+.il-stop { position: absolute; top: 0; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; text-align: center; }
+.il-stop-name { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); white-space: nowrap; letter-spacing: .04em; }
+.il-stop-tick { width: 2px; height: 1.6rem; background: var(--il-rule); margin-top: .2rem; }
+.il-stop-val { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 1.1rem; }
+.il-stop.is-goal .il-stop-name { color: var(--il-gold); font-weight: 600; }
+.il-stop.is-wall .il-stop-name { color: var(--color-bad); }
+.il-you { position: absolute; top: 1.35rem; transform: translateX(-50%); display: grid; justify-items: center; z-index: 2; }
+.il-you-pin {
+  width: 1.15rem; height: 1.15rem; transform: rotate(45deg);
+  background: var(--color-bg); border: 3px solid var(--il-gold); border-radius: 2px;
+}
+.il-you-label {
+  margin-top: .35rem; font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-heading);
+  background: var(--color-panel); padding-inline: .3rem; white-space: nowrap;
+}
+
+/* Tiles */
+.il-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); gap: var(--cds-gap-md); }
+.il-tile {
+  background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius);
+  padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; min-height: 6.5rem;
+}
+.il-tile-label { font-size: var(--cds-font-size-caption); letter-spacing: .12em; text-transform: uppercase; color: var(--color-fg-muted); }
+.il-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.1; }
+.il-tile-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.il-tile.is-rival { border-style: dashed; }
+.il-good { color: var(--color-ok); }
+.il-bad { color: var(--color-bad); }
+
+/* Cards */
+.il-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--cds-gap-md); }
+.il-card {
+  background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius);
+  padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); align-content: start; min-width: 0;
+}
+.il-card.is-wide { grid-column: 1 / -1; }
+.il-card-head { display: grid; gap: 2px; }
+.il-card-title { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); font-variant: small-caps; letter-spacing: .04em; }
+.il-scroll { overflow-x: auto; min-width: 0; }
+.il table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); }
+.il th {
+  text-align: left; font-weight: 500; color: var(--color-fg-muted); letter-spacing: .06em; text-transform: uppercase;
+  padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--il-rule); white-space: nowrap;
+}
+.il td { padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.il td.n, .il th.n { text-align: right; white-space: nowrap; }
+.il tr:last-child td { border-bottom: 0; }
+.il-empty { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
+
+/* Sigils */
+.il-house { display: inline-flex; align-items: center; gap: var(--cds-gap-sm); white-space: nowrap; }
+.il-sigil {
+  flex: none; width: 1.55rem; height: 1.8rem; display: grid; place-items: center;
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+  font-family: var(--font-anthropic-serif); font-size: .8rem; color: #fff; padding-bottom: .3rem;
+  background: #5b5b62;
+}
+.il-sigil[data-h="House Lannister"] { background: #9b2c2c; color: #f1d27a; }
+.il-sigil[data-h="House Stark"] { background: #6b7280; color: #f5f5f4; }
+.il-sigil[data-h="House Targaryen"] { background: #1c1917; color: #e0533d; }
+.il-sigil[data-h="The Faceless Men"] { background: #3f3f46; color: #e7e5e4; }
+.il-sigil[data-h="House Greyjoy"] { background: #1f2937; color: #d4a937; }
+.il-sigil[data-h="House Baratheon"] { background: #a16207; color: #111827; }
+.il-sigil[data-h="House Tully"] { background: #1e40af; color: #fecaca; }
+.il-house-name { display: grid; line-height: 1.2; }
+.il-house-name small { color: var(--color-fg-muted); font-size: .72rem; }
+
+.il-chip {
+  display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .72rem; letter-spacing: .04em; white-space: nowrap;
+  border: 1px solid var(--color-border-line); color: var(--color-fg-muted);
+}
+.il-chip.s-Open { border-color: var(--il-gold); color: var(--color-fg); background: var(--il-gold-soft); }
+.il-chip.s-Resting { border-style: dashed; }
+.il-chip.s-Planned { border-style: dotted; }
+.il-chip.s-Cancelled { text-decoration: line-through; }
+.il-chip.s-Closed { color: var(--color-fg); }
+.il-chip.trig-yes { border-color: var(--color-ok); color: var(--color-ok); }
+.il-chip.trig-no { color: var(--color-fg-muted); }
+
+.il-thesis { max-width: 46ch; line-height: 1.45; }
+.il-lesson { max-width: 40ch; line-height: 1.45; color: var(--color-fg-muted); font-style: italic; }
+
+/* Chart */
+.il-chart { position: relative; min-height: 15rem; }
+.il-chart svg { display: block; overflow: visible; }
+.il-tip {
+  position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border);
+  border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm);
+  font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 3;
+}
+.il-tip .t { color: var(--cds-text-secondary); }
+
+.il-fail { display: flex; align-items: center; justify-content: center; gap: .4rem; min-height: 4rem; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.il-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.il-foot { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; padding-bottom: var(--cds-pad-lg); }
+</style>
+
+<div class="il">
+  <header class="il-head" id="top">
+    <div class="il-eyebrow" id="il-eyebrow">The ledger of House Claude</div>
+    <h1 class="il-title">The Iron Ledger</h1>
+    <p class="il-takeaway dash-skeleton" id="il-takeaway" data-source="portfolio standing">—</p>
+  </header>
+
+  <section class="il-road" id="road">
+    <div class="il-road-top">
+      <h2 class="il-h2">The road to the Iron Throne</h2>
+      <p class="il-note">Account value against the pledge. Below The Wall, trading stops.</p>
+    </div>
+    <div class="il-track" id="il-track">
+      <div class="il-track-line"></div>
+      <div class="il-track-fill" id="il-fill"></div>
+      <div class="il-you" id="il-you" hidden>
+        <div class="il-you-pin"></div>
+        <div class="il-you-label" data-source="portfolio" data-field="total_value" data-row="0">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="il-tiles" id="tiles">
+    <div class="il-tile" id="tile-treasury">
+      <span class="il-tile-label">Treasury</span>
+      <span class="il-tile-value dash-skeleton" data-source="portfolio" data-field="total_value" data-row="0">—</span>
+      <span class="il-tile-sub">Account value, live from Robinhood</span>
+    </div>
+    <div class="il-tile" id="tile-return">
+      <span class="il-tile-label">Return on gold pledged</span>
+      <span class="il-tile-value dash-skeleton" data-source="standing" data-field="ret" data-row="0">—</span>
+      <span class="il-tile-sub">Versus $130 deposited ($30 + $100)</span>
+    </div>
+    <div class="il-tile" id="tile-field">
+      <span class="il-tile-label">Banners in the field</span>
+      <span class="il-tile-value dash-skeleton" data-source="standing" data-field="deployed" data-row="0">—</span>
+      <span class="il-tile-sub">Value of open positions</span>
+    </div>
+    <div class="il-tile" id="tile-coin">
+      <span class="il-tile-label">Coin unspent</span>
+      <span class="il-tile-value dash-skeleton" data-source="portfolio" data-field="buying_power" data-row="0">—</span>
+      <span class="il-tile-sub">Buying power after resting orders</span>
+    </div>
+    <div class="il-tile is-rival" id="tile-rival">
+      <span class="il-tile-label">House Codex</span>
+      <span class="il-tile-value" style="font-size:var(--cds-font-size-heading)">No raven yet</span>
+      <span class="il-tile-sub">Send me Codex's account value to score the rivalry</span>
+    </div>
+  </section>
+
+  <section class="il-grid">
+    <article class="il-card is-wide" id="banners">
+      <div class="il-card-head">
+        <h3 class="il-card-title">Banners in the field</h3>
+        <p class="il-note">Open positions, valued at the bid (what they would sell for now). Stops and targets from the journal.</p>
+      </div>
+      <div class="il-scroll" id="il-hold-box">
+        <table data-source="holdings" data-row-key="asset" id="il-hold">
+          <thead><tr>
+            <th data-field="asset">House</th>
+            <th class="n" data-field="quantity">Held</th>
+            <th class="n" data-field="cost">Cost</th>
+            <th class="n" data-field="mark">Mark</th>
+            <th class="n" data-field="value">Value at bid</th>
+            <th class="n" data-field="pnl">P&amp;L</th>
+            <th class="n" data-field="pnl_pct">P&amp;L %</th>
+            <th class="n" data-field="stop">The Wall (stop)</th>
+            <th class="n" data-field="to_stop">Room to stop</th>
+            <th class="n" data-field="target">Target</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="il-card" id="ravens">
+      <div class="il-card-head">
+        <h3 class="il-card-title">Ravens in flight</h3>
+        <p class="il-note">Resting orders on Robinhood: buys waiting for their price, stops guarding the gates.</p>
+      </div>
+      <div class="il-scroll">
+        <table data-source="orders" data-row-key="id" id="il-orders">
+          <thead><tr>
+            <th data-field="asset">Coin</th>
+            <th data-field="type">Order</th>
+            <th class="n" data-field="quantity">Amount</th>
+            <th class="n" data-field="price">Trigger / limit</th>
+            <th class="n" data-field="notional">Worth</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="il-card" id="council">
+      <div class="il-card-head">
+        <h3 class="il-card-title">The war council</h3>
+        <p class="il-note">Planned stock trades waiting on a signal. Prices are the last regular-session trade.</p>
+      </div>
+      <div class="il-scroll">
+        <table data-source="war" data-row-key="symbol" id="il-war">
+          <thead><tr>
+            <th data-field="symbol">Ticker</th>
+            <th class="n" data-field="last">Last</th>
+            <th class="n" data-field="chg">Day</th>
+            <th data-field="signal">Signal</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="il-card is-wide" id="treasury-chart">
+      <div class="il-card-head">
+        <h3 class="il-card-title">The treasury over time</h3>
+        <p class="il-note">Account value at each check-in, against gold pledged. Dashed line: King's Landing, $200.</p>
+      </div>
+      <div class="il-chart dash-skeleton" id="il-curve" data-source="curve"></div>
+    </article>
+
+    <article class="il-card is-wide" id="maester">
+      <div class="il-card-head">
+        <h3 class="il-card-title">The maester's journal</h3>
+        <p class="il-note">Every trade with its reason and what it taught. Cancelled and losing trades stay on the page.</p>
+      </div>
+      <div class="il-scroll">
+        <table data-source="ledger" data-row-key="id" id="il-ledger">
+          <thead><tr>
+            <th data-field="house">House</th>
+            <th data-field="status">Status</th>
+            <th class="n" data-field="entry">Entry</th>
+            <th class="n" data-field="stop">Stop</th>
+            <th class="n" data-field="target">Target</th>
+            <th class="n" data-field="size_usd">Size</th>
+            <th data-field="thesis">Why</th>
+            <th data-field="lesson">Lesson</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <p class="il-foot">Winter comes on 18 November, the last day of the contest. Goal: King's Landing ($200) or the Iron Throne ($300). The journal and treasury snapshots are updated at each check-in; everything else is live.</p>
+</div>
+
+<script>
+// ---------- loaders: Robinhood answers -> rows ----------
+dash.loader('portfolio', {
+  description: 'Robinhood portfolio record as one row of numbers.',
+  fn: ({ answer }) => {
+    const d = (typeof answer === 'string' ? JSON.parse(answer) : answer);
+    if (d && d.error) throw new Error(String(d.error));
+    const p = d.data !== undefined ? d.data : d;
+    return [{
+      total_value: Number(p.total_value),
+      cash: Number(p.cash),
+      crypto_value: Number(p.crypto_value),
+      equity_value: Number(p.equity_value),
+      options_value: Number(p.options_value),
+      buying_power: Number(p.buying_power && p.buying_power.buying_power),
+    }];
+  },
+});
+
+dash.loader('positions', {
+  description: 'Crypto positions as rows: coin, quantity, cost basis.',
+  fn: ({ answer }) => {
+    const d = (typeof answer === 'string' ? JSON.parse(answer) : answer);
+    if (d && d.error) throw new Error(String(d.error));
+    const p = d.data !== undefined ? d.data : d;
+    return (p.results || []).map((r) => ({
+      asset: r.currency.code,
+      quantity: Number(r.quantity),
+      cost: (r.cost_bases || []).reduce((s, c) => s + Number(c.direct_cost_basis), 0),
+    }));
+  },
+});
+
+dash.loader('crypto_quotes', {
+  description: 'Crypto quotes as rows: bid, ask, mark and previous close per coin.',
+  fn: ({ answer }) => {
+    const d = (typeof answer === 'string' ? JSON.parse(answer) : answer);
+    if (d && d.error) throw new Error(String(d.error));
+    const p = d.data !== undefined ? d.data : d;
+    return (p.results || []).map((r) => ({
+      asset: String(r.symbol).replace(/USD$/, ''),
+      bid: Number(r.bid_price),
+      ask: Number(r.ask_price),
+      mark: Number(r.mark_price),
+      open: Number(r.open_price),
+    }));
+  },
+});
+
+dash.loader('orders', {
+  description: 'Open crypto orders as rows.',
+  fn: ({ answer }) => {
+    const d = (typeof answer === 'string' ? JSON.parse(answer) : answer);
+    if (d && d.error) throw new Error(String(d.error));
+    const p = d.data !== undefined ? d.data : d;
+    return (p.results || []).map((r) => ({
+      id: r.id,
+      asset: r.currency_code,
+      side: r.side,
+      type: r.type,
+      quantity: Number(r.quantity),
+      price: Number(r.type === 'stop_loss' || r.type === 'stop_limit' ? r.stop_price : r.price),
+      notional: Number(r.rounded_estimated_notional_with_estimated_fee),
+    }));
+  },
+});
+
+dash.loader('war_quotes', {
+  description: 'Stock quotes as rows: last regular-session trade and previous close.',
+  fn: ({ answer }) => {
+    const d = (typeof answer === 'string' ? JSON.parse(answer) : answer);
+    if (d && d.error) throw new Error(String(d.error));
+    const p = d.data !== undefined ? d.data : d;
+    return (p.results || []).map((r) => ({
+      symbol: r.quote.symbol,
+      last: Number(r.quote.last_trade_price),
+      prev_close: Number(r.quote.adjusted_previous_close),
+    }));
+  },
+});
+
+// ---------- calcs ----------
+dash.calc('standing', {
+  title: 'Standing vs the pledge',
+  description: 'Account value against the $130 deposited, and value held in positions.',
+  inputs: ['portfolio'],
+  fn: (portfolio) => portfolio.map((p) => ({
+    equity: p.total_value,
+    ret: p.total_value / 130 - 1,
+    to_goal: 200 - p.total_value,
+    deployed: p.crypto_value + p.equity_value + p.options_value,
+  })),
+});
+
+dash.calc('holdings', {
+  title: 'Open positions, valued',
+  description: 'Each crypto position at the live bid and mark, with stop and target from the journal.',
+  inputs: ['positions', 'crypto_quotes', 'ledger'],
+  fn: (positions, crypto_quotes, ledger) => positions.map((p) => {
+    const q = crypto_quotes.find((x) => x.asset === p.asset) || {};
+    const j = ledger.find((t) => t.asset === p.asset && t.status === 'Open') || {};
+    const value = p.quantity * q.bid;
+    const stop = j.stop == null ? null : Number(j.stop);
+    return {
+      asset: p.asset,
+      house: j.house || '',
+      quantity: p.quantity,
+      cost: p.cost,
+      mark: q.mark,
+      value,
+      pnl: value - p.cost,
+      pnl_pct: value / p.cost - 1,
+      stop,
+      to_stop: stop == null ? null : q.mark / stop - 1,
+      target: j.target == null ? null : Number(j.target),
+    };
+  }),
+});
+
+dash.calc('war', {
+  title: 'War council signals',
+  description: 'Day change for each planned ticker, and whether its entry rule is met (SOXX under $490 then green, or up 2%; META at or above $700).',
+  inputs: ['war_quotes'],
+  fn: (war_quotes) => war_quotes.map((q) => {
+    const chg = q.last / q.prev_close - 1;
+    let signal = 'Watching';
+    if (q.symbol === 'SOXX') signal = chg >= 0.02 ? 'Trigger: up 2%+' : 'No reversal yet';
+    if (q.symbol === 'SOXL') signal = q.last >= 85 && q.last <= 95 ? 'In entry zone $85–95' : 'Outside $85–95';
+    if (q.symbol === 'META') signal = q.last >= 700 ? 'Holds $700' : 'Below $700';
+    if (q.symbol === 'METU') signal = 'Earnings bet, Tue 10/21';
+    return { symbol: q.symbol, last: q.last, chg, signal };
+  }),
+});
+
+// ---------- formatting ----------
+const usd = d3.format('$,.2f');
+const pct = d3.format('+.1%');
+const qty = (n) => (n >= 1 ? d3.format(',.4~f')(n) : d3.format('.6~f')(n));
+const px = (n) => n == null || isNaN(n) ? '—' : n >= 1000 ? d3.format('$,.0f')(n) : n >= 10 ? d3.format('$,.2f')(n) : d3.format('$,.4~f')(n);
+const tone = (el, n) => { el.classList.toggle('il-good', n > 0); el.classList.toggle('il-bad', n < 0); };
+const setText = (sel, s) => { const el = typeof sel === 'string' ? document.querySelector(sel) : sel; if (el) el.textContent = s; return el; };
+const unskel = (el) => el && el.classList.remove('dash-skeleton');
+const failLine = (el, msg) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'il-fail'; d.textContent = msg || 'Failed to load'; el.appendChild(d); };
+const sigil = (house, label, sub) => {
+  const w = document.createElement('span'); w.className = 'il-house';
+  const s = document.createElement('span'); s.className = 'il-sigil'; s.dataset.h = house; s.textContent = (label || '?').slice(0, 1);
+  const n = document.createElement('span'); n.className = 'il-house-name';
+  const t = document.createElement('span'); t.textContent = label;
+  const sm = document.createElement('small'); sm.textContent = sub || house;
+  n.append(t, sm); w.append(s, n); return w;
+};
+const td = (text, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; if (text instanceof Node) c.appendChild(text); else c.textContent = text; return c; };
+
+// ---------- the road ----------
+const ROAD = { min: 0, max: 320, stops: [
+  { v: 50, name: 'The Wall', cls: 'is-wall' },
+  { v: 130, name: 'Winterfell', cls: '' },
+  { v: 200, name: "King's Landing", cls: 'is-goal' },
+  { v: 300, name: 'Iron Throne', cls: 'is-goal' },
+] };
+(function buildRoad() {
+  const track = document.getElementById('il-track');
+  ROAD.stops.forEach((s) => {
+    const el = document.createElement('div'); el.className = 'il-stop ' + s.cls;
+    el.style.left = ((s.v - ROAD.min) / (ROAD.max - ROAD.min) * 100) + '%';
+    const n = document.createElement('span'); n.className = 'il-stop-name'; n.textContent = s.name;
+    const t = document.createElement('span'); t.className = 'il-stop-tick';
+    const v = document.createElement('span'); v.className = 'il-stop-val'; v.textContent = '$' + s.v;
+    el.append(n, t, v); track.appendChild(el);
+  });
+})();
+
+// ---------- draw ----------
+const deadline = new Date('2026-11-18T21:00:00Z');
+dash.onData(() => {
+  const days = Math.max(0, Math.ceil((deadline - new Date()) / 864e5));
+  setText('#il-eyebrow', 'The ledger of House Claude · ' + days + ' days until winter');
+
+  // Header + road + tiles
+  const P = dash.data('portfolio'), S = dash.data('standing');
+  const take = document.getElementById('il-takeaway');
+  const you = document.getElementById('il-you');
+  if (P.status === 'ok' && P.data.length && S.status === 'ok' && S.data.length) {
+    const p = P.data[0], s = S.data[0];
+    unskel(take); take.replaceChildren();
+    const b1 = document.createElement('b'); b1.textContent = usd(p.total_value);
+    const b2 = document.createElement('b'); b2.textContent = pct(s.ret);
+    const b3 = document.createElement('b'); b3.textContent = usd(Math.max(0, s.to_goal));
+    take.append('The treasury holds ', b1, ', ', b2, ' on the gold pledged. ',
+      s.to_goal > 0 ? b3 : 'King’s Landing is taken.', s.to_goal > 0 ? ' more takes King’s Landing.' : '');
+    const left = Math.min(100, Math.max(0, (p.total_value - ROAD.min) / (ROAD.max - ROAD.min) * 100));
+    you.hidden = false; you.style.left = left + '%';
+    document.getElementById('il-fill').style.width = left + '%';
+    setText(you.querySelector('.il-you-label'), usd(p.total_value));
+    document.querySelectorAll('#tiles [data-source="portfolio"]').forEach((el) => { unskel(el); el.textContent = usd(p[el.dataset.field]); });
+    const r = setText('#tile-return .il-tile-value', pct(s.ret)); unskel(r); tone(r, s.ret);
+    const f = setText('#tile-field .il-tile-value', usd(s.deployed)); unskel(f);
+  } else if (P.status === 'error' || P.status === 'connect' || P.status === 'declined') {
+    unskel(take); take.textContent = 'Robinhood didn’t answer. Open Sources to reconnect.';
+    you.hidden = true;
+    document.querySelectorAll('#tiles .dash-skeleton').forEach((el) => { unskel(el); el.textContent = '—'; });
+  }
+
+  // Holdings
+  const H = dash.data('holdings');
+  const hb = document.querySelector('#il-hold tbody');
+  hb.replaceChildren();
+  if (H.status === 'ok') {
+    if (!H.data.length) {
+      const tr = document.createElement('tr'); const c = td('No banners in the field. All coin is in the treasury.'); c.colSpan = 10; c.className = 'il-empty'; tr.appendChild(c); hb.appendChild(tr);
+    }
+    H.data.forEach((h) => {
+      const tr = document.createElement('tr'); tr.dataset.key = h.asset;
+      tr.appendChild(td(sigil(h.house, h.asset, h.house)));
+      tr.appendChild(td(qty(h.quantity), 'n'));
+      tr.appendChild(td(usd(h.cost), 'n'));
+      tr.appendChild(td(px(h.mark), 'n'));
+      tr.appendChild(td(usd(h.value), 'n'));
+      const a = td(usd(h.pnl), 'n'); tone(a, h.pnl); tr.appendChild(a);
+      const b = td(pct(h.pnl_pct), 'n'); tone(b, h.pnl_pct); tr.appendChild(b);
+      tr.appendChild(td(px(h.stop), 'n'));
+      tr.appendChild(td(h.to_stop == null ? '—' : d3.format('.1%')(h.to_stop), 'n'));
+      tr.appendChild(td(px(h.target), 'n'));
+      hb.appendChild(tr);
+    });
+  } else if (H.status === 'error') {
+    const tr = document.createElement('tr'); const c = td(''); c.colSpan = 10; failLine(c); tr.appendChild(c); hb.appendChild(tr);
+  }
+
+  // Orders
+  const O = dash.data('orders');
+  const ob = document.querySelector('#il-orders tbody');
+  ob.replaceChildren();
+  if (O.status === 'ok') {
+    if (!O.data.length) { const tr = document.createElement('tr'); const c = td('No ravens in flight.'); c.colSpan = 5; c.className = 'il-empty'; tr.appendChild(c); ob.appendChild(tr); }
+    const kind = (o) => o.type === 'stop_loss' ? 'Stop order (sell)' : o.type === 'stop_limit' ? 'Stop limit order (' + o.side + ')' : (o.type === 'limit' ? 'Limit ' : 'Market ') + o.side;
+    O.data.slice().sort((a, b) => a.asset.localeCompare(b.asset)).forEach((o) => {
+      const tr = document.createElement('tr'); tr.dataset.key = o.id;
+      tr.appendChild(td(o.asset));
+      tr.appendChild(td(kind(o)));
+      tr.appendChild(td(qty(o.quantity), 'n'));
+      tr.appendChild(td(px(o.price), 'n'));
+      tr.appendChild(td(usd(o.notional), 'n'));
+      ob.appendChild(tr);
+    });
+  } else if (O.status === 'error') {
+    const tr = document.createElement('tr'); const c = td(''); c.colSpan = 5; failLine(c); tr.appendChild(c); ob.appendChild(tr);
+  }
+
+  // War council
+  const W = dash.data('war');
+  const wb = document.querySelector('#il-war tbody');
+  wb.replaceChildren();
+  if (W.status === 'ok') {
+    W.data.forEach((w) => {
+      const tr = document.createElement('tr'); tr.dataset.key = w.symbol;
+      tr.appendChild(td(w.symbol));
+      tr.appendChild(td(px(w.last), 'n'));
+      const c = td(pct(w.chg), 'n'); tone(c, w.chg); tr.appendChild(c);
+      const chip = document.createElement('span');
+      const yes = /^Trigger|In entry|Holds/.test(w.signal);
+      chip.className = 'il-chip ' + (yes ? 'trig-yes' : 'trig-no'); chip.textContent = w.signal;
+      tr.appendChild(td(chip));
+      wb.appendChild(tr);
+    });
+  } else if (W.status === 'error') {
+    const tr = document.createElement('tr'); const c = td(''); c.colSpan = 4; failLine(c); tr.appendChild(c); wb.appendChild(tr);
+  }
+
+  // Journal
+  const L = dash.data('ledger');
+  const lb = document.querySelector('#il-ledger tbody');
+  lb.replaceChildren();
+  if (L.status === 'ok') {
+    const order = { Open: 0, Resting: 1, Planned: 2, Closed: 3, Cancelled: 4 };
+    L.data.slice().sort((a, b) => (order[a.status] ?? 9) - (order[b.status] ?? 9)).forEach((t) => {
+      const tr = document.createElement('tr'); tr.dataset.key = t.id;
+      tr.appendChild(td(sigil(t.house, t.asset, t.house + ' · ' + t.vehicle)));
+      const chip = document.createElement('span'); chip.className = 'il-chip s-' + t.status; chip.textContent = t.status;
+      tr.appendChild(td(chip));
+      tr.appendChild(td(px(t.entry == null ? null : Number(t.entry)), 'n'));
+      tr.appendChild(td(px(t.stop == null ? null : Number(t.stop)), 'n'));
+      tr.appendChild(td(px(t.target == null ? null : Number(t.target)), 'n'));
+      tr.appendChild(td(usd(Number(t.size_usd)), 'n'));
+      tr.appendChild(td(t.thesis, 'il-thesis'));
+      tr.appendChild(td(t.lesson || '—', 'il-lesson'));
+      lb.appendChild(tr);
+    });
+  } else if (L.status === 'error') {
+    const tr = document.createElement('tr'); const c = td(''); c.colSpan = 8; failLine(c); tr.appendChild(c); lb.appendChild(tr);
+  }
+
+  // Treasury chart
+  drawCurve();
+});
+
+function drawCurve() {
+  const box = document.getElementById('il-curve');
+  const C = dash.data('curve');
+  if (C.status === 'error') { box.classList.remove('dash-skeleton'); failLine(box); return; }
+  if (C.status !== 'ok') return;
+  box.classList.remove('dash-skeleton');
+  box.replaceChildren();
+  const rows = C.data.map((r) => ({ at: new Date(r.at), equity: Number(r.equity), contributed: Number(r.contributed), note: r.note }))
+    .filter((r) => !isNaN(r.at)).sort((a, b) => a.at - b.at);
+  if (!rows.length) return;
+  const W = Math.max(280, box.clientWidth), H = 240;
+  const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    .attr('aria-label', 'Account value at each check-in');
+  const y = d3.scaleLinear([0, 320], [H - 28, 12]);
+  // left margin from widest tick label
+  const probe = svg.append('text').attr('font-size', 12).text('$300');
+  const lm = Math.ceil(probe.node().getComputedTextLength()) + 10; probe.remove();
+  const rm = 96;
+  const x0 = rows[0].at, x1 = rows.length > 1 ? rows[rows.length - 1].at : new Date(+rows[0].at + 36e5);
+  const x = d3.scaleUtc([x0, x1], [lm, W - rm]);
+  const g = svg.append('g');
+  [0, 50, 130, 200, 300].forEach((v) => {
+    g.append('line').attr('x1', lm).attr('x2', W - rm).attr('y1', y(v)).attr('y2', y(v))
+      .attr('stroke', v === 200 ? 'var(--cds-chart-reference)' : 'var(--cds-chart-grid)')
+      .attr('stroke-dasharray', v === 200 ? '5 4' : null).attr('stroke-width', 1);
+    g.append('text').attr('x', lm - 8).attr('y', y(v)).attr('dy', '0.32em').attr('text-anchor', 'end')
+      .attr('font-size', 12).attr('fill', 'var(--color-fg-muted)').text('$' + v);
+  });
+  const ticks = x.ticks(Math.max(2, Math.floor((W - lm - rm) / 120)));
+  ticks.forEach((t) => g.append('text').attr('x', x(t)).attr('y', H - 8).attr('text-anchor', 'middle')
+    .attr('font-size', 12).attr('fill', 'var(--color-fg-muted)').text(d3.utcFormat('%b %-d %H:%M')(t)));
+  const id = 'il-grad';
+  const grad = svg.append('defs').append('linearGradient').attr('id', id).attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 1);
+  [[0, .26], [.25, .16], [.5, .08], [.75, .03], [1, 0]].forEach(([o, a]) => grad.append('stop').attr('offset', o).attr('style', `stop-color:${dash.colors[0]};stop-opacity:${a}`));
+  svg.append('path').datum(rows).attr('fill', `url(#${id})`).attr('d', d3.area().x((d) => x(d.at)).y0(y(0)).y1((d) => y(d.equity)));
+  svg.append('path').datum(rows).attr('fill', 'none').attr('stroke', 'var(--cds-chart-muted)').attr('stroke-width', 2)
+    .attr('stroke-dasharray', '2 4').attr('stroke-linecap', 'round').attr('d', d3.line().x((d) => x(d.at)).y((d) => y(d.contributed)));
+  svg.append('path').datum(rows).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2)
+    .attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round').attr('d', d3.line().x((d) => x(d.at)).y((d) => y(d.equity)));
+  const last = rows[rows.length - 1];
+  svg.append('circle').attr('cx', x(last.at)).attr('cy', y(last.equity)).attr('r', 4).attr('fill', dash.colors[0]);
+  svg.append('text').attr('x', x(last.at) + 8).attr('y', y(last.equity)).attr('dy', '0.32em').attr('font-size', 12)
+    .attr('fill', 'var(--color-fg)').text('Treasury ' + usd(last.equity));
+  svg.append('text').attr('x', x(last.at) + 8).attr('y', y(last.contributed) + 16).attr('font-size', 12)
+    .attr('fill', 'var(--color-fg-muted)').text('Pledged ' + usd(last.contributed));
+  svg.append('text').attr('x', W - rm + 8).attr('y', y(200)).attr('dy', '0.32em').attr('font-size', 12)
+    .attr('fill', 'var(--color-fg-muted)').text("King's Landing");
+  // tooltip
+  const tip = document.createElement('div'); tip.className = 'il-tip'; tip.hidden = true; box.appendChild(tip);
+  const dot = svg.append('circle').attr('r', 5).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).style('display', 'none');
+  const pts = rows.map((r) => [x(r.at), y(r.equity)]);
+  const finder = d3.Delaunay.from(pts);
+  svg.append('rect').attr('x', lm).attr('y', 0).attr('width', W - rm - lm).attr('height', H).attr('fill', 'transparent')
+    .on('pointermove', (ev) => {
+      const [mx, my] = d3.pointer(ev);
+      const i = finder.find(mx, my); const r = rows[i];
+      dot.style('display', null).attr('cx', pts[i][0]).attr('cy', pts[i][1]);
+      tip.replaceChildren();
+      const t = document.createElement('div'); t.className = 't'; t.textContent = d3.utcFormat('%b %-d, %H:%M UTC')(r.at);
+      const v = document.createElement('div'); v.textContent = 'Treasury ' + usd(r.equity) + ' · pledged ' + usd(r.contributed);
+      const n = document.createElement('div'); n.className = 't'; n.textContent = r.note || '';
+      tip.append(t, v, n); tip.hidden = false;
+      const bw = box.clientWidth, scale = bw / W;
+      let left = pts[i][0] * scale + 12; const tw = tip.offsetWidth;
+      if (left + tw > bw) left = pts[i][0] * scale - tw - 12;
+      tip.style.left = Math.max(0, left) + 'px'; tip.style.top = Math.max(0, pts[i][1] * scale - 20) + 'px';
+    })
+    .on('pointerleave', () => { tip.hidden = true; dot.style('display', 'none'); });
+}
+</script>
