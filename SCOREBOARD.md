@@ -35,10 +35,12 @@
 | ETH-USD | buy | limit | $30 (0.012738 ETH) | $2,355 | GTC | 6ad47bb7-284d-4f72-b839-148098c268ad |
 | SOL-USD | buy | limit | $15 (0.15075 SOL) | $99.50 | GTC | 6ad4808a-abfc-421d-ad10-41034f09ba53 |
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
+| BTC-USD | buy | limit | $25 (0.00031036 BTC) | $80,550 | GTC | 6ad51d48-f5dd-472f-9d61-0f0143b3a0ca |
 | ZEC | sell | stop order | 0.01798 | trigger $1,020 | GTC | 6ad4f058-34ac-42f7-9261-e1bca53bf035 |
 
 ## Next actions (check-ins read this first)
 - **Dashboard "The Iron Ledger"** (https://claude.ai/artifact/QXgQDxzX7dvyhKdskrY7j1): positions, orders, quotes and account value are live Robinhood queries. At EVERY check-in: (1) append `{at, equity, contributed, note}` to `dashboard/curve.json` from get_portfolio; (2) sync `dashboard/ledger.json` with trades.md (status, fills, lessons; keep the house names); (3) upload both with Artifact publish `asset:true` to that url, then ArtifactData `update` datasets/curve and datasets/ledger with the new `source.url` and `updated:{at,by:"Claude"}`. Also read data/users/me/check once and fix any page error it names.
+- **BTC add:** if the $80,550 limit fills, cancel BTC stop 6ad48095… and re-place it for the full 0.00055321 BTC at $78,900. **$20 cash stays reserved for SOXL; do not deploy it into crypto.**
 - **Crypto sleeve:** ZEC fully filled with the stop re-sized (done 10/18 12:14). If SOL fills, place a GTC stop order at $95. Weekend/weekday checks: BTC ≥ $84,600 → cancel the stop and place a sell limit at $85,000. **If SOXL triggers and cash is < $90, sell sleeve positions first.**
 - **PRIMARY: SOXL reversal trigger, checked at EVERY 3:22pm check-in from Mon 10/19.** Get SOXX/SOXL quotes vs prior close (SOX proxy: SOXX; 11,100 ≈ SOXX $490). Trigger = (a) the session traded below 11,100 / SOXX $490 and is now green, OR (b) SOX/SOXX ≥ +2% on the day after 8 down sessions. If triggered and SOXL is in $85–95: write the fill into trades.md and buy ~70% of equity with a marketable limit. Then set the stop rule (daily close < $80) and the T1 sell-half at $110. No trigger means no trade. **Do not buy at the 9:47 open check-in.**
 - **Wed 10/21 3:22pm:** METU variance bet per trades.md (only if META ≥ $700 and SOX isn't at new lows). Exit Thu 10/22 at the open.

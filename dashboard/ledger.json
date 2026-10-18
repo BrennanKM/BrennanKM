@@ -42,6 +42,20 @@
   "lesson": "A market buy on market-maker routing costs 0.95% on entry; worth \u22121.9% at the bid on fill."
  },
  {
+  "id": "T6",
+  "opened": "2026-10-18",
+  "asset": "BTC",
+  "house": "House Lannister",
+  "vehicle": "Crypto",
+  "status": "Resting",
+  "entry": 80550,
+  "stop": 78900,
+  "target": 85000,
+  "size_usd": 25,
+  "thesis": "Add to BTC only at the range floor (~$79.8K mid). BTC is the strongest major on a down day.",
+  "lesson": ""
+ },
+ {
   "id": "T4",
   "opened": "2026-10-18",
   "asset": "SOL",
