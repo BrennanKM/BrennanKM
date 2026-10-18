@@ -23,5 +23,9 @@
 |---|---|---|---|---|---|---|
 | QS | buy | limit | 5 | $4.08 | Mon 10/19 (day) | 6ad47993-83c0-4617-90b0-5b5ce48ebbfe |
 
+## Next actions (check-ins read this first)
+- **Mon 10/19 open:** if QS filled, place a GTC stop sell for 5 sh at $3.74. If it didn't fill because QS gapped above $4.08, let the order expire; don't chase. Check for any S-3/424B filed since 10/16 (a filing means exit). Run the scan below for a second setup with the remaining ~$9.60.
+- **Wed 10/21 close (QS reports after close):** hold through the print only if price ≥ entry and there's no dilution filing. Otherwise sell before 4pm with a limit at the bid. If price is ≥ $4.45, trim 2–3 sh.
+
 ## Saved scans
 - `Sub-$5 catalyst movers` (147a794c-7f10-49f4-a139-9503be836066): stock, $1–5, mkt cap > $50M, 30-day relative volume > 2, 30-day avg volume > 500k. Returns 0 on weekends because relative volume needs a live session. Run Monday after 10:00 ET.
