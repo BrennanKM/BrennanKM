@@ -1,12 +1,13 @@
 <style>
-/* Layout: a single war-room column; header + throne road, tiles, then cards in a responsive grid. */
+/* Layout: an arena scoreboard; a striped jumbotron header + the road to the title, stat tiles, then cards in a responsive grid. */
 #dash-root { --dash-gutter: clamp(12px, 3vw, 32px); }
 .il {
-  --il-gold: #b08a3e;
-  --il-gold-soft: color-mix(in oklab, #b08a3e 18%, var(--color-panel));
-  --il-blood: #9b2c2c;
-  --il-iron: color-mix(in oklab, var(--color-fg) 55%, var(--color-bg));
-  --il-rule: color-mix(in oklab, #b08a3e 45%, var(--color-border-line));
+  --rc-red: #e03a3e;
+  --rc-red-ink: color-mix(in oklab, #e03a3e 82%, var(--color-fg));
+  --rc-red-soft: color-mix(in oklab, #e03a3e 14%, var(--color-panel));
+  --rc-black: #0d0d0f;
+  --rc-rule: color-mix(in oklab, #e03a3e 55%, var(--color-border-line));
+  --rc-court: color-mix(in oklab, var(--color-fg) 50%, var(--color-bg));
   font-family: var(--font-anthropic-sans);
   color: var(--color-fg);
   max-width: 76rem;
@@ -15,71 +16,74 @@
   gap: var(--cds-gap-lg);
   font-variant-numeric: tabular-nums;
 }
-.il-head { display: grid; gap: var(--cds-gap-xs); padding-block: var(--cds-pad-sm) 0; }
+/* Jumbotron header */
+.il-head {
+  display: grid; gap: var(--cds-gap-xs);
+  background: var(--rc-black); color: #f5f5f4;
+  border-radius: var(--cds-radius);
+  padding: var(--cds-pad-lg) var(--cds-pad-lg) calc(var(--cds-pad-lg) + 14px);
+  position: relative; overflow: hidden;
+}
+.il-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+  background: repeating-linear-gradient(90deg, #e03a3e 0 22px, #0d0d0f 22px 26px, #f5f5f4 26px 30px, #0d0d0f 30px 34px);
+}
 .il-eyebrow {
-  font-size: var(--cds-font-size-caption);
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--il-gold);
+  font-size: var(--cds-font-size-caption); letter-spacing: .22em; text-transform: uppercase;
+  color: #e03a3e; font-weight: 700;
 }
 .il-title {
-  font-family: var(--font-anthropic-serif);
-  font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3.1rem);
-  line-height: 1.05;
-  margin: 0;
-  letter-spacing: .02em;
-  font-variant: small-caps;
-  text-wrap: balance;
+  font-family: var(--font-anthropic-sans); font-weight: 800; font-style: italic;
+  font-size: clamp(2.1rem, 5.4vw, 3.4rem); line-height: 1; margin: 0;
+  letter-spacing: -.01em; text-transform: uppercase; text-wrap: balance; color: #f5f5f4;
 }
-.il-takeaway { margin: 0; max-width: 62ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); line-height: 1.5; }
-.il-takeaway b { color: var(--color-fg); font-weight: 600; }
+.il-title span { color: #e03a3e; }
+.il-takeaway { margin: 0; max-width: 62ch; color: #c9c9cc; font-size: var(--cds-font-size-body); line-height: 1.5; }
+.il-takeaway b { color: #ffffff; font-weight: 700; }
 
-/* The road to the throne */
+/* The road to the title */
 .il-road {
-  background: var(--color-panel);
-  border: 1px solid var(--il-rule);
-  border-radius: var(--cds-radius);
-  padding: var(--cds-pad-lg);
-  display: grid;
-  gap: var(--cds-gap-md);
+  background: var(--color-panel); border: 1px solid var(--color-border-line);
+  border-top: 4px solid var(--rc-red);
+  border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-md);
 }
 .il-road-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--cds-gap-sm); align-items: baseline; }
-.il-h2 { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant: small-caps; letter-spacing: .03em; }
+.il-h2 { margin: 0; font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: .02em; font-size: var(--cds-font-size-title); }
 .il-note { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
 .il-track { position: relative; height: 5.5rem; margin-inline: .5rem; }
 .il-track-line {
   position: absolute; left: 0; right: 0; top: 2.1rem; height: 6px; border-radius: 3px;
-  background: linear-gradient(90deg, color-mix(in oklab, var(--il-blood) 70%, var(--color-panel)) 0%, var(--il-iron) 16%, var(--il-iron) 60%, var(--il-gold) 100%);
-  opacity: .55;
+  background: var(--rc-court); opacity: .35;
 }
-.il-track-fill { position: absolute; left: 0; top: 2.1rem; height: 6px; border-radius: 3px; background: var(--il-gold); width: 0; }
+.il-track-fill { position: absolute; left: 0; top: 2.1rem; height: 6px; border-radius: 3px; background: var(--rc-red); width: 0; }
 .il-stop { position: absolute; top: 0; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; text-align: center; }
-.il-stop-name { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); white-space: nowrap; letter-spacing: .04em; }
-.il-stop-tick { width: 2px; height: 1.6rem; background: var(--il-rule); margin-top: .2rem; }
+.il-stop-name { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); white-space: nowrap; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.il-stop-tick { width: 2px; height: 1.6rem; background: var(--rc-rule); margin-top: .2rem; }
 .il-stop-val { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 1.1rem; }
-.il-stop.is-goal .il-stop-name { color: var(--il-gold); font-weight: 600; }
+.il-stop.is-goal .il-stop-name { color: var(--rc-red-ink); }
 .il-stop.is-wall .il-stop-name { color: var(--color-bad); }
-.il-you { position: absolute; top: 1.35rem; transform: translateX(-50%); display: grid; justify-items: center; z-index: 2; }
+.il-you { position: absolute; top: 1.3rem; transform: translateX(-50%); display: grid; justify-items: center; z-index: 2; }
 .il-you-pin {
-  width: 1.15rem; height: 1.15rem; transform: rotate(45deg);
-  background: var(--color-bg); border: 3px solid var(--il-gold); border-radius: 2px;
+  width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f08a3c, #c2561a 70%);
+  box-shadow: inset 0 0 0 1.5px #3b1d0a, 0 0 0 3px var(--color-panel);
 }
 .il-you-label {
-  margin-top: .35rem; font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-heading);
+  margin-top: .35rem; font-weight: 800; font-size: var(--cds-font-size-heading);
   background: var(--color-panel); padding-inline: .3rem; white-space: nowrap;
 }
 
-/* Tiles */
+/* Stat tiles: scoreboard */
 .il-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); gap: var(--cds-gap-md); }
 .il-tile {
   background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius);
+  border-left: 4px solid var(--rc-red);
   padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; min-height: 6.5rem;
 }
-.il-tile-label { font-size: var(--cds-font-size-caption); letter-spacing: .12em; text-transform: uppercase; color: var(--color-fg-muted); }
-.il-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.1; }
+.il-tile-label { font-size: var(--cds-font-size-caption); letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-muted); font-weight: 700; }
+.il-tile-value { font-weight: 800; font-size: clamp(1.7rem, 3.6vw, 2.35rem); line-height: 1.05; letter-spacing: -.01em; }
 .il-tile-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
-.il-tile.is-rival { border-style: dashed; }
+.il-tile.is-rival { border-left-color: var(--color-fg-muted); border-style: dashed; border-left-style: solid; }
 .il-good { color: var(--color-ok); }
 .il-bad { color: var(--color-bad); }
 
@@ -91,41 +95,35 @@
 }
 .il-card.is-wide { grid-column: 1 / -1; }
 .il-card-head { display: grid; gap: 2px; }
-.il-card-title { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); font-variant: small-caps; letter-spacing: .04em; }
+.il-card-title { margin: 0; font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: .03em; font-size: var(--cds-font-size-heading); }
+.il-card-title::before { content: ""; display: inline-block; width: .55em; height: .55em; margin-right: .45em; background: var(--rc-red); transform: skewX(-12deg); }
 .il-scroll { overflow-x: auto; min-width: 0; }
 .il table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); }
 .il th {
-  text-align: left; font-weight: 500; color: var(--color-fg-muted); letter-spacing: .06em; text-transform: uppercase;
-  padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--il-rule); white-space: nowrap;
+  text-align: left; font-weight: 700; color: var(--color-fg-muted); letter-spacing: .08em; text-transform: uppercase;
+  padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 2px solid var(--rc-rule); white-space: nowrap;
 }
 .il td { padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
 .il td.n, .il th.n { text-align: right; white-space: nowrap; }
 .il tr:last-child td { border-bottom: 0; }
 .il-empty { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
 
-/* Sigils */
+/* Jerseys */
 .il-house { display: inline-flex; align-items: center; gap: var(--cds-gap-sm); white-space: nowrap; }
 .il-sigil {
-  flex: none; width: 1.55rem; height: 1.8rem; display: grid; place-items: center;
-  clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
-  font-family: var(--font-anthropic-serif); font-size: .8rem; color: #fff; padding-bottom: .3rem;
-  background: #5b5b62;
+  flex: none; width: 1.7rem; height: 1.9rem; display: grid; place-items: center;
+  clip-path: polygon(22% 0, 38% 0, 50% 12%, 62% 0, 78% 0, 100% 18%, 92% 100%, 8% 100%, 0 18%);
+  font-weight: 800; font-size: .72rem; color: #ffffff; background: #e03a3e; padding-top: .25rem;
 }
-.il-sigil[data-h="House Lannister"] { background: #9b2c2c; color: #f1d27a; }
-.il-sigil[data-h="House Stark"] { background: #6b7280; color: #f5f5f4; }
-.il-sigil[data-h="House Targaryen"] { background: #1c1917; color: #e0533d; }
-.il-sigil[data-h="The Faceless Men"] { background: #3f3f46; color: #e7e5e4; }
-.il-sigil[data-h="House Greyjoy"] { background: #1f2937; color: #d4a937; }
-.il-sigil[data-h="House Baratheon"] { background: #a16207; color: #111827; }
-.il-sigil[data-h="House Tully"] { background: #1e40af; color: #fecaca; }
+.il-sigil.is-alt { background: #0d0d0f; color: #f5f5f4; box-shadow: inset 0 0 0 2px #e03a3e; }
 .il-house-name { display: grid; line-height: 1.2; }
 .il-house-name small { color: var(--color-fg-muted); font-size: .72rem; }
 
 .il-chip {
-  display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .72rem; letter-spacing: .04em; white-space: nowrap;
-  border: 1px solid var(--color-border-line); color: var(--color-fg-muted);
+  display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .72rem; letter-spacing: .05em; white-space: nowrap;
+  border: 1px solid var(--color-border-line); color: var(--color-fg-muted); text-transform: uppercase; font-weight: 600;
 }
-.il-chip.s-Open { border-color: var(--il-gold); color: var(--color-fg); background: var(--il-gold-soft); }
+.il-chip.s-Open { border-color: var(--rc-red); color: var(--color-fg); background: var(--rc-red-soft); }
 .il-chip.s-Resting { border-style: dashed; }
 .il-chip.s-Planned { border-style: dotted; }
 .il-chip.s-Cancelled { text-decoration: line-through; }
@@ -151,19 +149,20 @@
 [data-dash-source-state=empty] { color: transparent; }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 .il-foot { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; padding-bottom: var(--cds-pad-lg); }
+.il-head .il-takeaway.dash-skeleton { color: transparent; }
 </style>
 
 <div class="il">
   <header class="il-head" id="top">
-    <div class="il-eyebrow" id="il-eyebrow">The ledger of House Claude</div>
-    <h1 class="il-title">The Iron Ledger</h1>
+    <div class="il-eyebrow" id="il-eyebrow">Claude vs Codex · 30-day season</div>
+    <h1 class="il-title">Rip City <span>Ledger</span></h1>
     <p class="il-takeaway dash-skeleton" id="il-takeaway" data-source="portfolio standing">—</p>
   </header>
 
   <section class="il-road" id="road">
     <div class="il-road-top">
-      <h2 class="il-h2">The road to the Iron Throne</h2>
-      <p class="il-note">Account value against the pledge. Below The Wall, trading stops.</p>
+      <h2 class="il-h2">The road to the title</h2>
+      <p class="il-note">Account value on the season track. Drop into the lottery ($50) and the season is over.</p>
     </div>
     <div class="il-track" id="il-track">
       <div class="il-track-line"></div>
@@ -177,27 +176,27 @@
 
   <section class="il-tiles" id="tiles">
     <div class="il-tile" id="tile-treasury">
-      <span class="il-tile-label">Treasury</span>
+      <span class="il-tile-label">Score</span>
       <span class="il-tile-value dash-skeleton" data-source="portfolio" data-field="total_value" data-row="0">—</span>
       <span class="il-tile-sub">Account value, live from Robinhood</span>
     </div>
     <div class="il-tile" id="tile-return">
-      <span class="il-tile-label">Return on gold pledged</span>
+      <span class="il-tile-label">Point differential</span>
       <span class="il-tile-value dash-skeleton" data-source="standing" data-field="ret" data-row="0">—</span>
       <span class="il-tile-sub">Versus $130 deposited ($30 + $100)</span>
     </div>
     <div class="il-tile" id="tile-field">
-      <span class="il-tile-label">Banners in the field</span>
+      <span class="il-tile-label">On the floor</span>
       <span class="il-tile-value dash-skeleton" data-source="standing" data-field="deployed" data-row="0">—</span>
       <span class="il-tile-sub">Value of open positions</span>
     </div>
     <div class="il-tile" id="tile-coin">
-      <span class="il-tile-label">Coin unspent</span>
+      <span class="il-tile-label">On the bench</span>
       <span class="il-tile-value dash-skeleton" data-source="portfolio" data-field="buying_power" data-row="0">—</span>
-      <span class="il-tile-sub">Buying power after resting orders</span>
+      <span class="il-tile-sub">Cash ready to check in</span>
     </div>
     <div class="il-tile is-rival" id="tile-rival">
-      <span class="il-tile-label">House Codex, the rival</span>
+      <span class="il-tile-label">Opponent: Codex</span>
       <span class="il-tile-value dash-skeleton" data-source="rival" data-field="equity" data-row="0">—</span>
       <span class="il-tile-sub dash-skeleton" id="il-rival-sub" data-source="rivalry">—</span>
     </div>
@@ -206,20 +205,20 @@
   <section class="il-grid">
     <article class="il-card is-wide" id="banners">
       <div class="il-card-head">
-        <h3 class="il-card-title">Banners in the field</h3>
-        <p class="il-note">Open positions, valued at the bid (what they would sell for now). Stops and targets from the journal.</p>
+        <h3 class="il-card-title">Starting lineup</h3>
+        <p class="il-note">Open positions, valued at the bid (what they would sell for now). Foul-out line is the stop.</p>
       </div>
       <div class="il-scroll" id="il-hold-box">
         <table data-source="holdings" data-row-key="asset" id="il-hold">
           <thead><tr>
-            <th data-field="asset">House</th>
+            <th data-field="asset">Player</th>
             <th class="n" data-field="quantity">Held</th>
             <th class="n" data-field="cost">Cost</th>
             <th class="n" data-field="mark">Mark</th>
             <th class="n" data-field="value">Value at bid</th>
             <th class="n" data-field="pnl">P&amp;L</th>
             <th class="n" data-field="pnl_pct">P&amp;L %</th>
-            <th class="n" data-field="stop">The Wall (stop)</th>
+            <th class="n" data-field="stop">Fouls out (stop)</th>
             <th class="n" data-field="to_stop">Room to stop</th>
             <th class="n" data-field="target">Target</th>
           </tr></thead>
@@ -230,8 +229,8 @@
 
     <article class="il-card" id="ravens">
       <div class="il-card-head">
-        <h3 class="il-card-title">Ravens in flight</h3>
-        <p class="il-note">Resting orders on Robinhood: buys waiting for their price, stops guarding the gates.</p>
+        <h3 class="il-card-title">Plays called</h3>
+        <p class="il-note">Resting orders on Robinhood: buys waiting for their price, stops on defense.</p>
       </div>
       <div class="il-scroll">
         <table data-source="orders" data-row-key="id" id="il-orders">
@@ -249,7 +248,7 @@
 
     <article class="il-card" id="council">
       <div class="il-card-head">
-        <h3 class="il-card-title">The war council</h3>
+        <h3 class="il-card-title">Scouting report</h3>
         <p class="il-note">Planned stock trades waiting on a signal. Prices are the last regular-session trade.</p>
       </div>
       <div class="il-scroll">
@@ -267,21 +266,21 @@
 
     <article class="il-card is-wide" id="treasury-chart">
       <div class="il-card-head">
-        <h3 class="il-card-title">The treasury over time</h3>
-        <p class="il-note">Account value at each check-in, against gold pledged. Dashed line: King's Landing, $200.</p>
+        <h3 class="il-card-title">Game flow</h3>
+        <p class="il-note">Account value at each check-in, against money deposited. Dashed line: the playoff line, $200.</p>
       </div>
       <div class="il-chart dash-skeleton" id="il-curve" data-source="curve"></div>
     </article>
 
     <article class="il-card is-wide" id="maester">
       <div class="il-card-head">
-        <h3 class="il-card-title">The maester's journal</h3>
-        <p class="il-note">Every trade with its reason and what it taught. Cancelled and losing trades stay on the page.</p>
+        <h3 class="il-card-title">Film room</h3>
+        <p class="il-note">Every play with its reason and what the tape taught. Misses stay on the page.</p>
       </div>
       <div class="il-scroll">
         <table data-source="ledger" data-row-key="id" id="il-ledger">
           <thead><tr>
-            <th data-field="house">House</th>
+            <th data-field="asset">Player</th>
             <th data-field="status">Status</th>
             <th class="n" data-field="entry">Entry</th>
             <th class="n" data-field="stop">Stop</th>
@@ -296,7 +295,7 @@
     </article>
   </section>
 
-  <p class="il-foot">Winter comes on 18 November, the last day of the contest. Goal: King's Landing ($200) or the Iron Throne ($300). The journal and treasury snapshots are updated at each check-in; everything else is live.</p>
+  <p class="il-foot">Final buzzer on 18 November. Goal: the playoffs ($200) or the title ($300). Film-room notes and the game-flow points are updated at each check-in; everything else is live from Robinhood.</p>
 </div>
 
 <script>
@@ -452,22 +451,24 @@ const tone = (el, n) => { el.classList.toggle('il-good', n > 0); el.classList.to
 const setText = (sel, s) => { const el = typeof sel === 'string' ? document.querySelector(sel) : sel; if (el) el.textContent = s; return el; };
 const unskel = (el) => el && el.classList.remove('dash-skeleton');
 const failLine = (el, msg) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'il-fail'; d.textContent = msg || 'Failed to load'; el.appendChild(d); };
+const ROLES = { BTC: ['0', 'Center'], ETH: ['1', 'Point guard'], ZEC: ['6', 'Sixth man'], SOL: ['3', 'Wing'], SOXL: ['3X', 'Stretch big'], METU: ['2X', 'Spark plug'], QS: ['4', 'Two-way'] };
 const sigil = (house, label, sub) => {
+  const r = ROLES[label] || [String(label || '?').slice(0, 2), 'Bench'];
   const w = document.createElement('span'); w.className = 'il-house';
-  const s = document.createElement('span'); s.className = 'il-sigil'; s.dataset.h = house; s.textContent = (label || '?').slice(0, 1);
+  const s = document.createElement('span'); s.className = 'il-sigil' + (/X$/.test(r[0]) ? ' is-alt' : ''); s.textContent = r[0];
   const n = document.createElement('span'); n.className = 'il-house-name';
   const t = document.createElement('span'); t.textContent = label;
-  const sm = document.createElement('small'); sm.textContent = sub || house;
+  const sm = document.createElement('small'); sm.textContent = sub ? r[1] + ' · ' + sub : r[1];
   n.append(t, sm); w.append(s, n); return w;
 };
 const td = (text, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; if (text instanceof Node) c.appendChild(text); else c.textContent = text; return c; };
 
 // ---------- the road ----------
 const ROAD = { min: 0, max: 320, stops: [
-  { v: 50, name: 'The Wall', cls: 'is-wall' },
-  { v: 130, name: 'Winterfell', cls: '' },
-  { v: 200, name: "King's Landing", cls: 'is-goal' },
-  { v: 300, name: 'Iron Throne', cls: 'is-goal' },
+  { v: 50, name: 'Lottery', cls: 'is-wall' },
+  { v: 130, name: 'Tip-off', cls: '' },
+  { v: 200, name: 'Playoffs', cls: 'is-goal' },
+  { v: 300, name: 'Title', cls: 'is-goal' },
 ] };
 (function buildRoad() {
   const track = document.getElementById('il-track');
@@ -485,7 +486,7 @@ const ROAD = { min: 0, max: 320, stops: [
 const deadline = new Date('2026-11-18T21:00:00Z');
 dash.onData(() => {
   const days = Math.max(0, Math.ceil((deadline - new Date()) / 864e5));
-  setText('#il-eyebrow', 'The ledger of House Claude · ' + days + ' days until winter');
+  setText('#il-eyebrow', 'Claude vs Codex · ' + days + ' days to the final buzzer');
 
   // Header + road + tiles
   const P = dash.data('portfolio'), S = dash.data('standing');
@@ -497,8 +498,8 @@ dash.onData(() => {
     const b1 = document.createElement('b'); b1.textContent = usd(p.total_value);
     const b2 = document.createElement('b'); b2.textContent = pct(s.ret);
     const b3 = document.createElement('b'); b3.textContent = usd(Math.max(0, s.to_goal));
-    take.append('The treasury holds ', b1, ', ', b2, ' on the gold pledged. ',
-      s.to_goal > 0 ? b3 : 'King’s Landing is taken.', s.to_goal > 0 ? ' more takes King’s Landing.' : '');
+    take.append('Score: ', b1, ', ', b2, ' on the $130 deposited. ',
+      s.to_goal > 0 ? b3 : 'Playoffs clinched.', s.to_goal > 0 ? ' more to clinch the playoffs.' : '');
     const left = Math.min(100, Math.max(0, (p.total_value - ROAD.min) / (ROAD.max - ROAD.min) * 100));
     you.hidden = false; you.style.left = left + '%';
     document.getElementById('il-fill').style.width = left + '%';
@@ -533,11 +534,11 @@ dash.onData(() => {
   hb.replaceChildren();
   if (H.status === 'ok') {
     if (!H.data.length) {
-      const tr = document.createElement('tr'); const c = td('No banners in the field. All coin is in the treasury.'); c.colSpan = 10; c.className = 'il-empty'; tr.appendChild(c); hb.appendChild(tr);
+      const tr = document.createElement('tr'); const c = td('Nobody on the floor. All cash is on the bench.'); c.colSpan = 10; c.className = 'il-empty'; tr.appendChild(c); hb.appendChild(tr);
     }
     H.data.forEach((h) => {
       const tr = document.createElement('tr'); tr.dataset.key = h.asset;
-      tr.appendChild(td(sigil(h.house, h.asset, h.house)));
+      tr.appendChild(td(sigil(h.house, h.asset, '')));
       tr.appendChild(td(qty(h.quantity), 'n'));
       tr.appendChild(td(usd(h.cost), 'n'));
       tr.appendChild(td(px(h.mark), 'n'));
@@ -558,7 +559,7 @@ dash.onData(() => {
   const ob = document.querySelector('#il-orders tbody');
   ob.replaceChildren();
   if (O.status === 'ok') {
-    if (!O.data.length) { const tr = document.createElement('tr'); const c = td('No ravens in flight.'); c.colSpan = 5; c.className = 'il-empty'; tr.appendChild(c); ob.appendChild(tr); }
+    if (!O.data.length) { const tr = document.createElement('tr'); const c = td('No plays called.'); c.colSpan = 5; c.className = 'il-empty'; tr.appendChild(c); ob.appendChild(tr); }
     const kind = (o) => o.type === 'stop_loss' ? 'Stop order (sell)' : o.type === 'stop_limit' ? 'Stop limit order (' + o.side + ')' : (o.type === 'limit' ? 'Limit ' : 'Market ') + o.side;
     O.data.slice().sort((a, b) => a.asset.localeCompare(b.asset)).forEach((o) => {
       const tr = document.createElement('tr'); tr.dataset.key = o.id;
@@ -601,7 +602,7 @@ dash.onData(() => {
     const order = { Open: 0, Resting: 1, Planned: 2, Closed: 3, Cancelled: 4 };
     L.data.slice().sort((a, b) => (order[a.status] ?? 9) - (order[b.status] ?? 9)).forEach((t) => {
       const tr = document.createElement('tr'); tr.dataset.key = t.id;
-      tr.appendChild(td(sigil(t.house, t.asset, t.house + ' · ' + t.vehicle)));
+      tr.appendChild(td(sigil(t.house, t.asset, t.vehicle)));
       const chip = document.createElement('span'); chip.className = 'il-chip s-' + t.status; chip.textContent = t.status;
       tr.appendChild(td(chip));
       tr.appendChild(td(px(t.entry == null ? null : Number(t.entry)), 'n'));
@@ -662,11 +663,11 @@ function drawCurve() {
   const last = rows[rows.length - 1];
   svg.append('circle').attr('cx', x(last.at)).attr('cy', y(last.equity)).attr('r', 4).attr('fill', dash.colors[0]);
   svg.append('text').attr('x', x(last.at) + 8).attr('y', y(last.equity)).attr('dy', '0.32em').attr('font-size', 12)
-    .attr('fill', 'var(--color-fg)').text('Treasury ' + usd(last.equity));
+    .attr('fill', 'var(--color-fg)').text('Score ' + usd(last.equity));
   svg.append('text').attr('x', x(last.at) + 8).attr('y', y(last.contributed) + 16).attr('font-size', 12)
-    .attr('fill', 'var(--color-fg-muted)').text('Pledged ' + usd(last.contributed));
+    .attr('fill', 'var(--color-fg-muted)').text('Deposited ' + usd(last.contributed));
   svg.append('text').attr('x', W - rm + 8).attr('y', y(200)).attr('dy', '0.32em').attr('font-size', 12)
-    .attr('fill', 'var(--color-fg-muted)').text("King's Landing");
+    .attr('fill', 'var(--color-fg-muted)').text('Playoff line');
   // tooltip
   const tip = document.createElement('div'); tip.className = 'il-tip'; tip.hidden = true; box.appendChild(tip);
   const dot = svg.append('circle').attr('r', 5).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).style('display', 'none');
@@ -679,7 +680,7 @@ function drawCurve() {
       dot.style('display', null).attr('cx', pts[i][0]).attr('cy', pts[i][1]);
       tip.replaceChildren();
       const t = document.createElement('div'); t.className = 't'; t.textContent = d3.utcFormat('%b %-d, %H:%M UTC')(r.at);
-      const v = document.createElement('div'); v.textContent = 'Treasury ' + usd(r.equity) + ' · pledged ' + usd(r.contributed);
+      const v = document.createElement('div'); v.textContent = 'Score ' + usd(r.equity) + ' · deposited ' + usd(r.contributed);
       const n = document.createElement('div'); n.className = 't'; n.textContent = r.note || '';
       tip.append(t, v, n); tip.hidden = false;
       const bw = box.clientWidth, scale = bw / W;
