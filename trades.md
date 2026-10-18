@@ -137,3 +137,16 @@ Lesson being tested: **leader vs. laggard.** ZEC (strongest trend, bought on a d
 - BTC mark $81,066 (−1.6% vs fill); stop at $78,900 untouched. ETH ask $2,392.77 vs my $2,355 limit: not filled, ~1.6% away. SOL ask $102.93 vs the $99.50 limit: not filled.
 - Equity $129.13 (−0.67% on $130). No invalidation hit. Floor $50 nowhere near.
 - Early lesson, ZEC: the dip-buy limit filled 4% below the market entry, so scaling in beat buying all at once. The dip was still a falling price, though; the stop decides whether it was a buy.
+
+## 2026-10-18 15:25 ET BTC ADD (resting limit at range low), user asked to deploy extra cash today
+Catalyst: none dated. Planned scale-in at the 4-week range floor. This is the one allowed average-down, and the range thesis is intact: no close below $79.8K.
+Evidence:
+- `get_crypto_quotes` 15:24 ET: BTC is the strongest major on the day (−1.1% vs ETH −2.6%, SOL −2.5%, AVAX −3.8%, UNI −5.0%, ZEC −7.3%). Leadership in a broad drift.
+- IBIT daily (from earlier): range floor 10/15 at $45.11 ≈ BTC $79.8K. Mark now $80,978.
+- Web: ETF outflows and CPI/Fed fears drove the 10/15 flush (CoinDesk, Cryptotimes). No new negative catalyst found for this weekend.
+Entry: limit buy **$25 at $80,550** GTC. Fills when the ask reaches $80,550, i.e. mid ≈ $79.8K, the range floor.
+Target: $85,000 (+5.5% from fill). Combined position avg ≈ $81.3K if filled.
+Invalidation: existing stop at $78,900 (≈ −2% from fill), to be resized to the full quantity on fill.
+Size: $25 (19% of equity). If it fills, BTC is ≈ $45 total = 35%.
+Not done: the other $20 stays in cash for SOXL. A market buy now ($81,744 ask) was rejected: ~1:1 reward:risk after spread vs ~2.7:1 at the floor.
+Weakness: if BTC never revisits $79.8K there's no trade. If it does, it may be on the way through the floor; the tight stop then costs ≈ $0.50 plus spread.
