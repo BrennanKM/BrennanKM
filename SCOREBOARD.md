@@ -29,16 +29,16 @@
 ## Open positions
 | Asset | Qty | Avg cost | Stop | Target | Notes |
 |---|---|---|---|---|---|
-| ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,020 GTC (id 6ad4f058-34ac-42f7-9261-e1bca53bf035) | $1,200 | crypto sleeve, trend leader; both halves filled |
-| ETH | 0.012738 | $2,354.99 ($30) | stop order $2,240 GTC (id 6ad5384a-fb70-4e3c-9ac0-a48f5008badc) | $2,580 | out before FOMC 10/28 2pm unless ≥ +5% |
+| ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,045 GTC (id 6ad5619b-929a-4785-878a-edf89bae2888) | $1,200 | crypto sleeve, trend leader; both halves filled |
+| ETH | 0.012738 | $2,354.99 ($30) | stop order $2,300 GTC (id 6ad56199-5a5d-4192-a7f6-69366deb1b1e) | $2,580 | out before FOMC 10/28 2pm unless ≥ +5% |
 | BTC | 0.00024285 | $82,354.09 ($20) | stop order $78,900 GTC (id 6ad48095-9b1b-41b9-b508-62475232d2b0) | $85,000 (set a sell limit at a check-in if within ~1.5%; cancel the stop first) | crypto sleeve |
 
 ## Open orders
 | Asset | Side | Type | Size | Price | TIF | Order id |
 |---|---|---|---|---|---|---|
-| ETH | sell | stop order | 0.012738 | trigger $2,240 | GTC | 6ad5384a-fb70-4e3c-9ac0-a48f5008badc |
+| ETH | sell | stop order | 0.012738 | trigger $2,300 | GTC | 6ad56199-5a5d-4192-a7f6-69366deb1b1e |
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
-| ZEC | sell | stop order | 0.01798 | trigger $1,020 | GTC | 6ad4f058-34ac-42f7-9261-e1bca53bf035 |
+| ZEC | sell | stop order | 0.01798 | trigger $1,045 | GTC | 6ad5619b-929a-4785-878a-edf89bae2888 |
 
 ## Next actions (check-ins read this first)
 - **Strategy discipline (10/18 review):** fewer, bigger, better trades. Each small crypto round trip costs ~1.9% (≈ $0.40 on $20), so no new crypto trade unless it clears 3x spread with a defined level. Capital goes to the dated catalysts (SOXL trigger, META 10/21, the Sunday-sweep picks).
@@ -46,6 +46,7 @@
 - **No resting buys** (SOL and the BTC add were cancelled 10/18 to close unprotected-fill gaps). Cash $60 is earmarked for SOXL (needs ~$90; sell crypto to top up if it triggers).
 - **Alerts:** Robinhood price alerts are live (see trades.md, 10/18 17:25). Update or delete them when stops or targets change.
 - **Crypto sleeve:** ZEC fully filled with the stop re-sized (done 10/18 12:14). If SOL fills, place a GTC stop order at $95. Weekend/weekday checks: BTC ≥ $84,600 → cancel the stop and place a sell limit at $85,000. **If SOXL triggers and cash is < $90, sell sleeve positions first.**
+- **SOXL revision 10/18 (see trades.md):** trigger (b) = SOXX close ≥ **$503.26** AND above that day's open. **Staged:** 35% of equity if it fires Mon/Tue (before Wed's LRCX/META binary), add to 70% only if SOXX holds above that day's low through Thu. Full 70% if it fires Thu after good prints.
 - **PRIMARY: SOXL reversal trigger, checked at EVERY 3:22pm check-in from Mon 10/19.** Get SOXX/SOXL quotes vs prior close (SOX proxy: SOXX; 11,100 ≈ SOXX $490). Trigger = (a) the session traded below 11,100 / SOXX $490 and is now green, OR (b) SOX/SOXX ≥ +2% on the day after 8 down sessions. If triggered and SOXL is in $85–95: write the fill into trades.md and buy ~70% of equity with a marketable limit. Then set the stop rule (daily close < $80) and the T1 sell-half at $110. No trigger means no trade. **Do not buy at the 9:47 open check-in.**
 - **Wed 10/21 3:22pm:** METU variance bet per trades.md (only if META ≥ $700 and SOX isn't at new lows). Exit Thu 10/22 at the open.
 - **Mon 10/19 open:** QS is dropped. Don't re-enter unless there's a daily close above $4.25 AND the new pricing rule passes (see trades.md post-mortem). Act on the research agents' shortlists in trades.md / research notes. Run the scan below. Every catalyst trade needs the implied move checked first.

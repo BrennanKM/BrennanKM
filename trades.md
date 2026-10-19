@@ -165,3 +165,15 @@ Weakness: if BTC never revisits $79.8K there's no trade. If it does, it may be o
 
 ### Check-in 2026-10-18 20:14 ET (Sun evening)
 Equity $130.98 (+0.75%). No fills, no stops hit. Marks: BTC $82,045 (−0.4% vs $82,354 cost), ETH $2,409 (+2.3% vs $2,355), ZEC $1,133 (+1.9% vs ~$1,112). All three coins are fully covered by stops (held_for_sell = full quantity). Weekly catalyst sweep launched (2 read-only research agents).
+
+### 2026-10-18 20:17 ET: stops tightened (weekly sweep, macro/crypto agent)
+- **ETH stop $2,240 → $2,300** (new id 6ad56199-5a5d-4192-a7f6-69366deb1b1e). Why: ETH is weaker than BTC, ETH ETFs saw ~$320M outflows last week, and price sits on the $2,350–2,360 support. A break of $2,300 means the 10/15 flush low failed, which kills the thesis. Loss at stop ≈ −2.3% + spread vs −4.9% before.
+- **ZEC stop $1,020 → $1,045** (new id 6ad5619b-929a-4785-878a-edf89bae2888). Why: just under Sunday's $1,057 liquidation low. ZEC is giving back a 70% rally, and a DCG-owned miner sold borrowed ZEC. A loss of the liquidation low means the dip-buy is wrong.
+- BTC stop unchanged at $78,900 (below Thursday's $79,676 low, above the $77.5–78K true-market-mean support).
+- Robinhood alerts moved up to match: ETH < $2,330, ZEC < $1,070.
+
+### SOXL plan revision (weekly sweep)
+- Sunday 24h session: SOXX ~$500.9 (+1.5%), SOXL ~$97.9 (+4.5%) on dip-buying, Iran de-escalation hopes and October hike odds falling to ~15% after Warsh. **Trigger (b) = SOXX close ≥ $503.26** (+2% vs the official $493.39 Friday close), and it could fire Monday.
+- **New conditions:** at 3:22pm, SOXX ≥ $503.3 **AND** above that day's open (a green candle, not just a gap).
+- **Staged entry because Wed 10/21 after-close (LRCX, META capex, TXN, TSLA) is binary:** if (b) fires Mon/Tue, buy **~35% of equity** and add to 70% only if SOXX holds above that day's low through Thursday. If (b) fires Thursday after good prints, go full 70%. Stop, targets and the FOMC trim are unchanged. Note: if SOXL is bought at ~$98, the $80 stop is ~−18%; at 35% size that's ≈ −$8 (6% of equity).
+- Skip TQQQ: it doubles the same AI beta.
