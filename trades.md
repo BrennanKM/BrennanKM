@@ -231,3 +231,10 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
   - Reason: the edge comes from our own model, and 5 points of model error is easy to make.
   - Revisit in November if we're far behind with few catalysts left.
 - Asked the user to confirm the Robinhood listing and the fee for >3.5%.
+
+## 2026-10-19 ~04:00 ET: Robinhood event screen (Rothera + Kalshi): no bets
+- Core PCE >0.3%: the Rothera terms say strictly above, on the first one-decimal print, so YES needs a 0.4. Locked center 0.33 / σ 0.04 → P(YES) 0.31. YES at 0.37 is −8; NO at 0.67 all-in is +2. NO BET YET; pass lines in SCOREBOARD.
+- Fed Oct: futures 16.1% hike vs RH 15¢. Fair, no edge.
+- GDP >3.5: unchanged (+6.7 blend / +3.5 equal-weight).
+- **Accepted:** combined event stake ≤ $50, and limit orders only on Rothera (OI < 100).
+- Lesson already paid for by the screen: read the settlement terms before pricing. "Above 0.3%" with one-decimal rounding is a different contract from what it sounds like.
