@@ -166,6 +166,54 @@ Written 2026-10-19 ~22:30 ET (Sun night). Option quotes are Fri 10/16 closes, so
 - *METU put at the cap:* EV/risk ≈ +0.25, but convex, with a 1-in-3 shot at +$50 to +$200.
 - **Verdict: the leveraged ETF wins every directional bet. Options are used only for gap-through events where R ≥ 1.2, as a ≤ 15% satellite, never as a SOXL substitute.**
 
+## Event contracts: Q3 GDP screen (first pass 10/19)
+Written Mon 10/19. Kalshi prices were pulled from the public API on 10/19. The Robinhood app listing and its prices are **unverified**: the user must confirm both in the app.
+- **Release:** BEA's schedule shows the Q3 advance estimate on **Thu 10/29 at 8:30 ET** (verified, same release as Sept PCE). Kalshi's event `KXGDP-26OCT30` lists its close as 10/30 08:29 ET, but its own rule says it "closes at 8:29 AM on the day of the expected release." **Treat Wed 10/28 evening as the last time to bet.**
+- **Contract rules:** "More than X%" on the BEA advance estimate (SAAR, one decimal), so a print exactly at the strike resolves NO. Fees: assume 2¢ per contract all-in on Robinhood ($0.01 commission + $0.01 exchange; sources disagree). Settlement carries no exit fee.
+- **Inputs:**
+  - GDPNow **3.64%** (10/15; 3.7 on 10/6, 5.0 on 9/25). Key components: PCE 3.6%, inventories **+1.87pp**, net exports **−2.69pp**. Next update Tue 10/20.
+  - NY Fed Staff Nowcast **2.6%** (10/9, official). 2.67% on 10/16 is unconfirmed.
+  - Morgan Stanley tracking estimate 3.2%. An unsourced average of trackers is 3.25%.
+  - Surveys 2.3–2.5% (Aug–Oct, stale).
+  - St. Louis Fed: no current nowcast found.
+- **Error model:** GDPNow final nowcast vs the advance print, 2011Q3–2025Q2: MAE 0.77pp, **RMSE 1.17pp** (Atlanta Fed, verified). COVID quarters fatten that number. The last 5 quarters' errors were 0.0, 0.8, 1.6, 0.8, 0.1, an RMSE of 0.88.
+- **Model:** μ = 0.5·GDPNow + 0.25·NYFed + 0.25·bank-tracker avg = **3.29%**. σ = 1.1 today, 1.0 on the final day (fixed now, so it can't be tuned later). P(>X) = 1 − Φ((X + 0.05 − μ)/σ).
+
+| Strike | Kalshi bid/ask (YES) | OI | Mkt mid | Model P | Best in-band side | Net edge |
+|---|---|---|---|---|---|---|
+| >2.5 | 0.88 / 0.89 | 11.7k | 0.885 | 0.75 | NO costs 0.12, out of band | (+11, ineligible) |
+| >3.0 | 0.59 / 0.64 | 13.2k | 0.615 | 0.59 | NO at 0.41 | **−1.6** |
+| >3.5 | 0.29 / 0.32 | 9.4k | 0.305 | 0.41 | YES at 0.32 | **+6.7** |
+| >4.0 | 0.19 / 0.23 | 17.3k | 0.21 | 0.25 | YES costs 0.23, out of band | (−0.5) |
+
+- **Sensitivity of >3.5 YES at 0.32:**
+  - Equal-weight blend (μ 3.17): +3.5, fails.
+  - Our blend with σ = 1.0: +5.7.
+  - GDPNow alone: +19.
+  - The edge is entirely "the market underweights GDPNow." Given GDPNow's +1.9 inventory / −2.7 net-export swing, the market's discount is defensible. **The edge isn't robust.**
+- **Verdict: NO BET YET.**
+  - The edge is marginal and depends on the model.
+  - Wed 10/28 8:30 brings the Advance Economic Indicators (Census, verified), which reprices exactly the two components that drive GDPNow's gap.
+  - Cash after SOXL (2 sh) and the METU put is about $10. The bet can only be funded after the SOXL time stop (Mon 10/26 3:22).
+- **What moves the nowcasts before 10/29:**
+  - GDPNow Tue 10/20.
+  - NY Fed Fri 10/23.
+  - New home sales and durable goods around 10/26–27 (dates unverified).
+  - **Advance trade and inventories Wed 10/28 8:30**, followed by GDPNow's final update (usually the same day; timing unverified).
+  - FOMC 10/28 2pm doesn't affect the print.
+- **Re-screen:**
+  - Tue 10/27 3:22: preliminary, recompute the table.
+  - **Wed 10/28 1:37pm: final go/no-go** after the final GDPNow. Use 3:22 if GDPNow hasn't posted yet.
+  - PASS only if an in-band side (30–70¢) shows net edge ≥ 5 points with the formula above, re-run live, **and** the user confirms the Robinhood price is ≤ the max price.
+  - Max price = model P − 0.07.
+- **Sizing if PASS:**
+  - Glide path on 10/28 is $332·1.0187^7 ≈ **$378**. From ~$330, that needs ≈ +$48.
+  - At 0.34 all-in, that's ~73 contracts ≈ **$25**.
+  - Kelly at p = 0.41 is 10% ≈ $33. **Cap $35**, not the 25% ($83) maximum: the edge is model-dependent.
+  - Floor gate: equity − all gaps through stops − stake ≥ $187 (≈ $240 today, so it passes).
+  - This is the only bet on the board that's independent of the risk-on book (SOXL and crypto).
+
 ## Strategist log
 - 2026-10-18 21:45 ET: weekly pass (first). The staged 35%→70% SOXL plan becomes 2 shares on Monday's open window. Data: next-open entry +11.4% mean / 80% win vs confirmation close +1.4% / 38% (SOXX 2010–26). The $85–95 band was stale (SOXL $100 in 24h trade). METU put kept at 1 contract with a strike/spread re-check on Wed. Crypto sleeve frozen. Five rule proposals filed.
 - 2026-10-19 22:35 ET: Level 3 is unavailable, so I added the "Level 2 options playbook (no spreads)". It sets a 4-test screen: R ≥ 1.2, a symmetrized-replay price cap, liquidity limits, and a skew/IV check. Of the 8 catalysts in the next two weeks, only META (R = 1.29, via the METU 10/23 put, limit ≤ the cap) passes, and only conditionally on Wednesday's liquidity. TSLA, LRCX, AMKR, SOFI, MBLY, INTC and FOMC fail. CSPs and covered calls are banned at this size. Leveraged ETF > options for directional bets. Pre-trade review of SOXL 3 shares: KEEP 2. At 3 shares the stop loses 18–22% of equity, above the 15% cap, and the Wed METU put no longer fits under the $187 floor gate.
+- 2026-10-19: first-pass screen of Q3 GDP event contracts (Kalshi KXGDP-26OCT30; BEA advance print Thu 10/29 8:30). Blend μ 3.29% (GDPNow 3.64 / NY Fed 2.6 / MS 3.2), σ 1.1. Only >3.5% YES at 0.32 shows an edge (+6.7 net), and that edge is model-dependent (+3.5 to +19). NO BET YET. Final re-screen Wed 10/28 1:37pm after the advance trade and inventories report and the last GDPNow. Cap $35 if it passes.

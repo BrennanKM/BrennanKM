@@ -220,3 +220,14 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
   - Of this cycle's candidates, only META passes, with R = 1.29. TSLA (0.61), LRCX (0.54), AMKR, SOFI, MBLY and INTC fail.
   - Cash-secured puts and covered calls are banned.
   - Leveraged ETF beats calls for directional bets: SOXL call IV is 136% vs 108% realized.
+
+## 2026-10-19: event contracts adopted (Mandate v3.1) + Q3 GDP first screen
+- The user ruled that event contracts count: Claude picks, the user places. Gates are in TRADER_PROMPT v3.1.
+- Strategist first screen: **NO BET YET.**
+  - Kalshi median ≈ 3.2%. Locked blend = 3.29%.
+  - >3.5 YES at 0.32 shows +6.7 pts net, but the edge depends on GDPNow's inventories/net-exports split, which the 10/28 Census data reprices.
+- **Accepted:** lock the blend formula and σ now (no model shopping later).
+- **Accepted:** cap model-dependent event bets at Kelly (~$35) instead of 25% of equity.
+  - Reason: the edge comes from our own model, and 5 points of model error is easy to make.
+  - Revisit in November if we're far behind with few catalysts left.
+- Asked the user to confirm the Robinhood listing and the fee for >3.5%.
