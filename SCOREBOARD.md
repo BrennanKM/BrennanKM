@@ -42,6 +42,7 @@
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
 
 ## Next actions (check-ins read this first)
+- **Keep MANUAL_FALLBACK.md current:** whenever a position, stop or exit date changes, update its table. It's the user's by-hand plan if check-ins stop (usage running out).
 - **MANDATE v4 (10/19 00:30 ET): capital $480 after the user's $150; Codex is assumed to get the same.** Equity $481.96, cash $410.01. The new numbers below REPLACE every older $ figure in this list:
   - floor $185;
   - floor-distance gate **$272** (replaces $187);
