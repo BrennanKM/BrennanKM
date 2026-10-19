@@ -22,6 +22,7 @@
 - Market context 10/16: SOX down 8 straight sessions (longest since 2008), −23.9% from its 6/22 high. Nasdaq worst week since Apr 2025. Earnings this week: NFLX 10/20 pm; TSLA, META, TXN, LRCX, IBM 10/21 pm. FOMC 10/28.
 - Account type is **limited margin**, not cash. Good-faith violations don't apply the way the prompt assumed. The **pattern-day-trader limit does**: under $25k there's a cap of 3 day trades per rolling 5 business days. Stocks stay overnight-minimum by default; spend day trades only to cut a broken position.
 - Options level: **option_level_2, WORKING** (verified 2026-10-18 17:30 ET: `get_option_quotes` and `review_option_order` both succeed; fees ≈ $0.04/contract; account shows Gold). Reality check: most liquid options cost $100s per contract (TSLA ATM 10/23 call = $1,310). At $130, options are only usable as cheap OTM contracts (≤ ~$0.60 premium = ≤ $60) for event convexity. Before any catalyst trade, compare the option against the 2x/3x ETF.
+- **Options Level 3: user is INELIGIBLE (10/19).** No spreads. The Level 2 toolkit is long calls/puts, two separate long legs (strangle/straddle), covered calls (needs 100 shares) and cash-secured puts (needs strike×100 cash, so strikes ≤ ~$3). Don't plan around spreads.
 - Trade approvals: off (`human_must_approve_trades: false`).
 - Crypto: Market Maker Routing, ≈1.9% round-trip spread on majors on the weekend.
 - Fractional shares: **market orders only**, regular hours. Limit orders (required under $5) must be whole shares.
