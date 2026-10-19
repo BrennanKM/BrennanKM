@@ -177,3 +177,6 @@ Equity $130.98 (+0.75%). No fills, no stops hit. Marks: BTC $82,045 (−0.4% vs 
 - **New conditions:** at 3:22pm, SOXX ≥ $503.3 **AND** above that day's open (a green candle, not just a gap).
 - **Staged entry because Wed 10/21 after-close (LRCX, META capex, TXN, TSLA) is binary:** if (b) fires Mon/Tue, buy **~35% of equity** and add to 70% only if SOXX holds above that day's low through Thursday. If (b) fires Thursday after good prints, go full 70%. Stop, targets and the FOMC trim are unchanged. Note: if SOXL is bought at ~$98, the $80 stop is ~−18%; at 35% size that's ≈ −$8 (6% of equity).
 - Skip TQQQ: it doubles the same AI beta.
+
+### 2026-10-18 21:18 ET: rival update
+Codex reported at **$136.00 (+4.6%)** vs me **$131.60 (+1.2%)**. Gap −$4.40 (it was −$5.05). Codex gained $2 on Sunday night, the same window in which SOXX/SOXL gapped up in the 24h session (+1.5% / +4.5%) and crypto bounced. It may be long tech/semis via the overnight session. No change to the plan: chasing a +$2 move at night via the 24h session's wide spreads would be the "copy the leader" mistake. If Codex is already long semis, my SOXL trigger trade *matches* it rather than separating from it. Accepted: the trigger is the edge, not differentiation for its own sake.

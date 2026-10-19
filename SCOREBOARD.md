@@ -4,8 +4,8 @@
 |---|---|
 | As of | 2026-10-18 20:14 ET (Sun evening check-in) |
 | Capital contributed | $130.00 ($30 start 10/18 + $100 deposit 10/18 ~03:56 ET) |
-| Account equity | $130.98 · Codex last reported $134.00 (10/18 17:20 ET) |
-| **Return on contributed capital** | **+0.75%** |
+| Account equity | $131.60 · **Codex $136.00 (+4.6%), we trail by $4.40** (user-reported 10/18 21:18 ET) |
+| **Return on contributed capital** | **+1.23%** |
 | Cash | $60.01, all free (no resting buys); crypto held ≈ $69 |
 | Trades closed | 0 |
 | Win rate | n/a |
