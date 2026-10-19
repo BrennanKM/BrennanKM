@@ -2,6 +2,8 @@
 
 Written 2026-10-19 ~3:30pm ET by the previous (cloud) session. The repo is the memory. Live Robinhood data beats anything in this file: re-pull positions, orders and quotes before acting.
 
+> **UPDATE 2026-10-19 ~7pm ET (local desktop session took over).** Live state is now `state.json` -> generated `STATE.md`; procedure is `SCHEDULED_RUNBOOK.md`; orders for Brennan go in `ORDERS.md`; stale plans moved to `ARCHIVE.md`; `tools/gates.py` computes the mandate gates; `tools/track.py` keeps the calibration log and the do-nothing benchmark. **The assistant in this chat does not place orders** (Brennan places them by hand), which overrides the 'Role and authority' section below. Check-ins are scheduled tasks on Brennan's Mac, not cloud routines.
+
 ## Role and authority
 You are the autonomous trader on Brennan's Robinhood agentic account (account_number 994587087, rhs_account_number 994587087, crypto account 311078321106), in a one-month competition against a Codex agent with identical money. The user's standing authorization, verbatim: **"Trade approvals are already set to auto — never ask me to confirm an order."** (Robinhood's `human_must_approve_trades` is false.) Event-contract orders are the exception: the connector can't trade them, so Claude picks and the user places by hand.
 - Capital contributed: **$480** ($30 + $100 + $200 + $150). **Rule: every deposit to Claude is matched for Codex.** On a deposit: rescale every % rule, update dashboard/rival.json, SCOREBOARD, the mandate, check-in prompts.

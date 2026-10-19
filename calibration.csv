@@ -1,0 +1,7 @@
+id,logged,claim,p,market,resolve_by,src,outcome,brier,market_brier
+SOXL-5D,2026-10-19,SOXL closes Fri 10/23 above the $102.55 entry,0.675,,2026-10-23,STRATEGY.md #1: P(win over 5 days) 65-70% after haircut,,,
+META-DN7,2026-10-19,META 10/22 close-to-close move is -7% or worse,0.325,,2026-10-22,STRATEGY.md Level 2 playbook: P(META <= -7%) 30-35%,,,
+GDP-30,2026-10-19,Q3 GDP advance prints > 3.0%,0.59,0.615,2026-10-29,STRATEGY.md GDP screen (Kalshi mid 10/19),,,
+GDP-35,2026-10-19,Q3 GDP advance prints > 3.5%,0.41,0.405,2026-10-29,STRATEGY.md GDP screen; market = RH 39/42c mid 10/19 PM,,,
+GDP-40,2026-10-19,Q3 GDP advance prints > 4.0%,0.25,0.21,2026-10-29,"STRATEGY.md GDP screen (Kalshi mid 10/19). Correlated with GDP-30/35: one event, three rows",,,
+PCE-03,2026-10-19,Sept core PCE prints >= 0.4 (strictly above 0.3),0.31,0.325,2026-10-29,STRATEGY.md event screen; market = RH 32/33c mid 10/19 PM,,,
