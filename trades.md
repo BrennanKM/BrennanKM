@@ -254,3 +254,19 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
 - Option C was rejected: nothing uncorrelated qualifies (TLT and XLF short of their triggers; TQQQ, TNA and NVDL are the same bet).
 - METU put stays at 1 contract (2 only if both together cost ≤ $50 and it passes all four tests live).
 - Accepted risk: SOXL + crypto ≈ 78% of equity on one risk-on bet through Wednesday's prints. It's the price of the mandate; the time stop and the gate cap it.
+
+## 2026-10-19 09:49 ET: SOXL LONG, 3 sh (entry rule fired)
+- **Trigger:** SOXX $509.02 at 9:49, +3.2% vs Friday's $493.39 close; inside the $495–512 band, Friday's low $492.83 intact. SOXL $102.55 / $102.61 (prior close $93.67, +9.5%).
+- **Thesis:** buy the next open after an 8-session, −24% semis flush. Strategist analogs: next-open entry +11.4% average, up 80% of the time over 5 days. Strategist verdict B: 3 shares for the $480 account.
+- **Order:** buy 3 SOXL, limit $102.66 (ask + $0.05; cap $104), GFD.
+- **Risk:**
+  - Stop: daily close < $80 (−$68 from a $102.66 fill = 14.1% of equity).
+  - Gap to $71 after Wednesday's prints: −$95.
+  - Floor gate: $481 − 95 − 50 (put reserve) − 6 = $330 ≥ $272. Pass.
+- **Exits:**
+  - T1 $112: sell 1 and move the stop on the other 2 to entry.
+  - T2 $118: sell 1.
+  - If T1 hasn't hit by session 5 (Fri 10/23 3:22), sell 2.
+  - Everything is out by Mon 10/26 3:22. Out Thu 9:47 if the Wednesday prints break the thesis.
+- **Note on the chase:** SOXL is already +9.5% on the gap, so part of the analogs' average move happened before we could buy. The band rule ($495–512) caps how much gap we accept, and $509 is near the top of it. Remaining expected edge is lower than the +11.4% headline; accepted per the pre-committed rule.
+- **What would prove it wrong:** SOXX loses $492.83 (Friday's low), i.e. gap-and-fail. Action: exit at the 3:22 check-in if SOXX closes below $495.
