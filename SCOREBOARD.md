@@ -57,7 +57,7 @@
 - **SOXL mechanics:** the $76 stop holds all 3 shares, so any sell means cancel the stop first, sell, then re-place a stop on what remains.
 - **Dashboard (Rip City Ledger)**, rival updates and the plays card: procedure in SCHEDULED_RUNBOOK.md.
 - **Read WATCHLIST.md** before hunting; discipline: fewer, bigger, better trades; no new crypto trade without a level.
-- **Rival:** when the user reports Codex's value, run `gates.py --rival <value> --save --render` and update dashboard/rival.json. Ask for Codex's holdings, not just its value.
+- **Rival:** when the user reports Codex's value, run `gates.py --rival <value> --save --render` and update dashboard/rival.json. Codex's holdings are not available (user decision 10/19); its value is the only information.
 
 ## Data tools
 - `tools/rh_event.py`: Robinhood event-contract quotes.

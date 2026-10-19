@@ -1,5 +1,5 @@
 # STATE (generated: do not edit; edit state.json, then `python3 tools/gates.py --render`)
-As of Mon 2026-10-19 19:00 ET · mandate v4 (+v3.1 events) · deadline 2026-11-18
+As of Mon 2026-10-19 19:30 ET · mandate v4 (+v3.1 events) · deadline 2026-11-18
 
 **Equity $470.64** (-1.95% on $480.00) · cash $122.20 · glide $482.00 (behind $11.36) · Codex $479.00 (behind $8.36, as of 2026-10-19 PM (user report))
 Targets $739.00 / $1,109.00 · floor $185.00 · floor-distance gate $272.00 · ratchet $640.00 once >= target 1 · event stake <= $72.00 ($50.00 if model-dependent)
@@ -55,9 +55,10 @@ Targets $739.00 / $1,109.00 · floor $185.00 · floor-distance gate $272.00 · r
 - Crypto: new entries need a written level, target >= 6% away (3x the 1.9% spread) and a stop at the fill. No resting buys that could fill unprotected for > 12h.
 - Events: Claude picks, the user places by hand. Gates in TRADER_PROMPT v3.1; stake <= $72 total, <= $50 when model-dependent.
 - Floor: equity < $185 -> stop recommending trades, write postmortem.md. Ratchet: at >= $739 never risk below $640.
+- Decision 10/19: keep ONE stop covering all 3 SOXL shares (no 2+1 split). T1/T2 and close rules reach the user as ORDER notifications.
 - Log every probability used in a decision with `python3 tools/track.py cal add ...`; log the benchmark row at every CLOSE check-in.
 
 ## Open items
 - FRED_API_KEY: not set in the assistant's shell on 10/19; confirm it is available to scheduled runs, then delete this line.
-- Codex holdings unknown (only its value is reported); ask the user for positions daily.
+- Codex holdings are NOT available (user decision 10/19: the competition information is Codex's value only). Do not ask again; infer nothing beyond its value path.
 - Pending deposit of $200 still displays in Robinhood but is not in total_value; cash + holdings already reconcile to $480 contributed.
