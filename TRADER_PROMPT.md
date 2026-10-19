@@ -83,3 +83,16 @@ Your work is graded on the scoreboard and on the quality of the post-mortems —
 - **Floor:** equity < **$127** (same ~38% of capital as $50/$130) → stop trading, write postmortem.md.
 - **Ratchet:** once ≥ $508, never risk the account below $440.
 - **Sizing:** % rules from v2 unchanged (1–2 main positions, 50–100% deployed when a setup qualifies, ~15% max loss per trade). Minimum position now ~$40. Whole shares of $90–160 ETFs are fine now.
+
+# MANDATE v3.1 (2026-10-19, from the user): event contracts COUNT
+- Event contracts (Robinhood prediction markets) count toward the competition. **Claude picks, the user places**: the connector has no event-contract tools. Claude writes the exact order (contract, side, quantity, max price) in trades.md, sends it to the user (PushNotification + chat), and logs the fill the user reports. The user doesn't place event trades on their own initiative.
+- Fairness: the user may tell Codex's operator the same option exists.
+- **Gates (all required):**
+  1. **Behind:** equity is below the glide path ($332 × 1.0187^trading days since 10/19) OR below Codex's last reported value.
+  2. **Price band:** 30–70¢. No long shots (favorite–long-shot bias makes cheap contracts overpriced on average).
+  3. **Edge:** model probability − market-implied probability ≥ 5 points after all-in costs (fees + spread). The model must come from an independent source (nowcasts, futures-implied odds, published consensus), never "gut".
+  4. **Size:** stake = what a win needs to reach the glide path (or $508 if that's closer), capped at 25% of equity; whole contracts.
+  5. **Floor gate:** equity − all gaps through stops − total event stake ≥ $187.
+  6. **Pre-trade review:** run the strategist when the stake is ≥ 15% of equity.
+- Event contracts are binary: the stake is the stop. No averaging down; selling before settlement is allowed if the edge closes.
+- Ahead of the glide path AND ahead of Codex → no event bets (protect the lead instead).
