@@ -30,7 +30,7 @@
 ## Open positions
 | Asset | Qty | Avg cost | Stop | Target | Notes |
 |---|---|---|---|---|---|
-| ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,045 GTC (id 6ad5619b-929a-4785-878a-edf89bae2888) | $1,200 | crypto sleeve, trend leader; both halves filled |
+| ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,105 GTC (id 6ad57e63-debf-42fb-a2e1-43415066ed5a) | $1,200 | crypto sleeve, trend leader; both halves filled |
 | ETH | 0.012738 | $2,354.99 ($30) | stop order $2,300 GTC (id 6ad56199-5a5d-4192-a7f6-69366deb1b1e) | $2,580 | out before FOMC 10/28 2pm unless ≥ +5% |
 | BTC | 0.00024285 | $82,354.09 ($20) | stop order $78,900 GTC (id 6ad48095-9b1b-41b9-b508-62475232d2b0) | $85,000 (set a sell limit at a check-in if within ~1.5%; cancel the stop first) | crypto sleeve |
 
@@ -39,11 +39,11 @@
 |---|---|---|---|---|---|---|
 | ETH | sell | stop order | 0.012738 | trigger $2,300 | GTC | 6ad56199-5a5d-4192-a7f6-69366deb1b1e |
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
-| ZEC | sell | stop order | 0.01798 | trigger $1,045 | GTC | 6ad5619b-929a-4785-878a-edf89bae2888 |
+| ZEC | sell | stop order | 0.01798 | trigger $1,105 | GTC | 6ad57e63-debf-42fb-a2e1-43415066ed5a |
 
 ## Next actions (check-ins read this first)
 - **MON 10/19 9:47: SOXL ENTRY (strategist-approved; supersedes all earlier SOXL rules below).** SOXX $495–512 → buy 2 SOXL, marketable limit cap $104. SOXX > $512 → 1 now, 2nd at 3:22 if holding above the open. SOXX < $495 → wait to 3:22, buy 2 only if $492.83 is intact. No entry if SOXX breaks $492.83 first. Stop: close < $80. T1 $112 (sell 1), T2 $118. Half out by session 5, all out by Mon 10/26 3:22. Exit Thu 9:47 if the Wed prints break the thesis. The weekly pass counts as the pre-trade review for this exact entry; re-review only if conditions differ.
-- **Crypto sleeve FROZEN** (strategist #4, accepted): hold BTC/ETH/ZEC with stops; no adds or re-entries.
+- **Crypto sleeve UNFROZEN by the user 10/19 ("keep trading crypto as much as you want"; overrides strategist #4).** Trader's rules: (1) crypto never takes cash needed for SOXL (≤ $208 Mon) or the Wed METU put; until SOXL fills, new crypto money ≤ $40. (2) Every entry needs a written level and a target ≥ 3× the 1.9% spread (≥ ~6%) away. (3) Full-quantity stop placed in the same check-in as the fill; resting buys only if the stop can be placed at the next check-in and the gap is written down. (4) Trail stops on winners: ZEC was ratcheted to $1,105 (≈ breakeven after spread) on 10/18 22:20 ET at mark $1,181. (5) Check crypto at every check-in, weekends included, since it's the only market open nights and weekends.
 - **METU put Wed:** gate = equity − all gaps through stops − premium ≥ $187. 1 contract; re-pick the strike so the spread is ≤ 60% of mid.
 - **Capital now $330 (10/18 21:30 ET).** Re-size every plan in % terms: SOXL 35% stage ≈ $115 (1 sh), 70% ≈ $230 (2–3 sh). METU put cap stays ≤ ~$50 (now 15%), and 1–2 contracts are OK if the quote qualifies. TMF ≤ 15% ≈ $50. FAS 1 share ≈ $160 = 48%, still too big for a side bet: skip.
 - **Read WATCHLIST.md** (weekly playbook from the 10/18 sweep) before hunting.

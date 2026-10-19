@@ -201,3 +201,8 @@ Stop: SOXL daily close < $80 (≈ −20% from $100 → 2 sh ≈ −$40, 12% of e
 Targets: T1 $112 (sell 1 share), T2 $118. Time stop: sell half by session 5; all out by Mon 10/26 3:22pm. Trim before FOMC 10/28 2pm regardless.
 Exit at the Thu 10/22 9:47 check-in if LRCX guides WFE down or META/TSLA cut AI capex.
 Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not chased overnight.
+
+## 2026-10-18 22:20 ET: crypto unfrozen by the user; ZEC stop ratchet
+- User: "keep trading crypto as much as you want." This overrides strategist proposal #4 (freeze). The Trader accepts the override but keeps the cost rules: target ≥ 3× spread, a stop at the fill, and SOXL/METU cash comes first (rules in SCOREBOARD).
+- ZEC at mark $1,180.7 (+2.6% on the day, +6.2% vs avg $1,111.8). Cancelled the $1,045 stop (6ad5619b) and placed a stop order at $1,105 GTC for 0.01798 ZEC (6ad57e63-debf-42fb-a2e1-43415066ed5a). Worst case is now ≈ −$0.30 incl. spread instead of ≈ −$1.30. Target $1,200 unchanged; at a check-in with the bid ≥ $1,190, cancel the stop and set a sell limit at $1,200 (can't hold both at once).
+- Quotes at decision: BTC $82,353, ETH $2,420, SOL $105.05, ZEC $1,180.7, HYPE $79.16, LINK $12.19. No new entry tonight: no written level with ≥ 6% room, and Sunday-night prices are thin.
