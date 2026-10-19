@@ -291,3 +291,5 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
   - Core PCE >0.3% at 32/33¢ (OI 35): no change, NO BET.
   - Fed hold 84/86¢, hike 14/15¢: fair.
 - Equity $474.55. No trades. FRED key still missing.
+
+- **Rival 10/19 PM:** the user reports Codex at $479.00 (−0.2% on $480). We're at $474.55 (−1.1%), trailing by $4.45. The gap is noise relative to one SOXL day (±$30), so no change in plan.

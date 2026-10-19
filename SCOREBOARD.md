@@ -4,7 +4,7 @@
 |---|---|
 | As of | 2026-10-19 15:23 ET (close check-in) |
 | Capital contributed | **$480.00** ($30 + $100 + $200 + $150 on 10/19 ~00:30 ET; Codex gets every deposit too, a standing rule) |
-| Account equity | $474.55 · Codex est. $486 (last report $136 + $200 + $150) |
+| Account equity | $474.55 · Codex $479 (user report 10/19 PM; we trail by ~$4.45) |
 | **Return on contributed capital** | **−1.14%** (−$5.45 on $480) |
 | Cash | $122.20 (incl. $19.84 from the ZEC stop); stocks $298.81; crypto $50.44 |
 | Trades closed | 1 (ZEC, −$0.15) |
