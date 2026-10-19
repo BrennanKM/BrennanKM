@@ -28,5 +28,11 @@
   "equity": 128.95,
   "contributed": 130,
   "note": "ETH filled at $2,355; BTC add resting"
+ },
+ {
+  "at": "2026-10-19T00:14:00Z",
+  "equity": 130.98,
+  "contributed": 130,
+  "note": "Sunday evening: crypto bounced (BTC $82.0K, ZEC $1,133)"
  }
 ]
