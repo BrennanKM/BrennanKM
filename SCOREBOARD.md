@@ -3,16 +3,16 @@
 | Field | Value |
 |---|---|
 | As of | 2026-10-18 20:14 ET (Sun evening check-in) |
-| Capital contributed | $130.00 ($30 start 10/18 + $100 deposit 10/18 ~03:56 ET) |
-| Account equity | $131.60 · **Codex $136.00 (+4.6%), we trail by $4.40** (user-reported 10/18 21:18 ET) |
-| **Return on contributed capital** | **+1.23%** |
-| Cash | $60.01, all free (no resting buys); crypto held ≈ $69 |
+| Capital contributed | **$330.00** ($30 start + $100 on 10/18 ~03:56 ET + $200 on 10/18 ~21:30 ET; Codex got the same) |
+| Account equity | $331.75 · Codex est. $336 (last report $136 + $200 deposit) |
+| **Return on contributed capital** | **+0.53%** ($1.75 on $330) |
+| Cash | $260.01 free (incl. the $200 deposit, instantly spendable); crypto held ≈ $72 |
 | Trades closed | 0 |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
 | Open risk | BTC $20 → stop ≈ −$0.84 (+ spread). If all limits fill: ETH stop ≈ −$1.47, SOL stop ≈ −$0.68. Max sleeve loss ≈ $3.5 (2.7%). |
-| Survival floor | Equity < $50: stop and write postmortem.md (Mandate v2) |
-| Goal / deadline | $200–300 by ~2026-11-18 (Mandate v2 in TRADER_PROMPT.md) |
+| Survival floor | Equity < **$127**: stop and write postmortem.md (Mandate v3) |
+| Goal / deadline | **$508 (+54%) / $762 (+131%)** by ~2026-11-18 (Mandate v3 in TRADER_PROMPT.md) |
 
 ## Account facts (verified 2026-10-18)
 - Crypto routing: **Market Maker Routing** (user turned Fee Tiers / Exchange Routing off 10/18). Spread ≈ 1.9% round trip, so resting limits are the default entry.
@@ -41,6 +41,7 @@
 | ZEC | sell | stop order | 0.01798 | trigger $1,045 | GTC | 6ad5619b-929a-4785-878a-edf89bae2888 |
 
 ## Next actions (check-ins read this first)
+- **Capital now $330 (10/18 21:30 ET).** Re-size every plan in % terms: SOXL 35% stage ≈ $115 (1 sh), 70% ≈ $230 (2–3 sh). METU put cap stays ≤ ~$50 (now 15%), and 1–2 contracts are OK if the quote qualifies. TMF ≤ 15% ≈ $50. FAS 1 share ≈ $160 = 48%, still too big for a side bet: skip.
 - **Read WATCHLIST.md** (weekly playbook from the 10/18 sweep) before hunting.
 - **Strategy discipline (10/18 review):** fewer, bigger, better trades. Each small crypto round trip costs ~1.9% (≈ $0.40 on $20), so no new crypto trade unless it clears 3x spread with a defined level. Capital goes to the dated catalysts (SOXL trigger, META 10/21, the Sunday-sweep picks).
 - **Dashboard "Rip City Ledger" (Trail Blazers theme; was The Iron Ledger)** (https://claude.ai/artifact/QXgQDxzX7dvyhKdskrY7j1): positions, orders, quotes and account value are live Robinhood queries. At EVERY check-in: (1) append `{at, equity, contributed, note}` to `dashboard/curve.json` from get_portfolio; (2) sync `dashboard/ledger.json` with trades.md (status, fills, lessons; the "house" field is unused by the page now, so any value is fine); (3) upload both with Artifact publish `asset:true` to that url, then ArtifactData `update` datasets/curve and datasets/ledger with the new `source.url` and `updated:{at,by:"Claude"}`. Also read data/users/me/check once and fix any page error it names.

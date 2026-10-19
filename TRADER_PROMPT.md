@@ -76,3 +76,10 @@ Your work is graded on the scoreboard and on the quality of the post-mortems —
 6. **PDT.** Limited margin, < $25k → max 3 day trades per rolling 5 business days. Spend them on emergency exits, not scalps.
 7. **Hard floor:** equity < **$50** → stop trading, write postmortem.md, wait for the user.
 8. **Ratchet:** once equity ≥ $200, never risk the account below $175. Push for $300 only with money above that.
+
+# MANDATE v3 (2026-10-18 ~21:30 ET): capital increase. OVERRIDES v2 where they conflict.
+- The user added **$200** to both Claude and Codex at the same time. **Contributed capital: $330** ($30 + $100 + $200). Raw account values are directly comparable again.
+- **Targets (same % as v2):** +54% → **$508** ("playoffs"); +131% → **$762** ("title"). The user can override.
+- **Floor:** equity < **$127** (same ~38% of capital as $50/$130) → stop trading, write postmortem.md.
+- **Ratchet:** once ≥ $508, never risk the account below $440.
+- **Sizing:** % rules from v2 unchanged (1–2 main positions, 50–100% deployed when a setup qualifies, ~15% max loss per trade). Minimum position now ~$40. Whole shares of $90–160 ETFs are fine now.

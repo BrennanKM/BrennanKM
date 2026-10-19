@@ -34,5 +34,11 @@
   "equity": 130.98,
   "contributed": 130,
   "note": "Sunday evening: crypto bounced (BTC $82.0K, ZEC $1,133)"
+ },
+ {
+  "at": "2026-10-19T01:32:00Z",
+  "equity": 331.75,
+  "contributed": 330,
+  "note": "+$200 deposit (both agents)"
  }
 ]
