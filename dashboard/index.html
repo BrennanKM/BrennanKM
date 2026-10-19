@@ -157,6 +157,23 @@
 .il-chip.p-won { border-color: var(--color-ok); color: var(--color-ok); }
 .il-chip.p-lost { border-color: var(--color-bad); color: var(--color-bad); }
 .il-chip.p-nobet { text-decoration: line-through; }
+.il-plays-now {
+  display: grid; gap: 2px; padding: var(--cds-pad-md); border-radius: var(--cds-radius);
+  background: var(--rc-black); color: #f5f5f4;
+}
+.il-plays-now b { font-size: var(--cds-font-size-title); font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: .02em; }
+.il-plays-now span { font-size: var(--cds-font-size-caption); color: #c9c9cc; }
+.il-plays-now.is-buy { background: var(--rc-red); }
+.il-plays-now.is-buy span { color: #ffffff; }
+.il-verdict { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--cds-gap-sm); }
+.il-verdict b { font-weight: 800; font-size: var(--cds-font-size-title); text-transform: uppercase; letter-spacing: .02em; }
+.il-verdict.v-buy b { color: var(--rc-red-ink); }
+.il-verdict.v-wait b, .il-verdict.v-skip b { color: var(--color-fg-muted); }
+.il-play-do { margin: 0; font-size: var(--cds-font-size-body); line-height: 1.45; font-weight: 600; max-width: 70ch; }
+.il-play details { font-size: var(--cds-font-size-caption); }
+.il-play summary { cursor: pointer; color: var(--color-fg-muted); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; }
+.il-play details[open] { display: grid; gap: var(--cds-gap-sm); }
+.il-play-steps.is-buy { color: var(--color-fg); font-size: var(--cds-font-size-body); }
 .il-play-steps { margin: 0; padding-left: 1.2rem; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
 
 .il-thesis { max-width: 46ch; line-height: 1.45; }
@@ -233,14 +250,10 @@
   <article class="il-card il-plays" id="plays">
     <div class="il-card-head">
       <h3 class="il-card-title">Your plays</h3>
-      <p class="il-note">Event contracts Claude calls and you place in the Robinhood app. Only a red <b>Place now</b> card needs you; everything else is on watch.</p>
+      <p class="il-note">Event contracts Claude calls and you place in the Robinhood app. Buy only what a red <b>Buy now</b> card tells you to, at its exact numbers. Never buy a contract on your own.</p>
     </div>
+    <div class="il-plays-now dash-skeleton" id="il-plays-now" data-source="plays"><b>—</b></div>
     <div class="il-play-list dash-skeleton" id="il-play-list" data-source="plays"></div>
-    <ol class="il-play-steps">
-      <li>Open the market with the link, pick the side shown, and set a <b>limit</b> order at the max price for the quantity shown.</li>
-      <li>Never pay above the max. If it hasn't filled in ~30 minutes or by the deadline, cancel it.</li>
-      <li>Tell Claude what filled (e.g. “filled 25 @ 31¢”).</li>
-    </ol>
   </article>
 
   <section class="il-grid">
@@ -667,53 +680,97 @@ dash.onData(() => {
 
 function drawPlays() {
   const box = document.getElementById('il-play-list');
+  const now = document.getElementById('il-plays-now');
   const D = dash.data('plays');
-  if (D.status === 'error') { unskel(box); failLine(box); return; }
+  if (D.status === 'error') { unskel(box); unskel(now); failLine(box); now.replaceChildren(); now.hidden = true; return; }
   if (D.status !== 'ok') return;
-  unskel(box); box.replaceChildren();
+  unskel(box); unskel(now); box.replaceChildren(); now.hidden = false;
   const RANK = { 'Place now': 0, 'Placed': 1, 'Filled': 2, 'On deck': 3, 'Screening': 4, 'Won': 5, 'Lost': 6, 'No bet': 7 };
-  const CHIP = { 'Place now': 'p-now', 'Placed': 'p-placed', 'Filled': 'p-placed', 'On deck': 'p-deck', 'Screening': 'p-screen', 'Won': 'p-won', 'Lost': 'p-lost', 'No bet': 'p-nobet' };
   const when = (iso) => {
-    if (!iso) return '—';
-    const d = new Date(iso); if (isNaN(d)) return '—';
+    if (!iso) return null;
+    const d = new Date(iso); if (isNaN(d)) return null;
     const s = d.toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
     const h = (d - new Date()) / 36e5;
     if (h <= 0) return s + ' (passed)';
-    return s + (h < 48 ? ' (in ' + Math.max(1, Math.round(h)) + 'h)' : ' (in ' + Math.round(h / 24) + 'd)');
+    return s + (h < 48 ? ' (in ' + Math.max(1, Math.round(h)) + 'h)' : ' (in ' + Math.round(h / 24) + ' days)');
   };
   const cents = (n) => n == null ? null : Math.round(Number(n) * 100) + '¢';
+  const VERDICT = (r) => {
+    if (r.status === 'Place now') return ['v-buy', 'Buy now', r.place_by ? 'before ' + when(r.place_by) : ''];
+    if (r.status === 'Placed') return ['v-buy', 'Placed: tell Claude the fill', ''];
+    if (r.status === 'Filled') return ['v-wait', 'Holding: nothing to do', r.place_by ? 'settles after ' + when(r.place_by) : ''];
+    if (r.status === 'Won' || r.status === 'Lost') return ['v-skip', 'Settled: ' + r.status, ''];
+    if (r.status === 'No bet') return ['v-skip', 'Don’t buy · passed', ''];
+    return ['v-wait', 'Don’t buy yet', r.decide_at ? 'final decision ' + when(r.decide_at) : ''];
+  };
   const rows = D.data.slice().sort((a, b) => (RANK[a.status] ?? 9) - (RANK[b.status] ?? 9));
+
+  // Banner: the one-line answer to "do I need to buy anything?"
+  now.replaceChildren();
+  const buys = rows.filter((r) => r.status === 'Place now');
+  const nb = document.createElement('b'), ns = document.createElement('span');
+  if (buys.length) {
+    now.className = 'il-plays-now is-buy';
+    nb.textContent = 'Buy now: ' + buys.length + (buys.length > 1 ? ' orders' : ' order') + ' below';
+    ns.textContent = 'Follow the red card exactly: side, quantity and limit price.';
+  } else {
+    now.className = 'il-plays-now';
+    nb.textContent = 'Nothing to buy right now';
+    const next = rows.map((r) => r.decide_at).filter(Boolean).map((t) => new Date(t)).filter((d) => d > new Date()).sort((a, b) => a - b)[0];
+    ns.textContent = next ? 'Next possible order: ' + when(next.toISOString()) + '. You’ll get a push if one passes.' : 'No decisions scheduled.';
+  }
+  now.append(nb, ns);
+
   if (!rows.length) { const p = document.createElement('p'); p.className = 'il-empty'; p.textContent = 'No plays on the board.'; box.appendChild(p); return; }
   rows.forEach((r) => {
     const card = document.createElement('div'); card.className = 'il-play' + (r.status === 'Place now' ? ' is-now' : ''); card.dataset.key = r.id;
-    const top = document.createElement('div'); top.className = 'il-play-top';
-    const name = document.createElement('div'); name.className = 'il-play-name';
-    const b = document.createElement('b'); b.textContent = r.market;
-    const sub = document.createElement('span'); sub.textContent = r.contract + (r.exchange ? ' · ' + r.exchange : '');
-    name.append(b, sub);
-    const chip = document.createElement('span'); chip.className = 'il-chip ' + (CHIP[r.status] || ''); chip.textContent = r.status;
-    top.append(name, chip);
-    card.appendChild(top);
-    if (r.side && r.qty && r.max_price != null) {
+    const top = document.createElement('div'); top.className = 'il-play-name';
+    const b = document.createElement('b'); b.textContent = r.market + ': ' + r.contract;
+    const sub = document.createElement('span'); sub.textContent = r.exchange || '';
+    top.append(b, sub); card.appendChild(top);
+
+    const [vc, vt, vs] = VERDICT(r);
+    const v = document.createElement('div'); v.className = 'il-verdict ' + vc;
+    const vb = document.createElement('b'); vb.textContent = vt; v.appendChild(vb);
+    if (vs) { const sp = document.createElement('span'); sp.className = 'il-note'; sp.textContent = vs; v.appendChild(sp); }
+    card.appendChild(v);
+
+    if (r.status === 'Place now' && r.side && r.qty && r.max_price != null) {
       const o = document.createElement('div'); o.className = 'il-play-order';
       o.textContent = 'Buy ' + r.side + ' · ' + r.qty + ' contracts · limit ' + cents(r.max_price);
       card.appendChild(o);
+      const ol = document.createElement('ol'); ol.className = 'il-play-steps is-buy';
+      [
+        'Tap “Open on Robinhood” below and make sure the contract reads “' + r.contract + '”.',
+        'Choose ' + r.side + '.',
+        'Switch the order type to Limit and set the price to ' + cents(r.max_price) + '. Never higher.',
+        'Enter ' + r.qty + ' contracts' + (r.stake_usd != null ? ' (about ' + usd(r.stake_usd) + ')' : '') + ', review, and submit.',
+        'If it hasn’t filled in ~30 minutes' + (r.place_by ? ' or by ' + when(r.place_by) : '') + ', cancel it.',
+        'Tell Claude what filled, e.g. “filled ' + r.qty + ' @ ' + cents(r.max_price) + '”.',
+      ].forEach((t) => { const li = document.createElement('li'); li.textContent = t; ol.appendChild(li); });
+      card.appendChild(ol);
     }
+
+    if (r.instruction && r.status !== 'Place now') { const d = document.createElement('p'); d.className = 'il-play-do'; d.textContent = r.instruction; card.appendChild(d); }
+
+    // The numbers, folded away so they don't read as an order
+    const det = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Why (the numbers)'; det.appendChild(sm);
     const dl = document.createElement('dl'); dl.className = 'il-play-facts';
-    const fact = (k, v) => { if (v == null || v === '') return; const w = document.createElement('div'); const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; w.append(dt, dd); dl.appendChild(w); };
-    fact('Side', r.side || 'Not chosen');
-    fact('Max price', r.max_price != null ? cents(r.max_price) : 'Set at final screen');
-    fact('Stake', r.stake_usd != null ? (r.qty ? usd(r.stake_usd) : '≈ ' + usd(r.stake_usd)) : null);
+    const fact = (k, val) => { if (val == null || val === '') return; const w = document.createElement('div'); const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = val; w.append(dt, dd); dl.appendChild(w); };
+    fact('Robinhood price now', r.quote);
+    fact('Claude’s odds', r.model_prob != null ? Math.round(r.model_prob * 100) + '%' : null);
+    fact('Edge (need +5)', r.edge_pts != null ? (r.edge_pts > 0 ? '+' : '') + r.edge_pts + ' pts' : null);
+    fact('Stake if it passes', r.status !== 'Place now' && r.stake_usd != null ? '≈ ' + usd(r.stake_usd) : null);
     fact('Pays if right', r.pays_usd != null ? usd(r.pays_usd) : null);
-    fact('Robinhood price', r.quote);
-    fact('Our odds', r.model_prob != null ? Math.round(r.model_prob * 100) + '%' : null);
-    fact('Edge', r.edge_pts != null ? '+' + r.edge_pts + ' pts' : null);
-    fact(r.status === 'Place now' ? 'Place by' : 'Contract closes', r.place_by ? when(r.place_by) : null);
-    fact('Next screen', r.next_screen ? when(r.next_screen) : null);
+    fact('Next check', when(r.next_screen));
+    fact('Trading closes', r.status !== 'Place now' ? when(r.place_by) : null);
     fact('Result', r.result);
-    card.appendChild(dl);
-    const why = document.createElement('p'); why.className = 'il-play-why'; why.textContent = r.why; card.appendChild(why);
-    if (r.url) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open on Robinhood ↗'; card.appendChild(a); }
+    det.appendChild(dl);
+    const why = document.createElement('p'); why.className = 'il-play-why'; why.textContent = r.why; det.appendChild(why);
+    card.appendChild(det);
+
+    if (r.url) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.status === 'Place now' ? 'Open on Robinhood ↗' : 'View on Robinhood (don’t buy) ↗'; card.appendChild(a); }
     box.appendChild(card);
   });
 }

@@ -17,14 +17,16 @@
   "exchange": "Kalshi (via Robinhood)",
   "url": "https://robinhood.com/us/en/prediction-markets/economics/events/us-real-gdp-growth-in-q3-2026-oct-30-2026/",
   "why": "Forecast blend says 3.29% growth vs the market's ~3.2%. The edge rests on GDPNow's inventory call, which Wednesday 8:30am trade and inventory data will confirm or kill. Final go/no-go Wed 10/28 1:37pm ET.",
-  "result": null
+  "result": null,
+  "decide_at": "2026-10-28T17:37:00Z",
+  "instruction": "Don't buy this. Nothing to do until Claude's final decision on Wed 10/28. If it passes, this card turns red with the exact order and you get a push."
  },
  {
   "id": "pce-sep-03",
   "status": "On deck",
   "market": "September core PCE inflation (month over month)",
   "contract": "Above 0.3%",
-  "side": "NO (if it passes)",
+  "side": null,
   "qty": null,
   "max_price": null,
   "stake_usd": 30,
@@ -37,7 +39,9 @@
   "exchange": "Rothera (Robinhood's exchange)",
   "url": "https://robinhood.com/us/en/prediction-markets/economics/events/2026-september-core-pce-index-oct-29-2026/",
   "why": "YES needs a printed 0.4% or higher (strictly above 0.3; BEA rounds to one decimal). Economists translating CPI/PPI center on ~0.33%, so our odds of YES are ~31%. That makes YES at 37¢ overpriced, but NO at ~67¢ all-in is only +2 pts, short of our 5. It becomes a play if estimates drift to ≤0.325% (buy NO, limit ≤ 65¢) or ≥0.345% (buy YES, limit ≤ 37¢). Thin market: limit orders only, partial fills OK. Re-screen Fri 10/23 3:22pm ET; final Wed 10/28 1:37pm ET.",
-  "result": null
+  "result": null,
+  "decide_at": "2026-10-28T17:37:00Z",
+  "instruction": "Don't buy this, YES or NO. At today's prices neither side is worth it. Claude re-checks Fri 10/23 and decides finally on Wed 10/28; if it passes, this card turns red with the exact order and you get a push."
  },
  {
   "id": "fed-oct-28",
@@ -57,6 +61,8 @@
   "exchange": "Rothera (Robinhood's exchange)",
   "url": "https://robinhood.com/us/en/prediction-markets/economics/events/fed-rate-decision-in-october-2026-oct-28-2026/",
   "why": "Fed funds futures put a hike at ~16%, so Robinhood’s 15¢ hike price is fair (−1 pt after fees) and “hold” at 87¢ is −5. Every outcome is outside our 30–70¢ band. No edge.",
-  "result": "Passed: priced fairly vs futures"
+  "result": "Passed: priced fairly vs futures",
+  "decide_at": null,
+  "instruction": "Don't buy this. It's fairly priced, so there's no bet here. Nothing to do."
  }
 ]
