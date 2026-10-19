@@ -75,13 +75,13 @@
   "asset": "ZEC",
   "house": "The Faceless Men",
   "vehicle": "Crypto",
-  "status": "Open",
+  "status": "Closed",
   "entry": 1111.8,
   "stop": 1020,
   "target": 1200,
   "size_usd": 19.99,
   "thesis": "Strongest trend in crypto (+128% since August). Bought half at market and half on a −3.8% dip; both filled.",
-  "lesson": "The dip half filled 4% under the market half, so scaling in helped. The market half filled 1.05% over mid."
+  "lesson": "Stopped out 10/19 10:03 at $1,104 (−$0.15, −0.8%). The ratchet to near-breakeven worked: it turned a would-be −$1.30 into −$0.15. But a stop 6% under a coin that moves 5–10% a day gets hit by noise, so trail wider (~1.5× daily range) or take the target."
  },
  {
   "id": "P1",

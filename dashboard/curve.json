@@ -52,5 +52,11 @@
   "equity": 481.16,
   "contributed": 480,
   "note": "Bought 3 SOXL @ $102.55 at the open"
+ },
+ {
+  "at": "2026-10-19T18:48:00Z",
+  "equity": 471.45,
+  "contributed": 480,
+  "note": "SOXL $99.62 (\u22122.9% from entry); ZEC stopped out"
  }
 ]

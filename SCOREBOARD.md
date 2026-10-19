@@ -2,12 +2,12 @@
 
 | Field | Value |
 |---|---|
-| As of | 2026-10-19 09:50 ET (open check-in) |
+| As of | 2026-10-19 14:47 ET (user-requested check-in) |
 | Capital contributed | **$480.00** ($30 + $100 + $200 + $150 on 10/19 ~00:30 ET; Codex gets every deposit too, a standing rule) |
-| Account equity | $481.16 · Codex est. $486 (last report $136 + $200 + $150) |
-| **Return on contributed capital** | **+0.24%** ($1.16 on $480) |
-| Cash | ≈ $102.36 after the SOXL buy ($307.65); crypto ≈ $71 |
-| Trades closed | 0 |
+| Account equity | $471.45 · Codex est. $486 (last report $136 + $200 + $150) |
+| **Return on contributed capital** | **−1.78%** (−$8.55 on $480) |
+| Cash | $122.20 (incl. $19.84 from the ZEC stop); stocks $298.81; crypto $50.44 |
+| Trades closed | 1 (ZEC, −$0.15) |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
 | Open risk | BTC $20 → stop ≈ −$0.84 (+ spread). If all limits fill: ETH stop ≈ −$1.47, SOL stop ≈ −$0.68. Max sleeve loss ≈ $3.5 (2.7%). |
@@ -31,7 +31,6 @@
 | Asset | Qty | Avg cost | Stop | Target | Notes |
 |---|---|---|---|---|---|
 | SOXL | 3 | $102.55 ($307.65) | Rule: daily close < $80 (decided at 3:22). Hard backstop: stop order $76 GTC (id 6ad61fee-3895-47f6-92e9-efcfd94ff88e) | T1 $112 (sell 1, stop → entry), T2 $118 | Bought 10/19 9:49. Time stop: sell 2 by Fri 10/23 3:22 if T1 not hit; all out Mon 10/26 3:22. Alerts: SOXL > $112, SOXX < $495 |
-| ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,105 GTC (id 6ad57e63-debf-42fb-a2e1-43415066ed5a) | $1,200 | crypto sleeve, trend leader; both halves filled |
 | ETH | 0.012738 | $2,354.99 ($30) | stop order $2,300 GTC (id 6ad56199-5a5d-4192-a7f6-69366deb1b1e) | $2,580 | out before FOMC 10/28 2pm unless ≥ +5% |
 | BTC | 0.00024285 | $82,354.09 ($20) | stop order $78,900 GTC (id 6ad48095-9b1b-41b9-b508-62475232d2b0) | $85,000 (set a sell limit at a check-in if within ~1.5%; cancel the stop first) | crypto sleeve |
 
@@ -41,7 +40,6 @@
 | SOXL | sell | stop order (market) | 3 | trigger $76 | GTC | 6ad61fee-3895-47f6-92e9-efcfd94ff88e |
 | ETH | sell | stop order | 0.012738 | trigger $2,300 | GTC | 6ad56199-5a5d-4192-a7f6-69366deb1b1e |
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
-| ZEC | sell | stop order | 0.01798 | trigger $1,105 | GTC | 6ad57e63-debf-42fb-a2e1-43415066ed5a |
 
 ## Next actions (check-ins read this first)
 - **MANDATE v4 (10/19 00:30 ET): capital $480 after the user's $150; Codex is assumed to get the same.** Equity $481.96, cash $410.01. The new numbers below REPLACE every older $ figure in this list:

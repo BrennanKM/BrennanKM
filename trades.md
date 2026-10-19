@@ -273,3 +273,12 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
 - **FILLED** 3 SOXL @ $102.5507 avg (9:49:15 ET, order 6ad61fdb-da75-460c-a537-643e30607f89), $307.65.
 - Hard backstop: a GTC stop order at $76 (6ad61fee-3895-47f6-92e9-efcfd94ff88e). The real stop is the $80 close rule. The backstop only guards against check-ins failing and a crash: −$80 worst case at the trigger before slippage. Alerts are set on SOXL > $112 and SOXX < $495.
 - Crypto at the open: BTC $82.3K, ETH $2,411, ZEC $1,138 (−3% on the day, 2.9% above its $1,105 stop). All stops in place; no crypto action.
+
+## 2026-10-19 14:47 ET: user-requested check-in
+- **ZEC CLOSED (stop):** the $1,105 stop filled 10:03 ET at $1,103.97 avg ($19.84 vs $19.99 cost). **−$0.15 (−0.8%).**
+  - **Post-mortem.** What happened: ZEC rolled over −4% from the Sunday high ($1,181 → $1,125), and the ratchet at $1,105 sat inside one normal day's range. What I'd change: on coins with 5–10% daily ranges, trail the stop by ~1.5× the daily range, or set the sell limit at the target. The ratchet saved $1.15 vs the old $1,045 stop, so it was the right direction but too tight.
+- **SOXL:** $99.62 (−2.9% from the $102.55 entry). SOXX $503.76 (+2.1% on the day, above $495). The thesis is intact. The gap faded from the $509 open, which is what the open-chase note warned about. Hold. The 3:22 close check still applies.
+- **ETH** $2,399 (stop $2,300) and **BTC** $81.9K (stop $78,900): both held, no action.
+- **Scan** (sub-$5 movers): 7 names. XHG +57% (RVOL 18×) and DH +15% are momentum chases with no catalyst thesis or implied-move check. **Reject.**
+- **No trades.** Cash $122 stays earmarked: the META put Wed ~$50, the rest reserve and the event cap.
+- FRED key: still missing from the env.
