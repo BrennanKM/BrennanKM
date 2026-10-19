@@ -3,8 +3,9 @@
 # Clones the repo and builds a small venv on first use (the container is ephemeral).
 #   tools/fincept.sh yfinance_data.py historical SOXX 2008-01-01 2026-10-17
 set -euo pipefail
-REPO=/home/user/fincept-corporation/finceptterminal
-VENV=/home/user/fincept-venv
+BASE=/home/user; [ -d /home/user ] || BASE="$HOME"
+REPO="$BASE/fincept-corporation/finceptterminal"
+VENV="$BASE/fincept-venv"
 if [ ! -d "$REPO/.git" ]; then
   mkdir -p "$(dirname "$REPO")"
   GIT_LFS_SKIP_SMUDGE=1 git clone -q --depth 1 https://github.com/Fincept-Corporation/finceptterminal "$REPO" >&2
