@@ -213,7 +213,31 @@ Written Mon 10/19. Kalshi prices were pulled from the public API on 10/19. The R
   - Floor gate: equity − all gaps through stops − stake ≥ $187 (≈ $240 today, so it passes).
   - This is the only bet on the board that's independent of the risk-on book (SOXL and crypto).
 
+## Event contracts on Robinhood (Rothera + Kalshi), screen 10/19
+Written Mon 10/19 ~00:30 ET. Equity $332.03 (cash $260). RH quotes are from the Trader's rh_event.py pull (10/19 ~03:00Z) plus robinhood.com pages. Kalshi quotes come from its public API.
+**1. Sept Core PCE (ROTHERA ECPCE-26SEPCORE, BEA release Thu 10/29 8:30 ET).** NO BET YET.
+- *Terms (Rothera T&C PDF, read in full):* the underlying is the m/m % change "as reported in the first official release" by BEA (seasonally adjusted). "Above" means **strictly greater than** the strike, and strikes step by 0.1. BEA publishes one decimal, so **">0.3%" pays only on a printed 0.4 or higher, i.e. unrounded ≥ ~0.35%.** A 0.33% print resolves NO. The market ladder (>0.2 at 0.96, >0.3 at 0.36, >0.4 at 0.03) is consistent only with this rounded reading. If BEA's release slips past expiry (up to 2 days), Rothera settles at its "fair price."
+- *Inputs (post-CPI 10/14 and PPI 10/15):* core CPI +0.33% unrounded. Translations: CNBC 7-firm median **0.32** (range 0.29 Oxford to 0.35 Barclays); TD 0.32 (TD's market-based figure 0.34); WSJ Timiraos ~0.34; Employ America nowcast 0.34. **Locked μ = median of the latest translations = 0.33.**
+- *Error:* published post-PPI translation misses are typically 0–3bp, with a 7bp outlier (EA, Aug-25: airfares, portfolio management, seasonal factors). **Locked σ = 0.04**, which includes ~1bp of disagreement about the center. The model is P(YES) = 1 − Φ((0.35 − μ)/σ).
+| Strike (needs print ≥) | RH YES bid/ask | Model P(YES) | YES net edge | NO cost all-in | NO net edge |
+|---|---|---|---|---|---|
+| >0.2 (0.3) | 0.95/0.97 | 0.98 | out of band | 0.07 | out of band |
+| **>0.3 (0.4)** | **0.35/0.37** | **0.31** (range 0.24–0.39 for μ 0.325–0.34) | **−8** | **0.67** | **+2** |
+| >0.4 (0.5) | 0.02/0.04 | <0.01 | out of band | 1.00 | out of band |
+- *Pass lines for >0.3, with σ locked:* NO at ≤ 0.65 passes if μ ≤ **0.325** (P(YES) ≤ 0.27). YES at ≤ 0.37 passes only if μ ≥ **0.345**. Max price = model P − 0.07.
+- *Liquidity:* OI is only 35, so this is a single market-maker quote. A $25 order (~37 NO contracts) is larger than all open interest. Use a limit order only and accept a partial fill. Quote age is unverified: I couldn't run Bash, and the WebFetch page view showed only the 35¢ YES.
+- *If it PASSES:* buy NO, Kelly at p = 0.73 / c = 0.67 is 18%, so half-Kelly ≈ **$30, cap $35**. A win pays only ≈ +$15, so this is EV, not a P(target) lever.
+- *Re-screen:* Fri 10/23 3:22 (new previews), then **final Wed 10/28 1:37pm** together with GDP, using the Bloomberg consensus and the bank previews from that week. Last trade is before the 8:30 release on 10/29.
+**2. Fed 10/28 (ROTHERA ECUSFED-26OCT).** NO BET. Fed-funds-implied odds (Investing.com rate monitor, 10/17 00:35 ET): hold 83.9%, hike 16.1%. On RH, buying hike costs 0.15 + 0.02 = 0.17 (−1); maintain costs 0.89 (−5). On Kalshi, hike trades at 0.12/0.13, so Rothera's hike is ~2¢ rich. Everything is outside 30–70¢ and nothing reaches 5 points. The only signal: if a hike is wanted as a hedge, Kalshi is cheaper. The Fed is in blackout and has no new data before 10/28.
+**3. Q3 GDP (Kalshi KXGDP-26OCT30, routed through RH).** The RH page lists exactly 0.0, 0.5, **3.0**, 3.5 and 4.0 (with 4 more hidden). That matches rh_event.py, so **>3.0 is tradable on RH**. Kalshi API quotes now: >3.0 at 0.59/0.64 (last 0.69); >3.5 at 0.29/0.32, OI 9,377. These are unchanged, and so is the model (μ 3.29, σ 1.1). >3.5 YES at 0.32 nets +6.7, but the result is fragile (+3.5 equal-weight). >3.0 NO nets −2. **NO BET YET**, final Wed 10/28 1:37pm (GDPNow updates Tue 10/20).
+- *Independence:* PCE, GDP and Fed resolve within 24h of each other. GDP and PCE are close to independent of each other and of SOXL. **Combined event stake ≤ $50** (15% of equity), so no strategist review is needed under v3.1 #6.
+
 ## Strategist log
 - 2026-10-18 21:45 ET: weekly pass (first). The staged 35%→70% SOXL plan becomes 2 shares on Monday's open window. Data: next-open entry +11.4% mean / 80% win vs confirmation close +1.4% / 38% (SOXX 2010–26). The $85–95 band was stale (SOXL $100 in 24h trade). METU put kept at 1 contract with a strike/spread re-check on Wed. Crypto sleeve frozen. Five rule proposals filed.
 - 2026-10-19 22:35 ET: Level 3 is unavailable, so I added the "Level 2 options playbook (no spreads)". It sets a 4-test screen: R ≥ 1.2, a symmetrized-replay price cap, liquidity limits, and a skew/IV check. Of the 8 catalysts in the next two weeks, only META (R = 1.29, via the METU 10/23 put, limit ≤ the cap) passes, and only conditionally on Wednesday's liquidity. TSLA, LRCX, AMKR, SOFI, MBLY, INTC and FOMC fail. CSPs and covered calls are banned at this size. Leveraged ETF > options for directional bets. Pre-trade review of SOXL 3 shares: KEEP 2. At 3 shares the stop loses 18–22% of equity, above the 15% cap, and the Wed METU put no longer fits under the $187 floor gate.
 - 2026-10-19: first-pass screen of Q3 GDP event contracts (Kalshi KXGDP-26OCT30; BEA advance print Thu 10/29 8:30). Blend μ 3.29% (GDPNow 3.64 / NY Fed 2.6 / MS 3.2), σ 1.1. Only >3.5% YES at 0.32 shows an edge (+6.7 net), and that edge is model-dependent (+3.5 to +19). NO BET YET. Final re-screen Wed 10/28 1:37pm after the advance trade and inventories report and the last GDPNow. Cap $35 if it passes.
+- 2026-10-19 ~00:30 ET: screened the RH event contracts.
+  - **Core PCE >0.3:** the Rothera T&C means a printed ≥ 0.4 (strictly above, one-decimal BEA print). The translations' median is 0.33 and σ is locked at 0.04, giving P(YES) 0.31. That's −8 for YES and +2 for NO at 0.67 all-in, so NO BET YET. NO passes if μ ≤ 0.325 and YES if μ ≥ 0.345. OI 35.
+  - **Fed:** futures put a hike at 16.1% vs RH's 0.15 ask, out of band, so NO BET.
+  - **GDP:** >3.0 is confirmed tradable on RH. >3.5 is unchanged at +6.7 (fragile). Final call 10/28 1:37pm.
+  - Combined event stake cap is $50.
