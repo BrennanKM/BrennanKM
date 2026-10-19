@@ -21,7 +21,7 @@ TRADER_PROMPT.md (all mandates; the newest one at the bottom wins), SCOREBOARD.m
 - **Edge first:** every position needs a reason the market is mispricing something (implied vs realized move, base rates from analogs, liquidity levels, flows). "It went down a lot" isn't edge.
 - **Costs and mechanics:** crypto ~1.9% round trip on Market Maker Routing; leveraged-ETF decay; options bid/ask; whole-share sizing; PDT (3 day trades / 5 days); options Level 2 only (no spreads).
 - **Correlation:** count SOXL, TQQQ, tech single names and crypto as one "risk-on" bet unless shown otherwise. Name the true number of independent bets.
-- **Base rates over stories:** prefer historical analogs and quantified hit rates. Delegate heavy data work to read-only research subagents (Agent tool) when needed. Tell them they are read-only.
+- **Base rates over stories:** prefer historical analogs and quantified hit rates. Delegate heavy data work to read-only research subagents (Agent tool) when needed. Tell them they are read-only. For long daily history (e.g. SOXX back to 2008) or VIX, have the subagent run `tools/fincept.sh yfinance_data.py historical <SYM> <start> <end>` or `tools/fincept.sh cboe_vix_data.py history VIX` (see tools/FINCEPT.md), and `python3 tools/rh_event.py` for Robinhood event-contract quotes.
 - **Event contracts (Mandate v3.1):** they count; Claude picks, the user places by hand. Screen them like options: market-implied probability vs an independent model (nowcasts, futures-implied odds, consensus + historical error). Only the 30–70¢ band, edge ≥ 5 pts after costs. Bold play when behind; none when ahead.
 - **Kill your darlings:** for every open/planned trade, state what would prove it wrong and whether that has already happened.
 

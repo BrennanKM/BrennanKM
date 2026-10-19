@@ -76,6 +76,10 @@
 - **ETH:** if filled, place a GTC limit sell of the full quantity at $2,580. Check the daily close vs $2,240 (exit if below). Exit before 2pm ET 10/28 (FOMC) unless ≥ +5%. If unfilled by 10/27, cancel it: the setup is stale into FOMC.
 - **Options are live.** For the SOXL trigger and the META earnings bet, price a cheap OTM call (≤ $0.60) next to the leveraged ETF and pick whichever gives better payoff per dollar risked. Write both in the thesis block.
 
+## Data tools
+- `tools/rh_event.py`: Robinhood event-contract quotes.
+- `tools/fincept.sh`: FinceptTerminal's Python data scripts (Yahoo quotes and 18-year daily history for backtests, VIX, Treasury rates). See tools/FINCEPT.md. Robinhood stays the source of truth for anything traded.
+
 ## Watchlist: earnings setups (research agent, 2026-10-18; no orders yet)
 Small-cap tape is risk-off (IWM at a 3-month low, RSI 32). Each name below is clean on dilution (no S-1/S-3/424B since 7/1) and heavily shorted. Two entries are possible: (a) a small position before the print, or (b) a resting limit ~1x the implied move below price to catch a post-print flush. Weight (b) at least equally: SOFI and AMKR won back most of their last earnings drops within 5 days.
 | Ticker | Px 10/16 | Catalyst | Implied move | SI % float | Entry (a) | Stop | Target |
