@@ -11,7 +11,7 @@
   "target": 4.7,
   "size_usd": 20.4,
   "thesis": "Earnings 10/21 off a 52-week low, no dilution filed.",
-  "lesson": "Price the event first. Options implied \u00b111.7%; my stop sat inside the noise and the target outside it. Killed before fill."
+  "lesson": "Price the event first. Options implied ±11.7%; my stop sat inside the noise and the target outside it. Killed before fill."
  },
  {
   "id": "T2",
@@ -38,8 +38,8 @@
   "stop": 78900,
   "target": 85000,
   "size_usd": 20,
-  "thesis": "Bottom third of a 4-week $79.8K\u2013$87.3K range; ETF flows reopen Monday.",
-  "lesson": "A market buy on market-maker routing costs 0.95% on entry; worth \u22121.9% at the bid on fill."
+  "thesis": "Bottom third of a 4-week $79.8K–$87.3K range; ETF flows reopen Monday.",
+  "lesson": "A market buy on market-maker routing costs 0.95% on entry; worth −1.9% at the bid on fill."
  },
  {
   "id": "T6",
@@ -80,7 +80,7 @@
   "stop": 1020,
   "target": 1200,
   "size_usd": 19.99,
-  "thesis": "Strongest trend in crypto (+128% since August). Bought half at market and half on a \u22123.8% dip; both filled.",
+  "thesis": "Strongest trend in crypto (+128% since August). Bought half at market and half on a −3.8% dip; both filled.",
   "lesson": "The dip half filled 4% under the market half, so scaling in helped. The market half filled 1.05% over mid."
  },
  {
@@ -93,8 +93,8 @@
   "entry": 100,
   "stop": 80,
   "target": 112,
-  "size_usd": 200,
-  "thesis": "Strategist-approved: buy 2 SOXL Monday (cap $104) after the 8-day \u221224% semis flush. Analogs: next-open entry +11.4% avg / 80% up over 5 days (n=15). Out by 10/26.",
+  "size_usd": 303,
+  "thesis": "Strategist-approved: buy 3 SOXL Monday (cap $104, re-sized for the $480 account) after the 8-day −24% semis flush. Analogs: next-open entry +11.4% avg / 80% up over 5 days (n=15). Out by 10/26.",
   "lesson": ""
  },
  {
@@ -108,7 +108,7 @@
   "stop": null,
   "target": null,
   "size_usd": 25,
-  "thesis": "One METU 10/23 put through META earnings (Wed after close). META typically moves 8.3% vs ~6.4% priced in. Max loss \u2248 premium. Strike re-picked Wednesday.",
+  "thesis": "One METU 10/23 put through META earnings (Wed after close). META typically moves 8.3% vs ~6.4% priced in. Max loss ≈ premium. Strike re-picked Wednesday.",
   "lesson": ""
  }
 ]

@@ -238,3 +238,19 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
 - GDP >3.5: unchanged (+6.7 blend / +3.5 equal-weight).
 - **Accepted:** combined event stake ≤ $50, and limit orders only on Rothera (OI < 100).
 - Lesson already paid for by the screen: read the settlement terms before pricing. "Above 0.3%" with one-decimal rounding is a different contract from what it sounds like.
+
+## 2026-10-19 00:30 ET: +$150 deposit (Mandate v4)
+- The user added $150. Standing rule: Codex is matched on every deposit. Contributed $480; equity $481.96; cash $410.01.
+- Rescaled with the same ratios: targets $739 / $1,109, floor $185, gate $272, ratchet $640, event caps $72 / $50, glide $482 × 1.0195^d.
+- Strategist asked to re-size Monday's SOXL entry (2 vs 3 shares vs 2 + a less-correlated second bet). Verdict to follow.
+
+## 2026-10-19 00:50 ET: SOXL re-sized to 3 shares (strategist verdict B, accepted)
+- 24h quotes: SOXX $506.0, SOXL $100.86 / $100.91. Equity $481.93.
+- 3 shares ≈ $303 = 63% of equity, the same share as the approved 2 in $332.
+  - Stop cost: −$63 to −$72 (13–15%).
+  - Post-Wednesday gap to $71: −$90 to −$99.
+  - Floor gate: $482 − 99 − 50 (put) − 6 = $327 ≥ $272.
+- New exits: T1 $112 sells 1 and moves the stop on the rest to entry. T2 $118 sells 1. If T1 hasn't hit by session 5, sell 2. Everything is out by Mon 10/26 3:22.
+- Option C was rejected: nothing uncorrelated qualifies (TLT and XLF short of their triggers; TQQQ, TNA and NVDL are the same bet).
+- METU put stays at 1 contract (2 only if both together cost ≤ $50 and it passes all four tests live).
+- Accepted risk: SOXL + crypto ≈ 78% of equity on one risk-on bet through Wednesday's prints. It's the price of the mandate; the time stop and the gate cap it.

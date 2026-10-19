@@ -241,3 +241,20 @@ Written Mon 10/19 ~00:30 ET. Equity $332.03 (cash $260). RH quotes are from the 
   - **Fed:** futures put a hike at 16.1% vs RH's 0.15 ask, out of band, so NO BET.
   - **GDP:** >3.0 is confirmed tradable on RH. >3.5 is unchanged at +6.7 (fragile). Final call 10/28 1:37pm.
   - Combined event stake cap is $50.
+- 2026-10-18 ~23:50 ET (Trader's clock 10/19 ~00:30): pre-trade review after the +$150 deposit. Contributed $480, equity $481.93 (cash $410.01, crypto $71.92). Codex est. $486, so we're −$4. Live 24h quotes: SOXX $506.0 (in the $495–512 band), SOXL $100.86 bid / $100.91 ask, TLT $80.37, TMF $28.38, XLF $55.62, METU $29.68.
+  - **VERDICT: B, 3 SOXL** with the same gates and the $104 cap. The scaled-entry splits: SOXX > $512 → buy 2 now and the 3rd at 3:22 if it's above the open; SOXX < $495 → buy 3 at 3:22 if $492.83 is intact.
+  - **Loss math at $101 / $104 entry:**
+    - Stop (close < $80): −$63 (13.1%) / −$72 (14.9%).
+    - 24% gap-through: −$73 (15.1%).
+    - Post-Wednesday gap to $71: −$90 to −$99 (19–21%).
+  - **Floor gate:** $482 − $99 − put $50 − crypto $6 = **$327, above $272.** That's the same exposure (63%) as the approved 2 shares in $332. The 10/18 "keep 2" verdict failed only on the old $187 gate, which no longer binds.
+  - **Exits:** T1 $112 sells 1 and moves the stop on the other 2 to entry. T2 $118 sells 1. If T1 hasn't hit, sell 2 at session 5 (Fri 10/23 3:22). Everything is out by Mon 10/26 3:22.
+  - **Thursday pyramid:** a 4th share only from put proceeds plus leftover cash (no margin).
+  - **C rejected, nothing qualifies:**
+    - TMF: TLT $80.37 hasn't hit the $80.57 trigger, and at ~45% vol it adds about ±$4 a week, so it does nothing for P(target).
+    - FAS: XLF $55.62 hasn't hit $56.05, and one share is $158 (33%).
+    - TQQQ, TNA, NVDL: the same risk-on beta.
+    - Every other earnings name failed R.
+  - **METU put:** stays at 1 contract (Kelly ≈ 10% ≈ $48). Buy 2 only if 2 × the limit ≤ $50 and all four tests pass live on Wednesday.
+  - **Events:** caps rescale to GDP ≤ $50 and combined ≤ $72. The verdicts are unchanged (NO BET YET), and the final call is still 10/28 1:37pm, after SOXL is out.
+  - **Correlation:** SOXL plus crypto is ≈ $375 (78%) in one risk-on bet. True independent bets ≈ 1.5.

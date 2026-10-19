@@ -2,17 +2,17 @@
 
 | Field | Value |
 |---|---|
-| As of | 2026-10-18 20:14 ET (Sun evening check-in) |
-| Capital contributed | **$330.00** ($30 start + $100 on 10/18 ~03:56 ET + $200 on 10/18 ~21:30 ET; Codex got the same) |
-| Account equity | $331.75 · Codex est. $336 (last report $136 + $200 deposit) |
-| **Return on contributed capital** | **+0.53%** ($1.75 on $330) |
-| Cash | $260.01 free (incl. the $200 deposit, instantly spendable); crypto held ≈ $72 |
+| As of | 2026-10-19 00:35 ET (deposit) |
+| Capital contributed | **$480.00** ($30 + $100 + $200 + $150 on 10/19 ~00:30 ET; Codex gets every deposit too, a standing rule) |
+| Account equity | $481.96 · Codex est. $486 (last report $136 + $200 + $150) |
+| **Return on contributed capital** | **+0.41%** ($1.96 on $480) |
+| Cash | $410.01 free; crypto held ≈ $72 |
 | Trades closed | 0 |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
 | Open risk | BTC $20 → stop ≈ −$0.84 (+ spread). If all limits fill: ETH stop ≈ −$1.47, SOL stop ≈ −$0.68. Max sleeve loss ≈ $3.5 (2.7%). |
-| Survival floor | Equity < **$127**: stop and write postmortem.md (Mandate v3) |
-| Goal / deadline | **$508 (+54%) / $762 (+131%)** by ~2026-11-18 (Mandate v3 in TRADER_PROMPT.md) |
+| Survival floor | Equity < **$185**: stop and write postmortem.md (Mandate v4) |
+| Goal / deadline | **$739 (+54%) / $1,109 (+131%)** by ~2026-11-18 (Mandate v4 in TRADER_PROMPT.md) |
 
 ## Account facts (verified 2026-10-18)
 - Crypto routing: **Market Maker Routing** (user turned Fee Tiers / Exchange Routing off 10/18). Spread ≈ 1.9% round trip, so resting limits are the default entry.
@@ -42,9 +42,15 @@
 | ZEC | sell | stop order | 0.01798 | trigger $1,105 | GTC | 6ad57e63-debf-42fb-a2e1-43415066ed5a |
 
 ## Next actions (check-ins read this first)
-- **MON 10/19 9:47: SOXL ENTRY (strategist-approved; supersedes all earlier SOXL rules below).** SOXX $495–512 → buy 2 SOXL, marketable limit cap $104. SOXX > $512 → 1 now, 2nd at 3:22 if holding above the open. SOXX < $495 → wait to 3:22, buy 2 only if $492.83 is intact. No entry if SOXX breaks $492.83 first. Stop: close < $80. T1 $112 (sell 1), T2 $118. Half out by session 5, all out by Mon 10/26 3:22. Exit Thu 9:47 if the Wed prints break the thesis. The weekly pass counts as the pre-trade review for this exact entry; re-review only if conditions differ.
+- **MANDATE v4 (10/19 00:30 ET): capital $480 after the user's $150; Codex is assumed to get the same.** Equity $481.96, cash $410.01. The new numbers below REPLACE every older $ figure in this list:
+  - floor $185;
+  - floor-distance gate **$272** (replaces $187);
+  - event stake cap $72 / Kelly $50 (replaces $50 / $35);
+  - glide path $482 × 1.0195^d.
+  SOXL share count: 3 (strategist verdict B, see the entry below).
+- **MON 10/19 9:47: SOXL ENTRY = 3 SHARES (strategist re-size verdict B, 10/19 00:45, accepted; supersedes all earlier SOXL rules).** SOXX $495–512 → buy 3 SOXL, marketable limit at ask + $0.05, cap $104. SOXX > $512 → buy 2 now, the 3rd at 3:22 if it's holding above the open. SOXX < $495 → wait to 3:22, buy 3 only if $492.83 is intact. No entry if SOXX breaks $492.83 first. Stop: close < $80 (full 3 shares). **T1 $112: sell 1 and move the stop on the other 2 to entry.** T2 $118: sell 1. If T1 hasn't hit by session 5 (Fri 10/23 3:22), sell 2. All out by Mon 10/26 3:22. Exit Thu 9:47 if the Wed prints break the thesis. A Thursday 4th share only from put proceeds + spare cash (no margin).
 - **Crypto sleeve UNFROZEN by the user 10/19 ("keep trading crypto as much as you want"; overrides strategist #4).** Trader's rules: (1) crypto never takes cash needed for SOXL (≤ $208 Mon) or the Wed METU put; until SOXL fills, new crypto money ≤ $40. (2) Every entry needs a written level and a target ≥ 3× the 1.9% spread (≥ ~6%) away. (3) Full-quantity stop placed in the same check-in as the fill; resting buys only if the stop can be placed at the next check-in and the gap is written down. (4) Trail stops on winners: ZEC was ratcheted to $1,105 (≈ breakeven after spread) on 10/18 22:20 ET at mark $1,181. (5) Check crypto at every check-in, weekends included, since it's the only market open nights and weekends.
-- **SOXL size stays 2 shares (strategist pre-trade review 10/19: KEEP 2, accepted).** 3 shares would fail the $187 floor gate together with the METU put, and the Monday 3:22 pyramid is rejected. **The only allowed add:** Thu 10/22 9:47, if the Wed prints are clean AND SOXL ≥ +10% over the fill. Add 1 share funded by METU put proceeds or the unspent put cash, and move the original stop to the entry price.
+- ~~SOXL size stays 2 shares~~ (superseded by the $480 re-size: 3 shares). Old note: 3 shares would fail the $187 floor gate together with the METU put, and the Monday 3:22 pyramid is rejected. **The only allowed add:** Thu 10/22 9:47, if the Wed prints are clean AND SOXL ≥ +10% over the fill. Add 1 share funded by METU put proceeds or the unspent put cash, and move the original stop to the entry price.
 - **Options = Level 2 playbook in STRATEGY.md (adopted 10/19).** Every option buy must pass the four-test screen (R ≥ 1.20, replay price cap, liquidity, skew/IV); otherwise no trade. Cash-secured puts and covered calls are banned until equity ≥ $508. Directional bets use leveraged ETFs, not calls.
 - **EVENT PRICES = ROBINHOOD'S OWN (user 10/19).** Run `python3 tools/rh_event.py <category>/events/<slug>` (or `--list economics`) for the contract symbol, listing exchange (KALSHI or ROTHERA, Robinhood's exchange), whether Robinhood lets you trade it, YES/NO bid/ask and OI, all from robinhood.com's public pages. Use those numbers, not Kalshi's, for every screen and order. Contracts flagged NOT TRADABLE ON RH are out. 10/19 facts: Q3 GDP = Kalshi KXGDP-26OCT30, tradable on RH only at >3.0/>3.5/>4.0 (and 0.0/0.5); Fed Oct (ECUSFED-26OCT) and Sept Core PCE (ECPCE-26SEPCORE, release 10/29) are on ROTHERA.
 - **Event contracts ENABLED in the user's Robinhood app (10/19).**

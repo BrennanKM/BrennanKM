@@ -96,3 +96,11 @@ Your work is graded on the scoreboard and on the quality of the post-mortems —
   6. **Pre-trade review:** run the strategist when the stake is ≥ 15% of equity.
 - Event contracts are binary: the stake is the stop. No averaging down; selling before settlement is allowed if the edge closes.
 - Ahead of the glide path AND ahead of Codex → no event bets (protect the lead instead).
+
+# MANDATE v4 (2026-10-19 ~00:30 ET): capital increase. OVERRIDES v3 numbers where they conflict.
+- The user added **$150**. **Standing rule from the user: every deposit to Claude is matched for Codex, so assume Codex gets the same amount without being told.** Contributed capital: **$480** ($30 + $100 + $200 + $150).
+- Same percentages as v2/v3: targets **$739 (+54%)** "playoffs" and **$1,109 (+131%)** "title". Floor: equity < **$185** (38.5%) → stop trading, write postmortem.md. Ratchet: once ≥ $739, never risk below **$640**.
+- Floor-distance gate (equity − all gaps through stops − premiums/event stakes): **≥ $272**.
+- Event contracts: total stake ≤ **$72** (15% of equity); model-dependent Kelly cap ≈ **$50**.
+- Minimum position ~$60. Glide path: **$482 × 1.0195^(trading days since 10/19)**.
+- On every future deposit, rescale these numbers by the same ratios, update the rival estimate (+ the same deposit), the dashboard and the check-in prompts.

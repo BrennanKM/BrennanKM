@@ -207,7 +207,7 @@
   <section class="il-road" id="road">
     <div class="il-road-top">
       <h2 class="il-h2">The road to the title</h2>
-      <p class="il-note">Account value on the season track. Drop into the lottery ($127) and the season is over.</p>
+      <p class="il-note">Account value on the season track. Drop into the lottery ($185) and the season is over.</p>
     </div>
     <div class="il-track" id="il-track">
       <div class="il-track-line"></div>
@@ -228,7 +228,7 @@
     <div class="il-tile" id="tile-return">
       <span class="il-tile-label">Point differential</span>
       <span class="il-tile-value dash-skeleton" data-source="standing" data-field="ret" data-row="0">—</span>
-      <span class="il-tile-sub">Versus $330 deposited ($30 + $100 + $200)</span>
+      <span class="il-tile-sub">Versus $480 deposited ($30 + $100 + $200 + $150)</span>
     </div>
     <div class="il-tile" id="tile-field">
       <span class="il-tile-label">On the floor</span>
@@ -321,7 +321,7 @@
     <article class="il-card is-wide" id="treasury-chart">
       <div class="il-card-head">
         <h3 class="il-card-title">Game flow</h3>
-        <p class="il-note">Account value at each check-in, against money deposited. Dashed line: the playoff line, $508.</p>
+        <p class="il-note">Account value at each check-in, against money deposited. Dashed line: the playoff line, $739.</p>
       </div>
       <div class="il-chart dash-skeleton" id="il-curve" data-source="curve"></div>
     </article>
@@ -349,7 +349,7 @@
     </article>
   </section>
 
-  <p class="il-foot">Final buzzer on 18 November. Goal: the playoffs ($508) or the title ($762). Film-room notes and the game-flow points are updated at each check-in; everything else is live from Robinhood.</p>
+  <p class="il-foot">Final buzzer on 18 November. Goal: the playoffs ($739) or the title ($1,109). Film-room notes and the game-flow points are updated at each check-in; everything else is live from Robinhood.</p>
 </div>
 
 <script>
@@ -436,7 +436,7 @@ dash.loader('war_quotes', {
 // ---------- calcs ----------
 dash.calc('rivalry', {
   title: 'Claude vs Codex',
-  description: 'Codex\u2019s reported account value against the same $330 deposited, and the gap to this account.',
+  description: 'Codex\u2019s reported account value against the same $480 deposited, and the gap to this account.',
   inputs: ['rival', 'portfolio'],
   fn: (rival, portfolio) => rival.map((r) => ({
     codex_ret: Number(r.equity) / Number(r.contributed) - 1,
@@ -446,12 +446,12 @@ dash.calc('rivalry', {
 
 dash.calc('standing', {
   title: 'Standing vs the pledge',
-  description: 'Account value against the $330 deposited ($30 + $100 + $200), and value held in positions.',
+  description: 'Account value against the $480 deposited ($30 + $100 + $200 + $150), and value held in positions.',
   inputs: ['portfolio'],
   fn: (portfolio) => portfolio.map((p) => ({
     equity: p.total_value,
-    ret: p.total_value / 330 - 1,
-    to_goal: 508 - p.total_value,
+    ret: p.total_value / 480 - 1,
+    to_goal: 739 - p.total_value,
     deployed: p.crypto_value + p.equity_value + p.options_value,
   })),
 });
@@ -518,11 +518,11 @@ const sigil = (house, label, sub) => {
 const td = (text, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; if (text instanceof Node) c.appendChild(text); else c.textContent = text; return c; };
 
 // ---------- the road ----------
-const ROAD = { min: 0, max: 800, stops: [
-  { v: 127, name: 'Lottery', cls: 'is-wall' },
-  { v: 330, name: 'Tip-off', cls: '' },
-  { v: 508, name: 'Playoffs', cls: 'is-goal' },
-  { v: 762, name: 'Title', cls: 'is-goal' },
+const ROAD = { min: 0, max: 1200, stops: [
+  { v: 185, name: 'Lottery', cls: 'is-wall' },
+  { v: 480, name: 'Tip-off', cls: '' },
+  { v: 739, name: 'Playoffs', cls: 'is-goal' },
+  { v: 1109, name: 'Title', cls: 'is-goal' },
 ] };
 (function buildRoad() {
   const track = document.getElementById('il-track');
@@ -552,7 +552,7 @@ dash.onData(() => {
     const b1 = document.createElement('b'); b1.textContent = usd(p.total_value);
     const b2 = document.createElement('b'); b2.textContent = pct(s.ret);
     const b3 = document.createElement('b'); b3.textContent = usd(Math.max(0, s.to_goal));
-    take.append('Score: ', b1, ', ', b2, ' on the $330 deposited. ',
+    take.append('Score: ', b1, ', ', b2, ' on the $480 deposited. ',
       s.to_goal > 0 ? b3 : 'Playoffs clinched.', s.to_goal > 0 ? ' more to clinch the playoffs.' : '');
     const left = Math.min(100, Math.max(0, (p.total_value - ROAD.min) / (ROAD.max - ROAD.min) * 100));
     you.hidden = false; you.style.left = left + '%';
@@ -575,7 +575,7 @@ dash.onData(() => {
     if (RV.status === 'ok' && RV.data.length && RV.data[0].gap != null) {
       const g = RV.data[0];
       unskel(rs); rs.replaceChildren();
-      const a = document.createElement('span'); a.textContent = pct(g.codex_ret) + ' on $330 · ';
+      const a = document.createElement('span'); a.textContent = pct(g.codex_ret) + ' on $480 · ';
       const b = document.createElement('span'); b.textContent = (g.gap >= 0 ? 'we lead by ' : 'we trail by ') + usd(Math.abs(g.gap));
       tone(b, g.gap);
       rs.append(a, b);
@@ -788,18 +788,18 @@ function drawCurve() {
   const W = Math.max(280, box.clientWidth), H = 240;
   const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
     .attr('aria-label', 'Account value at each check-in');
-  const y = d3.scaleLinear([0, 800], [H - 28, 12]);
+  const y = d3.scaleLinear([0, 1200], [H - 28, 12]);
   // left margin from widest tick label
-  const probe = svg.append('text').attr('font-size', 12).text('$762');
+  const probe = svg.append('text').attr('font-size', 12).text('$1109');
   const lm = Math.ceil(probe.node().getComputedTextLength()) + 10; probe.remove();
   const rm = 96;
   const x0 = rows[0].at, x1 = rows.length > 1 ? rows[rows.length - 1].at : new Date(+rows[0].at + 36e5);
   const x = d3.scaleUtc([x0, x1], [lm, W - rm]);
   const g = svg.append('g');
-  [0, 127, 330, 508, 762].forEach((v) => {
+  [0, 185, 480, 739, 1109].forEach((v) => {
     g.append('line').attr('x1', lm).attr('x2', W - rm).attr('y1', y(v)).attr('y2', y(v))
-      .attr('stroke', v === 508 ? 'var(--cds-chart-reference)' : 'var(--cds-chart-grid)')
-      .attr('stroke-dasharray', v === 508 ? '5 4' : null).attr('stroke-width', 1);
+      .attr('stroke', v === 739 ? 'var(--cds-chart-reference)' : 'var(--cds-chart-grid)')
+      .attr('stroke-dasharray', v === 739 ? '5 4' : null).attr('stroke-width', 1);
     g.append('text').attr('x', lm - 8).attr('y', y(v)).attr('dy', '0.32em').attr('text-anchor', 'end')
       .attr('font-size', 12).attr('fill', 'var(--color-fg-muted)').text('$' + v);
   });
@@ -820,7 +820,7 @@ function drawCurve() {
     .attr('fill', 'var(--color-fg)').text('Score ' + usd(last.equity));
   svg.append('text').attr('x', x(last.at) + 8).attr('y', y(last.contributed) + 16).attr('font-size', 12)
     .attr('fill', 'var(--color-fg-muted)').text('Deposited ' + usd(last.contributed));
-  svg.append('text').attr('x', W - rm + 8).attr('y', y(508)).attr('dy', '0.32em').attr('font-size', 12)
+  svg.append('text').attr('x', W - rm + 8).attr('y', y(739)).attr('dy', '0.32em').attr('font-size', 12)
     .attr('fill', 'var(--color-fg-muted)').text('Playoff line');
   // tooltip
   const tip = document.createElement('div'); tip.className = 'il-tip'; tip.hidden = true; box.appendChild(tip);
