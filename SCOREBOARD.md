@@ -2,11 +2,11 @@
 
 | Field | Value |
 |---|---|
-| As of | 2026-10-19 00:35 ET (deposit) |
+| As of | 2026-10-19 09:50 ET (open check-in) |
 | Capital contributed | **$480.00** ($30 + $100 + $200 + $150 on 10/19 ~00:30 ET; Codex gets every deposit too, a standing rule) |
-| Account equity | $481.96 · Codex est. $486 (last report $136 + $200 + $150) |
-| **Return on contributed capital** | **+0.41%** ($1.96 on $480) |
-| Cash | $410.01 free; crypto held ≈ $72 |
+| Account equity | $481.16 · Codex est. $486 (last report $136 + $200 + $150) |
+| **Return on contributed capital** | **+0.24%** ($1.16 on $480) |
+| Cash | ≈ $102.36 after the SOXL buy ($307.65); crypto ≈ $71 |
 | Trades closed | 0 |
 | Win rate | n/a |
 | Biggest win / loss | n/a / n/a |
@@ -30,6 +30,7 @@
 ## Open positions
 | Asset | Qty | Avg cost | Stop | Target | Notes |
 |---|---|---|---|---|---|
+| SOXL | 3 | $102.55 ($307.65) | Rule: daily close < $80 (decided at 3:22). Hard backstop: stop order $76 GTC (id 6ad61fee-3895-47f6-92e9-efcfd94ff88e) | T1 $112 (sell 1, stop → entry), T2 $118 | Bought 10/19 9:49. Time stop: sell 2 by Fri 10/23 3:22 if T1 not hit; all out Mon 10/26 3:22. Alerts: SOXL > $112, SOXX < $495 |
 | ZEC | 0.01798 | ≈$1,111.8 ($19.99) | stop order $1,105 GTC (id 6ad57e63-debf-42fb-a2e1-43415066ed5a) | $1,200 | crypto sleeve, trend leader; both halves filled |
 | ETH | 0.012738 | $2,354.99 ($30) | stop order $2,300 GTC (id 6ad56199-5a5d-4192-a7f6-69366deb1b1e) | $2,580 | out before FOMC 10/28 2pm unless ≥ +5% |
 | BTC | 0.00024285 | $82,354.09 ($20) | stop order $78,900 GTC (id 6ad48095-9b1b-41b9-b508-62475232d2b0) | $85,000 (set a sell limit at a check-in if within ~1.5%; cancel the stop first) | crypto sleeve |
@@ -37,6 +38,7 @@
 ## Open orders
 | Asset | Side | Type | Size | Price | TIF | Order id |
 |---|---|---|---|---|---|---|
+| SOXL | sell | stop order (market) | 3 | trigger $76 | GTC | 6ad61fee-3895-47f6-92e9-efcfd94ff88e |
 | ETH | sell | stop order | 0.012738 | trigger $2,300 | GTC | 6ad56199-5a5d-4192-a7f6-69366deb1b1e |
 | BTC | sell | stop order | 0.00024285 | trigger $78,900 | GTC | 6ad48095-9b1b-41b9-b508-62475232d2b0 |
 | ZEC | sell | stop order | 0.01798 | trigger $1,105 | GTC | 6ad57e63-debf-42fb-a2e1-43415066ed5a |
@@ -48,7 +50,7 @@
   - event stake cap $72 / Kelly $50 (replaces $50 / $35);
   - glide path $482 × 1.0195^d.
   SOXL share count: 3 (strategist verdict B, see the entry below).
-- **MON 10/19 9:47: SOXL ENTRY = 3 SHARES (strategist re-size verdict B, 10/19 00:45, accepted; supersedes all earlier SOXL rules).** SOXX $495–512 → buy 3 SOXL, marketable limit at ask + $0.05, cap $104. SOXX > $512 → buy 2 now, the 3rd at 3:22 if it's holding above the open. SOXX < $495 → wait to 3:22, buy 3 only if $492.83 is intact. No entry if SOXX breaks $492.83 first. Stop: close < $80 (full 3 shares). **T1 $112: sell 1 and move the stop on the other 2 to entry.** T2 $118: sell 1. If T1 hasn't hit by session 5 (Fri 10/23 3:22), sell 2. All out by Mon 10/26 3:22. Exit Thu 9:47 if the Wed prints break the thesis. A Thursday 4th share only from put proceeds + spare cash (no margin).
+- **DONE 10/19 9:49: bought 3 SOXL @ $102.55 (see Open positions). Manage it per the exits below.** ~~MON 10/19 9:47: SOXL ENTRY = 3 SHARES (strategist re-size verdict B, 10/19 00:45, accepted; supersedes all earlier SOXL rules).** SOXX $495–512 → buy 3 SOXL, marketable limit at ask + $0.05, cap $104. SOXX > $512 → buy 2 now, the 3rd at 3:22 if it's holding above the open. SOXX < $495 → wait to 3:22, buy 3 only if $492.83 is intact. No entry if SOXX breaks $492.83 first. Stop: close < $80 (full 3 shares). **T1 $112: sell 1 and move the stop on the other 2 to entry.** T2 $118: sell 1. If T1 hasn't hit by session 5 (Fri 10/23 3:22), sell 2. All out by Mon 10/26 3:22. Exit Thu 9:47 if the Wed prints break the thesis. A Thursday 4th share only from put proceeds + spare cash (no margin).
 - **Crypto sleeve UNFROZEN by the user 10/19 ("keep trading crypto as much as you want"; overrides strategist #4).** Trader's rules: (1) crypto never takes cash needed for SOXL (≤ $208 Mon) or the Wed METU put; until SOXL fills, new crypto money ≤ $40. (2) Every entry needs a written level and a target ≥ 3× the 1.9% spread (≥ ~6%) away. (3) Full-quantity stop placed in the same check-in as the fill; resting buys only if the stop can be placed at the next check-in and the gap is written down. (4) Trail stops on winners: ZEC was ratcheted to $1,105 (≈ breakeven after spread) on 10/18 22:20 ET at mark $1,181. (5) Check crypto at every check-in, weekends included, since it's the only market open nights and weekends.
 - ~~SOXL size stays 2 shares~~ (superseded by the $480 re-size: 3 shares). Old note: 3 shares would fail the $187 floor gate together with the METU put, and the Monday 3:22 pyramid is rejected. **The only allowed add:** Thu 10/22 9:47, if the Wed prints are clean AND SOXL ≥ +10% over the fill. Add 1 share funded by METU put proceeds or the unspent put cash, and move the original stop to the entry price.
 - **Options = Level 2 playbook in STRATEGY.md (adopted 10/19).** Every option buy must pass the four-test screen (R ≥ 1.20, replay price cap, liquidity, skew/IV); otherwise no trade. Cash-secured puts and covered calls are banned until equity ≥ $508. Directional bets use leveraged ETFs, not calls.
@@ -61,11 +63,8 @@
 - **Event stake cap (accepted 10/19): total event stake across PCE + GDP ≤ $50 (15% of equity).**
 - **METU put Wed:** limit = the lowest of mid, the replay price cap (≈ $0.60 for the 25p at METU $29.00 / $0.47 at $29.50; recompute live) and $0.50. Must pass the liquidity test live, or skip. gate = equity − all gaps through stops − premium ≥ $187. 1 contract; re-pick the strike so the spread is ≤ 60% of mid.
 - **Capital now $330 (10/18 21:30 ET).** Re-size every plan in % terms: SOXL 35% stage ≈ $115 (1 sh), 70% ≈ $230 (2–3 sh). METU put cap stays ≤ ~$50 (now 15%), and 1–2 contracts are OK if the quote qualifies. TMF ≤ 15% ≈ $50. FAS 1 share ≈ $160 = 48%, still too big for a side bet: skip.
-- **FRED key check (one time, at the first check-in after 10/19 05:30 ET):**
-  - Run `[ -n "${FRED_API_KEY:-}" ] && echo set || echo missing`. Never print the value.
-  - Test with `tools/fincept.sh fred_data.py` or `curl "https://api.stlouisfed.org/fred/series/observations?series_id=GDPC1&file_type=json&limit=1&sort_order=desc&api_key=$FRED_API_KEY"`.
-  - If the env var is missing, also try the URL with no api_key, in case the environment injects it as a network secret.
-  - Report one line to the user: works / missing / rejected. Then delete this item.
+- **FRED key: MISSING at the 10/19 9:49 check-in** (not in the env; the container started after the user said they added it). Ask the user to confirm the name `FRED_API_KEY` and that it was saved in this session's environment. Re-check once at each check-in until it shows up; on success, tell the user and delete this line.
+- **3:22 today: SOXL thesis check.** If SOXX is below $495 into the close (gap-and-fail), sell all 3 (not a day trade if done tomorrow; today it costs 1 of 3 PDT day trades, so only if SOXX < $492.83). Otherwise hold.
 - **Read WATCHLIST.md** (weekly playbook from the 10/18 sweep) before hunting.
 - **Strategy discipline (10/18 review):** fewer, bigger, better trades. Each small crypto round trip costs ~1.9% (≈ $0.40 on $20), so no new crypto trade unless it clears 3x spread with a defined level. Capital goes to the dated catalysts (SOXL trigger, META 10/21, the Sunday-sweep picks).
 - **Dashboard "Rip City Ledger" (Trail Blazers theme; was The Iron Ledger)** (https://claude.ai/artifact/QXgQDxzX7dvyhKdskrY7j1): positions, orders, quotes and account value are live Robinhood queries. At EVERY check-in: (1) append `{at, equity, contributed, note}` to `dashboard/curve.json` from get_portfolio; (2) sync `dashboard/ledger.json` with trades.md (status, fills, lessons; the "house" field is unused by the page now, so any value is fine); (3) upload both with Artifact publish `asset:true` to that url, then ArtifactData `update` datasets/curve and datasets/ledger with the new `source.url` and `updated:{at,by:"Claude"}`. Also read data/users/me/check once and fix any page error it names. **(4) Your plays card:** keep `dashboard/plays.json` in sync with every event-contract play (status: Place now / Placed / Filled / On deck / Screening / Won / Lost / No bet; contract, side, qty, max_price, stake_usd, pays_usd, place_by, next_screen, quote from tools/rh_event.py, model_prob, edge_pts, why, result, **decide_at** (when the final go/no-go happens), **instruction** (one plain sentence telling the user exactly what to do, e.g. "Don't buy this…")). For a "Place now" play, side, qty, max_price, stake_usd and place_by are REQUIRED: the card builds the step-by-step order from them. Upload it with `asset:true`, then update datasets/plays `source.url`. A play the user must place now = status "Place now" + PushNotification.

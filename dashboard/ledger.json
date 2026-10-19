@@ -89,12 +89,12 @@
   "asset": "SOXL",
   "house": "House Greyjoy",
   "vehicle": "3x ETF",
-  "status": "Planned",
-  "entry": 100,
+  "status": "Open",
+  "entry": 102.55,
   "stop": 80,
   "target": 112,
-  "size_usd": 303,
-  "thesis": "Strategist-approved: buy 3 SOXL Monday (cap $104, re-sized for the $480 account) after the 8-day −24% semis flush. Analogs: next-open entry +11.4% avg / 80% up over 5 days (n=15). Out by 10/26.",
+  "size_usd": 307.65,
+  "thesis": "Bought 3 at $102.55 on Mon 10/19 9:49 (SOXX $509, inside the $495–512 band) after the 8-day −24% semis flush. Analogs: next-open entry +11.4% avg / 80% up over 5 days. Stop on a close < $80 (hard backstop $76). T1 $112, T2 $118. Out by 10/26.",
   "lesson": ""
  },
  {

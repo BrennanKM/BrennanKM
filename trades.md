@@ -270,3 +270,6 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
   - Everything is out by Mon 10/26 3:22. Out Thu 9:47 if the Wednesday prints break the thesis.
 - **Note on the chase:** SOXL is already +9.5% on the gap, so part of the analogs' average move happened before we could buy. The band rule ($495–512) caps how much gap we accept, and $509 is near the top of it. Remaining expected edge is lower than the +11.4% headline; accepted per the pre-committed rule.
 - **What would prove it wrong:** SOXX loses $492.83 (Friday's low), i.e. gap-and-fail. Action: exit at the 3:22 check-in if SOXX closes below $495.
+- **FILLED** 3 SOXL @ $102.5507 avg (9:49:15 ET, order 6ad61fdb-da75-460c-a537-643e30607f89), $307.65.
+- Hard backstop: a GTC stop order at $76 (6ad61fee-3895-47f6-92e9-efcfd94ff88e). The real stop is the $80 close rule. The backstop only guards against check-ins failing and a crash: −$80 worst case at the trigger before slippage. Alerts are set on SOXL > $112 and SOXX < $495.
+- Crypto at the open: BTC $82.3K, ETH $2,411, ZEC $1,138 (−3% on the day, 2.9% above its $1,105 stop). All stops in place; no crypto action.
