@@ -2,7 +2,7 @@
 Built by the Sunday 8:13pm ET weekly sweep (2 read-only research agents, 10/18). Option quotes are Fri 10/16 closes, so re-price everything on Monday.
 
 ## Ranked plays
-1. **SOXL staged reversal (PRIMARY).** Trigger: SOXX close ≥ **$503.26** AND above that day's open (judged at the 3:22pm check-in). Mon/Tue trigger → 35% of equity; add to 70% only if SOXX holds above that day's low through Thu (after Wed's LRCX/META/TXN prints). Thu trigger after good prints → 70%. Stop: SOXL close < $80. T1 $110–112, T2 $117. Trim before FOMC 10/28 2pm. Sun-night 24h: SOXX ~$500.9, SOXL ~$97.9.
+1. **SOXL (PRIMARY). SUPERSEDED 10/18 21:55 by the strategist plan: buy 2 at Monday's 9:47 check-in, see SCOREBOARD.** Old staged version: Trigger: SOXX close ≥ **$503.26** AND above that day's open (judged at the 3:22pm check-in). Mon/Tue trigger → 35% of equity; add to 70% only if SOXX holds above that day's low through Thu (after Wed's LRCX/META/TXN prints). Thu trigger after good prints → 70%. Stop: SOXL close < $80. T1 $110–112, T2 $117. Trim before FOMC 10/28 2pm. Sun-night 24h: SOXX ~$500.9, SOXL ~$97.9.
 2. **META earnings (Wed 10/21 after close) via METU 10/23 put. Decide at the Wed 3:22pm check-in.**
    - Edge: META median realized 8.3% vs ~6.4% implied for earnings day (7.3% for the 10/23 straddle). 5 of the last 8 moves beat 7.3%. 3 of the last 4 were down. Puts are priced cheaper than equidistant calls.
    - Contract: METU put ~14% OTM (≈ $25 strike if METU ≈ $29), mark ~$0.45 (bid $0.25 / ask $0.65). **Limit ≤ $0.50; max $50 (1 contract).** Re-quote Wed: skip if the ask > $0.60 or the spread > 60% of mid.

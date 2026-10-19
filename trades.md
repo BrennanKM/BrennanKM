@@ -180,3 +180,24 @@ Equity $130.98 (+0.75%). No fills, no stops hit. Marks: BTC $82,045 (−0.4% vs 
 
 ### 2026-10-18 21:18 ET: rival update
 Codex reported at **$136.00 (+4.6%)** vs me **$131.60 (+1.2%)**. Gap −$4.40 (it was −$5.05). Codex gained $2 on Sunday night, the same window in which SOXX/SOXL gapped up in the 24h session (+1.5% / +4.5%) and crypto bounced. It may be long tech/semis via the overnight session. No change to the plan: chasing a +$2 move at night via the 24h session's wide spreads would be the "copy the leader" mistake. If Codex is already long semis, my SOXL trigger trade *matches* it rather than separating from it. Accepted: the trigger is the edge, not differentiation for its own sake.
+
+### 2026-10-18 21:55 ET: Strategist weekly pass #1, Trader decisions
+1. **ACCEPT** replacing SOXL trigger (b) and the "no buy at 9:47" rule with the Monday-open entry. The evidence is decisive even at small n: next-open entry +11.4% mean / 80% win (n=15) vs confirmation close +1.4% / 38%. My confirmation rule was unbacked caution, and the $85–95 band was stale (SOXL ~$100 in 24h). Kept from my plan: exit at Thu 9:47 if LRCX/META/TSLA capex news breaks the thesis, and trim before FOMC 10/28 2pm.
+2. **ACCEPT** gating the METU put on worst-case floor distance (equity − every position gapping through its stop − full premium ≥ $187). The 25%-at-stops rule would block the most convex bet. Size stays at 1 contract; re-pick the strike Wed (today's $25P fails the spread test at 89% of mid).
+3. **ACCEPT** the 5-session time stop for mean-reversion trades (SOXL: sell half by session 5 unless T1 has hit; full exit by Mon 10/26 3:22pm if neither target nor stop).
+4. **ACCEPT** freezing the crypto sleeve: no new crypto entries or re-entries; positions close only via stop or target. Note: this reverses the user-requested "small crypto trades for fun" mode. Tell the user, and they can override.
+5. **ACCEPT** a Sunday glide-path check vs $332 × 1.0187^trading-days.
+Caveat noted: the strategist's P(target) figures (10–14% vs 7–9%) are model-based and soft. The decision rests on the analog data, not those numbers.
+
+## 2026-10-19 PLANNED SOXL LONG (supersedes the staged plan). Strategist-approved, entry Mon 10/19 9:47 check-in
+Catalyst: post-flush mean reversion after SOX's 8-day, −24% drawdown. Binary risk Wed 10/21 after close (LRCX, META, TSLA, TXN).
+Evidence: SOXX daily 2010–2026 analogs (weekly drop ≥10%): next-open entry → SOXL +11.4% mean 5-day, 80% up (n=15); gap-up ≥1% opens +14.1% / 83% (n=6). The $80 close-stop was never hit within 5 days in-sample. Sun 24h: SOXX $504.36, SOXL $100.01.
+Entry rules (9:47 check-in):
+- SOXX $495–512 → buy **2 SOXL** with a marketable limit, **cap $104**.
+- SOXX > $512 → buy 1 now; buy the 2nd at 3:22 only if it holds above the open.
+- SOXX < $495 → wait; at 3:22 buy 2 only if Friday's low $492.83 is intact.
+- No entry if SOXX trades below $492.83 first (the flush isn't over → fall back to trigger (a)).
+Stop: SOXL daily close < $80 (≈ −20% from $100 → 2 sh ≈ −$40, 12% of equity; a −24% earnings gap ≈ −$48, 14.5%).
+Targets: T1 $112 (sell 1 share), T2 $118. Time stop: sell half by session 5; all out by Mon 10/26 3:22pm. Trim before FOMC 10/28 2pm regardless.
+Exit at the Thu 10/22 9:47 check-in if LRCX guides WFE down or META/TSLA cut AI capex.
+Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not chased overnight.

@@ -41,6 +41,9 @@
 | ZEC | sell | stop order | 0.01798 | trigger $1,045 | GTC | 6ad5619b-929a-4785-878a-edf89bae2888 |
 
 ## Next actions (check-ins read this first)
+- **MON 10/19 9:47: SOXL ENTRY (strategist-approved; supersedes all earlier SOXL rules below).** SOXX $495–512 → buy 2 SOXL, marketable limit cap $104. SOXX > $512 → 1 now, 2nd at 3:22 if holding above the open. SOXX < $495 → wait to 3:22, buy 2 only if $492.83 is intact. No entry if SOXX breaks $492.83 first. Stop: close < $80. T1 $112 (sell 1), T2 $118. Half out by session 5, all out by Mon 10/26 3:22. Exit Thu 9:47 if the Wed prints break the thesis. The weekly pass counts as the pre-trade review for this exact entry; re-review only if conditions differ.
+- **Crypto sleeve FROZEN** (strategist #4, accepted): hold BTC/ETH/ZEC with stops; no adds or re-entries.
+- **METU put Wed:** gate = equity − all gaps through stops − premium ≥ $187. 1 contract; re-pick the strike so the spread is ≤ 60% of mid.
 - **Capital now $330 (10/18 21:30 ET).** Re-size every plan in % terms: SOXL 35% stage ≈ $115 (1 sh), 70% ≈ $230 (2–3 sh). METU put cap stays ≤ ~$50 (now 15%), and 1–2 contracts are OK if the quote qualifies. TMF ≤ 15% ≈ $50. FAS 1 share ≈ $160 = 48%, still too big for a side bet: skip.
 - **Read WATCHLIST.md** (weekly playbook from the 10/18 sweep) before hunting.
 - **Strategy discipline (10/18 review):** fewer, bigger, better trades. Each small crypto round trip costs ~1.9% (≈ $0.40 on $20), so no new crypto trade unless it clears 3x spread with a defined level. Capital goes to the dated catalysts (SOXL trigger, META 10/21, the Sunday-sweep picks).
