@@ -58,5 +58,11 @@
   "equity": 471.45,
   "contributed": 480,
   "note": "SOXL $99.62 (\u22122.9% from entry); ZEC stopped out"
+ },
+ {
+  "at": "2026-10-19T19:24:00Z",
+  "equity": 474.55,
+  "contributed": 480,
+  "note": "Close check-in: SOXL $100.64, SOXX $505.52 (held)"
  }
 ]

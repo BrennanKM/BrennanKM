@@ -282,3 +282,12 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
 - **Scan** (sub-$5 movers): 7 names. XHG +57% (RVOL 18×) and DH +15% are momentum chases with no catalyst thesis or implied-move check. **Reject.**
 - **No trades.** Cash $122 stays earmarked: the META put Wed ~$50, the rest reserve and the event cap.
 - FRED key: still missing from the env.
+
+## 2026-10-19 15:23 ET: close check-in
+- **SOXL:** $100.64 (−1.9% vs $102.55 entry). SOXX $505.52, +2.5% on the day and above $495. Close-rule check: well above $80. **HOLD.** The $76 backstop stop is active.
+- **ETH:** $2,398 (bid $2,376, stop $2,300). **BTC:** $81.9K (stop $78,900). Both held. No overnight crypto entries: nothing with a level and ≥ 6% room.
+- **Events (Robinhood quotes):**
+  - GDP >3.5% YES jumped to 39/42¢ (from 29/32¢). The market moved toward GDPNow; at 42¢ the locked model (~41%) shows no edge on either side. NO BET.
+  - Core PCE >0.3% at 32/33¢ (OI 35): no change, NO BET.
+  - Fed hold 84/86¢, hike 14/15¢: fair.
+- Equity $474.55. No trades. FRED key still missing.

@@ -2,10 +2,10 @@
 
 | Field | Value |
 |---|---|
-| As of | 2026-10-19 14:47 ET (user-requested check-in) |
+| As of | 2026-10-19 15:23 ET (close check-in) |
 | Capital contributed | **$480.00** ($30 + $100 + $200 + $150 on 10/19 ~00:30 ET; Codex gets every deposit too, a standing rule) |
-| Account equity | $471.45 · Codex est. $486 (last report $136 + $200 + $150) |
-| **Return on contributed capital** | **−1.78%** (−$8.55 on $480) |
+| Account equity | $474.55 · Codex est. $486 (last report $136 + $200 + $150) |
+| **Return on contributed capital** | **−1.14%** (−$5.45 on $480) |
 | Cash | $122.20 (incl. $19.84 from the ZEC stop); stocks $298.81; crypto $50.44 |
 | Trades closed | 1 (ZEC, −$0.15) |
 | Win rate | n/a |
@@ -63,7 +63,7 @@
 - **Capital now $330 (10/18 21:30 ET).** Re-size every plan in % terms: SOXL 35% stage ≈ $115 (1 sh), 70% ≈ $230 (2–3 sh). METU put cap stays ≤ ~$50 (now 15%), and 1–2 contracts are OK if the quote qualifies. TMF ≤ 15% ≈ $50. FAS 1 share ≈ $160 = 48%, still too big for a side bet: skip.
 - **FRED key: MISSING at the 10/19 9:49 check-in** (not in the env; the container started after the user said they added it). Ask the user to confirm the name `FRED_API_KEY` and that it was saved in this session's environment. Re-check once at each check-in until it shows up; on success, tell the user and delete this line.
 - **SOXL mechanics:** the $76 backstop stop holds all 3 shares (`shares_available_for_sells` = 0). To sell at T1/T2 or on a rule exit: cancel the stop, sell, then re-place a stop on the remaining shares (at entry $102.55 after T1). Dashboard: SOXL shows in Starting lineup via the new stock_positions dataset; the Orders card still lists crypto orders only.
-- **3:22 today: SOXL thesis check (gap-and-fail test).** Selling today = a PDT day trade (1 of 3), so: SOXX < $492.83 (Friday's low broken) → emergency exit of all 3 today. SOXX $492.83–495 → hold overnight, sell all 3 at Tue 9:47 if SOXX is still < $495. SOXX ≥ $495 → hold.
+- **DONE Mon 3:22: SOXL held** (SOXX $505.52 > $495). **TUE 10/20:** 9:47 + 3:22, re-test SOXL (sell only if SOXX closes < $495, or T1 $112 hits: cancel the $76 stop first, sell 1, re-place a stop on 2 at $102.55). **WED 10/21 3:22:** META put decision (midday check-in pre-screens) + SOXL hold-through-earnings call (LRCX/META after close): hold full size only if SOXX ≥ $495 and the floor gate passes with a SOXL gap to $71.
 - **Read WATCHLIST.md** (weekly playbook from the 10/18 sweep) before hunting.
 - **Strategy discipline (10/18 review):** fewer, bigger, better trades. Each small crypto round trip costs ~1.9% (≈ $0.40 on $20), so no new crypto trade unless it clears 3x spread with a defined level. Capital goes to the dated catalysts (SOXL trigger, META 10/21, the Sunday-sweep picks).
 - **Dashboard "Rip City Ledger" (Trail Blazers theme; was The Iron Ledger)** (https://claude.ai/artifact/QXgQDxzX7dvyhKdskrY7j1): positions, orders, quotes and account value are live Robinhood queries. At EVERY check-in: (1) append `{at, equity, contributed, note}` to `dashboard/curve.json` from get_portfolio; (2) sync `dashboard/ledger.json` with trades.md (status, fills, lessons; the "house" field is unused by the page now, so any value is fine); (3) upload both with Artifact publish `asset:true` to that url, then ArtifactData `update` datasets/curve and datasets/ledger with the new `source.url` and `updated:{at,by:"Claude"}`. Also read data/users/me/check once and fix any page error it names. **(4) Your plays card:** keep `dashboard/plays.json` in sync with every event-contract play (status: Place now / Placed / Filled / On deck / Screening / Won / Lost / No bet; contract, side, qty, max_price, stake_usd, pays_usd, place_by, next_screen, quote from tools/rh_event.py, model_prob, edge_pts, why, result, **decide_at** (when the final go/no-go happens), **instruction** (one plain sentence telling the user exactly what to do, e.g. "Don't buy this…")). For a "Place now" play, side, qty, max_price, stake_usd and place_by are REQUIRED: the card builds the step-by-step order from them. Upload it with `asset:true`, then update datasets/plays `source.url`. A play the user must place now = status "Place now" + PushNotification.
