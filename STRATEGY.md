@@ -88,5 +88,84 @@ Considered and rejected:
 - **Wednesday prints:** LRCX guiding WFE down, or META/TSLA cutting AI capex, breaks the thesis. Exit SOXL at Thu 9:47 whatever the price. A META capex *raise* is fine (bad for META, good for semis, and both of our bets win).
 - **Macro:** the 10-year yield spiking or Oct-hike odds back above ~35% before FOMC (watch Thursday claims and Friday PMIs). Then trim SOXL to 1 share and skip TMF.
 
+## Level 2 options playbook (no spreads)
+Written 2026-10-19 ~22:30 ET (Sun night). Option quotes are Fri 10/16 closes, so every number below gets re-pulled live before an order. Level 3 is unavailable, so no spreads are allowed.
+
+**0. Bottom line.** Buying options is negative-EV by default: sellers earn the variance premium, and our spreads run 2–90% of mid. An option buy is allowed only when a measured gap says it's cheap. Short premium (CSPs and covered calls) is ruled out at this size (§3). The leveraged ETF stays the core (§6).
+
+**1. The screen.** A trade must pass all four tests, using numbers computed in the same session.
+- **(a) Magnitude ratio R.** R = median |earnings-day move| over the last 6–8 prints ÷ implied move.
+  - Realized moves come from `get_earnings_results` dates plus `get_equity_historicals` daily closes. Use close→close: the prior close to the print-day close for "am" reporters, and the print-day close to the next close for "pm" reporters.
+  - Implied move = mid of the ATM call plus mid of the ATM put, for the first expiry after the print, ÷ spot.
+  - **Buy only if R ≥ 1.20.** Below 0.9, never buy, since IV crush wins.
+  - Stricter optional version, the event-only move: σ_ev² = IV_post²·T − IV_pre²·T, using the expiry just before the print for IV_pre; E|move| ≈ 0.8·σ_ev.
+- **(b) Symmetrized replay price cap.** Apply each historical |move| to today's spot in the leg's direction. For leveraged-ETF options, use 2× or 3× the move.
+  - Payoff = intrinsic + $0.05 of leftover time value. Replay value = ½ × the mean payoff, since direction is treated as 50/50.
+  - **Max limit = replay value ÷ 1.25.** Never pay above it.
+- **(c) Liquidity.**
+  - Spread (ask−bid)/mid ≤ 20% on single-stock chains and ≤ 40% on leveraged-ETF chains.
+  - Open interest ≥ 500 on single stocks, ≥ 100 on leveraged-ETF chains.
+  - Fill at mid or better. Step up at most one tick.
+- **(d) Skew and IV.** Compare put and call IV at the same |Δ|. Buy the lower-IV side unless the portfolio needs the other side (a put hedges SOXL). For non-event trades, require ATM IV ≤ 0.9 × RV20; SOXL fails this today (IV 136% vs RV 108%).
+
+**Screen results (6 prints, Q1-25 → Q2-26, straddles from Fri closes):**
+| Name / print | Median (mean) realized | Implied | R | Cost and liquidity | Verdict |
+|---|---|---|---|---|---|
+| META 10/21 pm | 9.5% (9.0%); 5 of 6 moves ≥ 8% | 7.3% (10/23 straddle $51.75) | **1.29** | The META chain is unaffordable, so use METU 10/23 | **PASS on magnitude.** Liquidity decides (§5) |
+| TSLA 10/21 pm | 4.5% (6.3%) | 7.4% | 0.61 | — | FAIL. Straddle replay ≈ −35% |
+| LRCX 10/21 pm | 4.4% (6.5%) | 8.2% | 0.54 | Put spread 12% of mid | FAIL. Replay ≈ −40% |
+| AMKR 10/26 pm | 4.4% (9.3%) | 15.6% | 0.28 | $650 straddle; spreads 20–40% | FAIL |
+| SOFI 10/27 am | 6.5% (7.2%) | 11.0% (event-only 7.8%) | 0.83 | 16C/13P strangle costs $56, spreads 3% | FAIL. Strangle replay 0.36x |
+| MBLY 10/29 am | 7.0% (7.3%) | — | — | 7C bid/ask 0.28/0.74 (90% of mid); OI 30 | FAIL on liquidity |
+| INTC 10/29 pm | 8.2% (10.7%) | 12.1% (10/30) | 0.68 | Straddle $1,088 | FAIL |
+| FOMC 10/28 | Not screened (no realized-move dataset) | — | — | — | Default REJECT |
+
+**2. Legged straddles and strangles (two separate long legs).**
+- *When they beat a directional bet:* R ≥ 1.2 and no directional edge (P(up) within 45–55%). If you have a directional edge with p ≥ 60%, use one leg or the leveraged ETF instead.
+- *IV crush:* it kills the straddle whenever realized < implied. The loss ≈ (implied − realized)/implied, e.g. TSLA −35% and LRCX −40% at the median move.
+- *Max premium:* ≤ 15% of equity for both legs together ($50). That means an ATM straddle is only affordable on underlyings ≤ ~$8, and none of those passed the screen. At this size, the practical form is **one leg = half a strangle**: same EV per dollar, more variance (good for a threshold goal).
+- *Legging:* enter both legs in the same check-in at mid. If one leg is unfilled at the end of the check-in, cancel it. Keep the filled leg only if it passes test (b) on its own; otherwise sell it.
+- *IV run-up (sell before the print):* the measured edge is ≈ +3% over the last 3 pre-print days (Gao-Xing-Zhang 2018). With 1 week to go, theta beats the IV rise in price terms: the SOFI 10/30 straddle loses ~20% from 10/19→10/26 at constant event vol. **Only worth it on chains with spreads ≤ 3% that we can afford. Nothing qualifies, so don't run it.**
+
+**3. Cash-secured puts and covered calls: not worth it.**
+- After 2 SOXL, free cash ≈ **$60**, not $130. That means CSP strikes ≤ $0.60, and none are tradable.
+- At $130 free cash, the live checks:
+  - PLUG ($1.40) 11/20 $1P: bid $0, nothing to sell.
+  - PLUG 1.5P: bid $0.19, so $19 premium on $150 collateral, at Δ −0.55 (a synthetic long in a junk name).
+  - PLUG covered call: 100 sh = $140 plus the 1.5C at bid $0.08. Max gain $18 (+5.5% of equity) on 42% of equity; downside is the whole $140.
+  - OPEN ($2.12) 2P: bid $0.15 on $200 of collateral.
+- These are concave, capped-upside payoffs. We need +53%, so they **lower** P(target). They're banned unless we're ≥ $508 and protecting the lead.
+
+**4. Strike, expiry, exit and size rules.**
+- *Expiry:* the first expiry after the event. Check that `sellout_datetime` falls after the planned exit.
+- *Strike:* |Δ| 0.15–0.35 for event legs, i.e. ≈ 0.7–1.3× the implied move OTM. Never below Δ 0.10 (lottery tickets with 50%+ spreads).
+- *Entry timing:* the 3:22 check-in on print day. That minimizes theta paid and lets the Trader read the tape first.
+- *Exit, event trades:* sell at the next 9:47, win or lose. IV crush is complete by the open; never hold past the event day. With 2+ contracts, sell half at ≥ 2x and the rest by 3:22.
+- *Exit, non-event (IV ≤ 0.9·RV):*
+  - Sell half at +100%.
+  - Time stop: out at DTE ≤ 7, or when half the time is gone without +50%.
+  - Premium stop: −50%, but only if the position is > 10% of equity.
+- *Size:* total premium outstanding ≤ min(**15% of equity**, equity − every other position gapping through its stop − **$187**) (the floor gate).
+  - Today: $332 − SOXL gap $48 − crypto $6 − $187 = $91, so the **15% = $50 is binding**.
+  - Premium counts at 100% as risk.
+
+**5. Candidates for the next two weeks.**
+- **Only conditional pass: METU 10/23 put, 1 contract, Wed 10/21 3:22pm. Exit Thu 9:47.**
+  - Strike ≈ 0.86 × METU, rounded to $0.50 (≈ META −7%).
+  - Limit = min(mid, replay cap, $0.50).
+  - Replay cap: at METU $29.00 the 25P cap is **$0.60** (Friday mid $0.45 passes; the $0.65 ask fails). At METU $29.50 (Sunday 24h) the 25P cap is $0.47, and the 25.5P cap is ≈ $0.58.
+  - Skip if: the spread is > 40% of mid; the 10/23 META straddle on Wed is > 9.5% (R < 1.0); or it doesn't fill at ≤ cap. Friday's 25P was 0.25/0.65 (89% of mid), so it fails today on liquidity and **must be re-checked live**.
+  - Payoff: P(META ≤ −7%) ≈ 30–35%, worth 2–5x. Otherwise ~0.
+  - It's a partial hedge for SOXL (risk-off Wednesday).
+- **Everything else on the calendar fails** (table above): TSLA, LRCX, AMKR, SOFI, MBLY, INTC, FOMC.
+- **Next to screen:** MSFT/GOOGL (10/28 pm) via MSFU/GGLL chains, and AMZN/AAPL (~10/29–30). Run this on Sunday 10/25.
+
+**6. Leveraged ETF vs options, per dollar of risk.**
+- *SOXL 2 sh:* $40 at the stop ($48 gapped). Analog 5-day EV (halved) ≈ +$11, so EV/risk ≈ **+0.25**. Costs: ~0.04% spread plus ~0.16%/day decay.
+- *SOXL calls:* you pay 26% vol over realized. The 10/30 $130C costs $115 and needs +31%. EV/risk ≈ **−0.1 to −0.3**.
+- *METU put at the cap:* EV/risk ≈ +0.25, but convex, with a 1-in-3 shot at +$50 to +$200.
+- **Verdict: the leveraged ETF wins every directional bet. Options are used only for gap-through events where R ≥ 1.2, as a ≤ 15% satellite, never as a SOXL substitute.**
+
 ## Strategist log
 - 2026-10-18 21:45 ET: weekly pass (first). The staged 35%→70% SOXL plan becomes 2 shares on Monday's open window. Data: next-open entry +11.4% mean / 80% win vs confirmation close +1.4% / 38% (SOXX 2010–26). The $85–95 band was stale (SOXL $100 in 24h trade). METU put kept at 1 contract with a strike/spread re-check on Wed. Crypto sleeve frozen. Five rule proposals filed.
+- 2026-10-19 22:35 ET: Level 3 is unavailable, so I added the "Level 2 options playbook (no spreads)". It sets a 4-test screen: R ≥ 1.2, a symmetrized-replay price cap, liquidity limits, and a skew/IV check. Of the 8 catalysts in the next two weeks, only META (R = 1.29, via the METU 10/23 put, limit ≤ the cap) passes, and only conditionally on Wednesday's liquidity. TSLA, LRCX, AMKR, SOFI, MBLY, INTC and FOMC fail. CSPs and covered calls are banned at this size. Leveraged ETF > options for directional bets. Pre-trade review of SOXL 3 shares: KEEP 2. At 3 shares the stop loses 18–22% of equity, above the 15% cap, and the Wed METU put no longer fits under the $187 floor gate.

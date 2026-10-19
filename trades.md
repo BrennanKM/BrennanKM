@@ -206,3 +206,17 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
 - User: "keep trading crypto as much as you want." This overrides strategist proposal #4 (freeze). The Trader accepts the override but keeps the cost rules: target ≥ 3× spread, a stop at the fill, and SOXL/METU cash comes first (rules in SCOREBOARD).
 - ZEC at mark $1,180.7 (+2.6% on the day, +6.2% vs avg $1,111.8). Cancelled the $1,045 stop (6ad5619b) and placed a stop order at $1,105 GTC for 0.01798 ZEC (6ad57e63-debf-42fb-a2e1-43415066ed5a). Worst case is now ≈ −$0.30 incl. spread instead of ≈ −$1.30. Target $1,200 unchanged; at a check-in with the bid ≥ $1,190, cancel the stop and set a sell limit at $1,200 (can't hold both at once).
 - Quotes at decision: BTC $82,353, ETH $2,420, SOL $105.05, ZEC $1,180.7, HYPE $79.16, LINK $12.19. No new entry tonight: no written level with ≥ 6% room, and Sunday-night prices are thin.
+
+## 2026-10-18 ~23:00 ET: strategist pre-trade review (SOXL 3 sh) + Level 2 options playbook
+- User: "having $260 cash is wasting our capital." Asked the strategist to review 3 shares vs a Monday pyramid vs keeping 2.
+- VERDICT: KEEP 2. **Accepted.** Reasons that hold up:
+  - 3 shares through a post-Wednesday gap (SOXL ≈ $71) cost ≈ −$93. With the METU put, the floor gate gives $183 < $187, so it fails.
+  - A third share adds only ≈ +$10 at T1.
+  - The book would effectively be one bet through the LRCX/META binary.
+  - One of its reasons is stale: it cited the crypto freeze, but the user lifted it. That doesn't change the verdict.
+- Accepted the post-event pyramid: Thu 9:47, only if SOXL ≥ +10% over the fill.
+- Level 2 options playbook adopted (STRATEGY.md):
+  - Four-test screen.
+  - Of this cycle's candidates, only META passes, with R = 1.29. TSLA (0.61), LRCX (0.54), AMKR, SOFI, MBLY and INTC fail.
+  - Cash-secured puts and covered calls are banned.
+  - Leveraged ETF beats calls for directional bets: SOXL call IV is 136% vs 108% realized.
