@@ -1,0 +1,23 @@
+[
+  {"id": "gdp-q3-35", "status": "On deck", "market": "US GDP growth in Q3 2026", "contract": "Above 3.5%", "side": "YES",
+   "qty": null, "max_price": null, "stake_usd": 25, "pays_usd": null,
+   "place_by": "2026-10-29T12:29:00Z", "next_screen": "2026-10-27T19:22:00Z",
+   "quote": "YES 29¢ / 32¢ · 9,376 open", "model_prob": 0.41, "edge_pts": 6.7, "exchange": "Kalshi (via Robinhood)",
+   "url": "https://robinhood.com/us/en/prediction-markets/economics/events/us-real-gdp-growth-in-q3-2026-oct-30-2026/",
+   "why": "Forecast blend says 3.29% growth vs the market's ~3.2%. The edge rests on GDPNow's inventory call, which Wednesday 8:30am trade and inventory data will confirm or kill. Final go/no-go Wed 10/28 1:37pm ET.",
+   "result": null},
+  {"id": "pce-sep-03", "status": "Screening", "market": "September core PCE inflation (month over month)", "contract": "Above 0.3%", "side": null,
+   "qty": null, "max_price": null, "stake_usd": null, "pays_usd": null,
+   "place_by": null, "next_screen": null,
+   "quote": "YES 35¢ / 37¢ · only 35 open (thin)", "model_prob": null, "edge_pts": null, "exchange": "Rothera (Robinhood's exchange)",
+   "url": "https://robinhood.com/us/en/prediction-markets/economics/events/2026-september-core-pce-index-oct-29-2026/",
+   "why": "Released Thu 10/29 8:30am ET. Economists can translate the CPI and PPI reports into a close PCE estimate, so a mispriced strike is a cleaner edge than GDP. Strategist is reading the contract terms and pulling the estimates now.",
+   "result": null},
+  {"id": "fed-oct-28", "status": "Screening", "market": "Fed rate decision, Oct 28", "contract": "Hike 25 bps", "side": null,
+   "qty": null, "max_price": null, "stake_usd": null, "pays_usd": null,
+   "place_by": null, "next_screen": null,
+   "quote": "YES 14¢ / 15¢ · hold 86¢ / 87¢", "model_prob": null, "edge_pts": null, "exchange": "Rothera (Robinhood's exchange)",
+   "url": "https://robinhood.com/us/en/prediction-markets/economics/events/fed-rate-decision-in-october-2026-oct-28-2026/",
+   "why": "Being checked against CME FedWatch odds. Every outcome is priced outside our 30–70¢ band today, so a bet here needs the price to move first.",
+   "result": null}
+]

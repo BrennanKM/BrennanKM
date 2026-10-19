@@ -131,6 +131,34 @@
 .il-chip.trig-yes { border-color: var(--color-ok); color: var(--color-ok); }
 .il-chip.trig-no { color: var(--color-fg-muted); }
 
+/* Your plays: orders the user places by hand */
+.il-plays { border-top: 4px solid var(--rc-red); }
+.il-play-list { display: grid; gap: var(--cds-gap-sm); }
+.il-play {
+  display: grid; gap: var(--cds-gap-sm); padding: var(--cds-pad-md);
+  border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); min-width: 0;
+}
+.il-play.is-now { border: 2px solid var(--rc-red); background: var(--rc-red-soft); }
+.il-play-top { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: baseline; justify-content: space-between; }
+.il-play-name { display: grid; gap: 2px; min-width: 0; }
+.il-play-name b { font-size: var(--cds-font-size-heading); font-weight: 800; overflow-wrap: anywhere; }
+.il-play-name span { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.il-play-order { font-weight: 800; font-size: var(--cds-font-size-title); letter-spacing: -.01em; }
+.il-play-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: var(--cds-gap-xs) var(--cds-gap-md); margin: 0; }
+.il-play-facts div { display: grid; gap: 1px; min-width: 0; }
+.il-play-facts dt { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--color-fg-muted); font-weight: 700; }
+.il-play-facts dd { margin: 0; font-size: var(--cds-font-size-caption); overflow-wrap: anywhere; }
+.il-play-why { margin: 0; font-size: var(--cds-font-size-caption); line-height: 1.5; max-width: 80ch; }
+.il-play a { color: var(--rc-red-ink); font-weight: 700; font-size: var(--cds-font-size-caption); }
+.il-chip.p-now { background: var(--rc-red); border-color: var(--rc-red); color: #ffffff; }
+.il-chip.p-placed { border-color: var(--rc-red); color: var(--color-fg); }
+.il-chip.p-deck { border-style: dashed; color: var(--color-fg); }
+.il-chip.p-screen { border-style: dotted; }
+.il-chip.p-won { border-color: var(--color-ok); color: var(--color-ok); }
+.il-chip.p-lost { border-color: var(--color-bad); color: var(--color-bad); }
+.il-chip.p-nobet { text-decoration: line-through; }
+.il-play-steps { margin: 0; padding-left: 1.2rem; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
+
 .il-thesis { max-width: 46ch; line-height: 1.45; }
 .il-lesson { max-width: 40ch; line-height: 1.45; color: var(--color-fg-muted); font-style: italic; }
 
@@ -202,6 +230,19 @@
     </div>
   </section>
 
+  <article class="il-card il-plays" id="plays">
+    <div class="il-card-head">
+      <h3 class="il-card-title">Your plays</h3>
+      <p class="il-note">Event contracts Claude calls and you place in the Robinhood app. Only a red <b>Place now</b> card needs you; everything else is on watch.</p>
+    </div>
+    <div class="il-play-list dash-skeleton" id="il-play-list" data-source="plays"></div>
+    <ol class="il-play-steps">
+      <li>Open the market with the link, pick the side shown, and set a <b>limit</b> order at the max price for the quantity shown.</li>
+      <li>Never pay above the max. If it hasn't filled in ~30 minutes or by the deadline, cancel it.</li>
+      <li>Tell Claude what filled (e.g. “filled 25 @ 31¢”).</li>
+    </ol>
+  </article>
+
   <section class="il-grid">
     <article class="il-card is-wide" id="banners">
       <div class="il-card-head">
@@ -229,7 +270,7 @@
 
     <article class="il-card" id="ravens">
       <div class="il-card-head">
-        <h3 class="il-card-title">Plays called</h3>
+        <h3 class="il-card-title">Orders on the book</h3>
         <p class="il-note">Resting orders on Robinhood: buys waiting for their price, stops on defense.</p>
       </div>
       <div class="il-scroll">
@@ -382,7 +423,7 @@ dash.loader('war_quotes', {
 // ---------- calcs ----------
 dash.calc('rivalry', {
   title: 'Claude vs Codex',
-  description: 'Codex\u2019s reported account value against the same $130 pledge, and the gap to this account.',
+  description: 'Codex\u2019s reported account value against the same $330 deposited, and the gap to this account.',
   inputs: ['rival', 'portfolio'],
   fn: (rival, portfolio) => rival.map((r) => ({
     codex_ret: Number(r.equity) / Number(r.contributed) - 1,
@@ -429,15 +470,15 @@ dash.calc('holdings', {
 
 dash.calc('war', {
   title: 'War council signals',
-  description: 'Day change for each planned ticker, and whether its entry rule is met (SOXX under $490 then green, or up 2%; META at or above $700).',
+  description: 'Day change for each planned ticker, and where it stands against the current SOXL entry rule (SOXX $495–512 at the open, SOXL at or under the $104 cap) and the META put date.',
   inputs: ['war_quotes'],
   fn: (war_quotes) => war_quotes.map((q) => {
     const chg = q.last / q.prev_close - 1;
     let signal = 'Watching';
-    if (q.symbol === 'SOXX') signal = chg >= 0.02 ? 'Trigger: up 2%+' : 'No reversal yet';
-    if (q.symbol === 'SOXL') signal = q.last >= 85 && q.last <= 95 ? 'In entry zone $85–95' : 'Outside $85–95';
-    if (q.symbol === 'META') signal = q.last >= 700 ? 'Holds $700' : 'Below $700';
-    if (q.symbol === 'METU') signal = 'Earnings bet, Tue 10/21';
+    if (q.symbol === 'SOXX') signal = q.last < 492.83 ? 'Broke $492.83: no entry' : q.last < 495 ? 'Below $495: wait for 3:22' : q.last <= 512 ? 'In entry band $495–512' : 'Above $512: 1 now, 1 at 3:22';
+    if (q.symbol === 'SOXL') signal = q.last <= 104 ? 'Under $104 cap' : 'Above $104 cap';
+    if (q.symbol === 'META') signal = 'Reports Wed 10/21 after close';
+    if (q.symbol === 'METU') signal = 'Put decision Wed 10/21 3:22pm';
     return { symbol: q.symbol, last: q.last, chg, signal };
   }),
 });
@@ -521,7 +562,7 @@ dash.onData(() => {
     if (RV.status === 'ok' && RV.data.length && RV.data[0].gap != null) {
       const g = RV.data[0];
       unskel(rs); rs.replaceChildren();
-      const a = document.createElement('span'); a.textContent = pct(g.codex_ret) + ' on $130 · ';
+      const a = document.createElement('span'); a.textContent = pct(g.codex_ret) + ' on $330 · ';
       const b = document.createElement('span'); b.textContent = (g.gap >= 0 ? 'we lead by ' : 'we trail by ') + usd(Math.abs(g.gap));
       tone(b, g.gap);
       rs.append(a, b);
@@ -585,7 +626,7 @@ dash.onData(() => {
       tr.appendChild(td(px(w.last), 'n'));
       const c = td(pct(w.chg), 'n'); tone(c, w.chg); tr.appendChild(c);
       const chip = document.createElement('span');
-      const yes = /^Trigger|In entry|Holds/.test(w.signal);
+      const yes = /^In entry|^Under \$104/.test(w.signal);
       chip.className = 'il-chip ' + (yes ? 'trig-yes' : 'trig-no'); chip.textContent = w.signal;
       tr.appendChild(td(chip));
       wb.appendChild(tr);
@@ -617,9 +658,65 @@ dash.onData(() => {
     const tr = document.createElement('tr'); const c = td(''); c.colSpan = 8; failLine(c); tr.appendChild(c); lb.appendChild(tr);
   }
 
+  // Your plays
+  drawPlays();
+
   // Treasury chart
   drawCurve();
 });
+
+function drawPlays() {
+  const box = document.getElementById('il-play-list');
+  const D = dash.data('plays');
+  if (D.status === 'error') { unskel(box); failLine(box); return; }
+  if (D.status !== 'ok') return;
+  unskel(box); box.replaceChildren();
+  const RANK = { 'Place now': 0, 'Placed': 1, 'Filled': 2, 'On deck': 3, 'Screening': 4, 'Won': 5, 'Lost': 6, 'No bet': 7 };
+  const CHIP = { 'Place now': 'p-now', 'Placed': 'p-placed', 'Filled': 'p-placed', 'On deck': 'p-deck', 'Screening': 'p-screen', 'Won': 'p-won', 'Lost': 'p-lost', 'No bet': 'p-nobet' };
+  const when = (iso) => {
+    if (!iso) return '—';
+    const d = new Date(iso); if (isNaN(d)) return '—';
+    const s = d.toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+    const h = (d - new Date()) / 36e5;
+    if (h <= 0) return s + ' (passed)';
+    return s + (h < 48 ? ' (in ' + Math.max(1, Math.round(h)) + 'h)' : ' (in ' + Math.round(h / 24) + 'd)');
+  };
+  const cents = (n) => n == null ? null : Math.round(Number(n) * 100) + '¢';
+  const rows = D.data.slice().sort((a, b) => (RANK[a.status] ?? 9) - (RANK[b.status] ?? 9));
+  if (!rows.length) { const p = document.createElement('p'); p.className = 'il-empty'; p.textContent = 'No plays on the board.'; box.appendChild(p); return; }
+  rows.forEach((r) => {
+    const card = document.createElement('div'); card.className = 'il-play' + (r.status === 'Place now' ? ' is-now' : ''); card.dataset.key = r.id;
+    const top = document.createElement('div'); top.className = 'il-play-top';
+    const name = document.createElement('div'); name.className = 'il-play-name';
+    const b = document.createElement('b'); b.textContent = r.market;
+    const sub = document.createElement('span'); sub.textContent = r.contract + (r.exchange ? ' · ' + r.exchange : '');
+    name.append(b, sub);
+    const chip = document.createElement('span'); chip.className = 'il-chip ' + (CHIP[r.status] || ''); chip.textContent = r.status;
+    top.append(name, chip);
+    card.appendChild(top);
+    if (r.side && r.qty && r.max_price != null) {
+      const o = document.createElement('div'); o.className = 'il-play-order';
+      o.textContent = 'Buy ' + r.side + ' · ' + r.qty + ' contracts · limit ' + cents(r.max_price);
+      card.appendChild(o);
+    }
+    const dl = document.createElement('dl'); dl.className = 'il-play-facts';
+    const fact = (k, v) => { if (v == null || v === '') return; const w = document.createElement('div'); const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; w.append(dt, dd); dl.appendChild(w); };
+    fact('Side', r.side || 'Not chosen');
+    fact('Max price', r.max_price != null ? cents(r.max_price) : 'Set at final screen');
+    fact('Stake', r.stake_usd != null ? (r.qty ? usd(r.stake_usd) : '≈ ' + usd(r.stake_usd)) : null);
+    fact('Pays if right', r.pays_usd != null ? usd(r.pays_usd) : null);
+    fact('Robinhood price', r.quote);
+    fact('Our odds', r.model_prob != null ? Math.round(r.model_prob * 100) + '%' : null);
+    fact('Edge', r.edge_pts != null ? '+' + r.edge_pts + ' pts' : null);
+    fact(r.status === 'Place now' ? 'Place by' : 'Contract closes', r.place_by ? when(r.place_by) : null);
+    fact('Next screen', r.next_screen ? when(r.next_screen) : null);
+    fact('Result', r.result);
+    card.appendChild(dl);
+    const why = document.createElement('p'); why.className = 'il-play-why'; why.textContent = r.why; card.appendChild(why);
+    if (r.url) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open on Robinhood ↗'; card.appendChild(a); }
+    box.appendChild(card);
+  });
+}
 
 function drawCurve() {
   const box = document.getElementById('il-curve');
