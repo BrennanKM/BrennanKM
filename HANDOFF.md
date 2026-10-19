@@ -37,5 +37,5 @@ Entry done. Real stop = a daily close < $80 (decided at the 3:22pm check-in); th
 
 ## Open items
 - FRED API key: the user said they added `FRED_API_KEY`; it was not visible in the old cloud container. Check `[ -n "${FRED_API_KEY:-}" ]` once (never print it) and tell the user.
-- The old cloud session's scheduled check-ins are bound to that session. The user will confirm when they're disabled; don't double-run the same check-in.
+- **The old cloud check-ins were DISABLED on 10/19 ~6:07pm ET** (all 5 triggers, `enabled:false`, not deleted). Nothing runs on a schedule until the new chat sets up its own. The next unscheduled moments that matter: Tue 10/20 9:47 and 3:22, Wed 10/21 12:37 and 3:22.
 - Codex's value arrives only when the user reports it. Ask nothing about trades; they're pre-authorized.
