@@ -260,7 +260,7 @@
     <article class="il-card is-wide" id="banners">
       <div class="il-card-head">
         <h3 class="il-card-title">Starting lineup</h3>
-        <p class="il-note">Open positions, valued at the bid (what they would sell for now). Foul-out line is the stop.</p>
+        <p class="il-note">Open positions: crypto valued at the bid (what it would sell for now), stocks at the last trade. Foul-out line is the stop.</p>
       </div>
       <div class="il-scroll" id="il-hold-box">
         <table data-source="holdings" data-row-key="asset" id="il-hold">
@@ -419,6 +419,20 @@ dash.loader('orders', {
   },
 });
 
+dash.loader('stock_positions', {
+  description: 'Stock and ETF positions as rows: symbol, shares, average cost.',
+  fn: ({ answer }) => {
+    const d = (typeof answer === 'string' ? JSON.parse(answer) : answer);
+    if (d && d.error) throw new Error(String(d.error));
+    const p = d.data !== undefined ? d.data : d;
+    return (p.positions || []).map((r) => ({
+      asset: r.symbol,
+      quantity: Number(r.quantity),
+      avg: Number(r.average_buy_price),
+    }));
+  },
+});
+
 dash.loader('war_quotes', {
   description: 'Stock quotes as rows: last regular-session trade and previous close.',
   fn: ({ answer }) => {
@@ -458,27 +472,29 @@ dash.calc('standing', {
 
 dash.calc('holdings', {
   title: 'Open positions, valued',
-  description: 'Each crypto position at the live bid and mark, with stop and target from the journal.',
-  inputs: ['positions', 'crypto_quotes', 'ledger'],
-  fn: (positions, crypto_quotes, ledger) => positions.map((p) => {
-    const q = crypto_quotes.find((x) => x.asset === p.asset) || {};
-    const j = ledger.find((t) => t.asset === p.asset && t.status === 'Open') || {};
-    const value = p.quantity * q.bid;
-    const stop = j.stop == null ? null : Number(j.stop);
-    return {
-      asset: p.asset,
-      house: j.house || '',
-      quantity: p.quantity,
-      cost: p.cost,
-      mark: q.mark,
-      value,
-      pnl: value - p.cost,
-      pnl_pct: value / p.cost - 1,
-      stop,
-      to_stop: stop == null ? null : q.mark / stop - 1,
-      target: j.target == null ? null : Number(j.target),
+  description: 'Each position valued live: crypto at the bid (what it would sell for), stocks at the last trade. Stop and target come from the journal.',
+  inputs: ['positions', 'crypto_quotes', 'ledger', 'stock_positions', 'war_quotes'],
+  fn: (positions, crypto_quotes, ledger, stock_positions, war_quotes) => {
+    const row = (asset, quantity, cost, mark, value) => {
+      const j = ledger.find((t) => t.asset === asset && t.status === 'Open') || {};
+      const stop = j.stop == null ? null : Number(j.stop);
+      return {
+        asset, house: j.house || '', quantity, cost, mark, value,
+        pnl: value - cost, pnl_pct: value / cost - 1, stop,
+        to_stop: stop == null ? null : mark / stop - 1,
+        target: j.target == null ? null : Number(j.target),
+      };
     };
-  }),
+    const stocks = stock_positions.map((p) => {
+      const q = war_quotes.find((x) => x.symbol === p.asset) || {};
+      return row(p.asset, p.quantity, p.quantity * p.avg, q.last, p.quantity * q.last);
+    });
+    const coins = positions.map((p) => {
+      const q = crypto_quotes.find((x) => x.asset === p.asset) || {};
+      return row(p.asset, p.quantity, p.cost, q.mark, p.quantity * q.bid);
+    });
+    return stocks.concat(coins);
+  },
 });
 
 dash.calc('war', {
