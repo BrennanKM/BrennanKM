@@ -1,9 +1,14 @@
 {
   "_readme": "Single source of truth for live numbers. STATE.md is GENERATED from this file by `python3 tools/gates.py --render`. Robinhood always wins: if a live pull disagrees, fix this file first, then run gates.py. Edit positions/orders/calendar here, never in STATE.md.",
   "as_of": "2026-10-19T22:05:00Z",
-  "account": {"number": "994587087", "crypto_rhs": "994587087", "type": "limited_margin", "option_level": 2},
+  "account": {
+    "number": "994587087",
+    "crypto_rhs": "994587087",
+    "type": "limited_margin",
+    "option_level": 2
+  },
   "equity": 470.64,
-  "cash": 122.20,
+  "cash": 122.2,
   "mandate": {
     "version": "v4 (+v3.1 events)",
     "contributed": 480,
@@ -23,21 +28,74 @@
     "deadline": "2026-11-18",
     "rescale_note": "On a deposit D to Claude (matched for Codex): contributed += D, scale floor/gate/targets/ratchet/event caps/glide_base by new_contributed/480, update rival.contributed and rival.value (+D), then render."
   },
-  "rival": {"name": "Codex", "value": 479.0, "contributed": 480, "as_of": "2026-10-19 PM (user report)", "holdings": null},
+  "rival": {
+    "name": "Codex",
+    "value": 479.0,
+    "contributed": 480,
+    "as_of": "2026-10-19 PM (user report)",
+    "holdings": null
+  },
   "positions": [
-    {"sym": "SOXL", "kind": "stock", "qty": 3, "cost": 102.5507, "mark": 99.30, "rule_stop": 80,
-     "rule_stop_desc": "daily CLOSE < $80 (decided at the 3:22pm check-in)", "gap_price": 71,
-     "gap_desc": "post-earnings gap to $71 (strategist)", "risk_on": true,
-     "backstop_stop": {"id": "6ad61fee-3895-47f6-92e9-efcfd94ff88e", "trigger": 76, "qty": 3, "tif": "gtc", "type": "stop market"},
-     "note": "Stop order holds all 3 shares: cancel it before any sell, then re-place on what remains."},
-    {"sym": "ETH", "kind": "crypto", "qty": 0.012738, "cost": 2354.99, "mark": 2403.49, "rule_stop": 2300,
-     "rule_stop_desc": "stop order $2,300", "gap_price": 2185, "gap_desc": "stop converts to a limit 5% under the trigger ($2,185)", "risk_on": true,
-     "backstop_stop": {"id": "6ad56199-5a5d-4192-a7f6-69366deb1b1e", "trigger": 2300, "qty": 0.012738, "tif": "gtc", "type": "stop"},
-     "note": "Target $2,580. Out before 2pm ET Wed 10/28 unless >= +5% ($2,473)."},
-    {"sym": "BTC", "kind": "crypto", "qty": 0.00024285, "cost": 82354.09, "mark": 81997.04, "rule_stop": 78900,
-     "rule_stop_desc": "stop order $78,900", "gap_price": 74955, "gap_desc": "stop converts to a limit 5% under the trigger ($74,955)", "risk_on": true,
-     "backstop_stop": {"id": "6ad48095-9b1b-41b9-b508-62475232d2b0", "trigger": 78900, "qty": 0.00024285, "tif": "gtc", "type": "stop"},
-     "note": "Target $85,000: at BTC >= $84,600 cancel the stop and place a sell limit at $85,000."}
+    {
+      "sym": "SOXL",
+      "kind": "stock",
+      "qty": 3,
+      "cost": 102.5507,
+      "mark": 99.3,
+      "rule_stop": 80,
+      "rule_stop_desc": "daily CLOSE < $80 (decided at the 3:22pm check-in)",
+      "gap_price": 71,
+      "gap_desc": "post-earnings gap to $71 (strategist)",
+      "risk_on": true,
+      "backstop_stop": {
+        "id": "6ad61fee-3895-47f6-92e9-efcfd94ff88e",
+        "trigger": 76,
+        "qty": 3,
+        "tif": "gtc",
+        "type": "stop market"
+      },
+      "note": "Stop order holds all 3 shares: cancel it before any sell, then re-place on what remains."
+    },
+    {
+      "sym": "ETH",
+      "kind": "crypto",
+      "qty": 0.012738,
+      "cost": 2354.99,
+      "mark": 2403.49,
+      "rule_stop": 2300,
+      "rule_stop_desc": "stop order $2,300",
+      "gap_price": 2185,
+      "gap_desc": "stop converts to a limit 5% under the trigger ($2,185)",
+      "risk_on": true,
+      "backstop_stop": {
+        "id": "6ad56199-5a5d-4192-a7f6-69366deb1b1e",
+        "trigger": 2300,
+        "qty": 0.012738,
+        "tif": "gtc",
+        "type": "stop"
+      },
+      "note": "Target $2,580. Out before 2pm ET Wed 10/28 unless >= +5% ($2,473)."
+    },
+    {
+      "sym": "BTC",
+      "kind": "crypto",
+      "qty": 0.00024285,
+      "cost": 82354.09,
+      "mark": 81997.04,
+      "rule_stop": 78900,
+      "rule_stop_desc": "stop order $78,900",
+      "gap_price": 74955,
+      "gap_desc": "stop converts to a limit 5% under the trigger ($74,955)",
+      "risk_on": true,
+      "backstop_stop": {
+        "id": "6ad48095-9b1b-41b9-b508-62475232d2b0",
+        "trigger": 78900,
+        "qty": 0.00024285,
+        "tif": "gtc",
+        "type": "stop"
+      },
+      "note": "Target $85,000: at BTC >= $84,600 cancel the stop and place a sell limit at $85,000."
+    }
   ],
   "premium_outstanding": 0,
   "event_stake_outstanding": 0,
@@ -51,27 +109,84 @@
     "Day-trade rule: selling a stock bought the same day uses 1 of 3 PDT day trades; spend them only on emergency exits."
   ],
   "calendar": [
-    {"date": "2026-10-20", "time": "09:47", "what": "OPEN check-in. Re-test SOXL/SOXX vs rules; first run of the new schedule and gates.py."},
-    {"date": "2026-10-20", "time": "15:22", "what": "CLOSE check-in. SOXL close rule (<$80) and SOXX < $495 rule. NFLX reports after the close."},
-    {"date": "2026-10-21", "time": "12:37", "what": "MIDDAY. Pre-screen the METU 10/23 put (four tests, spread <= 40% of mid, OI >= 100, META straddle <= 9.5%)."},
-    {"date": "2026-10-21", "time": "15:22", "what": "DECIDE (a) METU 10/23 put, 1 contract, limit <= min(mid, replay cap, $0.50), gate >= $272; (b) hold SOXL through LRCX/META/TSLA/TXN/IBM earnings only if SOXX >= $495 AND floor-distance gate passes with SOXL gapping to $71 (plus put premium)."},
-    {"date": "2026-10-22", "time": "09:47", "what": "Exit the put (win or lose). Exit SOXL if the prints broke the thesis. A 4th SOXL share only if SOXL >= +10% over fill, funded by put proceeds/spare cash."},
-    {"date": "2026-10-23", "time": "15:22", "what": "SOXL session-5 rule: sell 2 if T1 ($112) not hit. Re-screen core PCE >0.3 (Rothera ECPCE-26SEPCORE)."},
-    {"date": "2026-10-26", "time": "15:22", "what": "SOXL fully out, no matter what."},
-    {"date": "2026-10-27", "time": "15:22", "what": "Re-screen Q3 GDP >3.5 (KXGDP-26OCT30) with latest GDPNow / NY Fed."},
-    {"date": "2026-10-28", "time": "13:37", "what": "FINAL event screen (GDP >3.5, core PCE >0.3). ETH out before 2:00pm FOMC unless >= +5%."},
-    {"date": "2026-10-29", "time": "08:30", "what": "GDP advance + Sept PCE release. Event contracts close 8:29am."},
-    {"date": "2026-11-18", "time": "16:00", "what": "Competition ends (~)."}
+    {
+      "date": "2026-10-20",
+      "time": "09:47",
+      "what": "OPEN check-in. Re-test SOXL/SOXX vs rules; first run of the new schedule and gates.py."
+    },
+    {
+      "date": "2026-10-20",
+      "time": "15:22",
+      "what": "CLOSE check-in. SOXL close rule (<$80) and SOXX < $495 rule. NFLX reports after the close."
+    },
+    {
+      "date": "2026-10-21",
+      "time": "12:37",
+      "what": "MIDDAY. Pre-screen the METU 10/23 put (four tests, spread <= 40% of mid, OI >= 100, META straddle <= 9.5%)."
+    },
+    {
+      "date": "2026-10-21",
+      "time": "15:22",
+      "what": "DECIDE (a) METU 10/23 put, 1 contract, limit <= min(mid, replay cap, $0.50), gate >= $272; (b) hold SOXL through LRCX/META/TSLA/TXN/IBM earnings only if SOXX >= $495 AND floor-distance gate passes with SOXL gapping to $71 (plus put premium)."
+    },
+    {
+      "date": "2026-10-22",
+      "time": "09:47",
+      "what": "Exit the put (win or lose). Exit SOXL if the prints broke the thesis. A 4th SOXL share only if SOXL >= +10% over fill, funded by put proceeds/spare cash."
+    },
+    {
+      "date": "2026-10-23",
+      "time": "15:22",
+      "what": "SOXL session-5 rule: sell 2 if T1 ($112) not hit. Re-screen core PCE >0.3 (Rothera ECPCE-26SEPCORE)."
+    },
+    {
+      "date": "2026-10-26",
+      "time": "15:22",
+      "what": "SOXL fully out, no matter what."
+    },
+    {
+      "date": "2026-10-27",
+      "time": "15:22",
+      "what": "Re-screen Q3 GDP >3.5 (KXGDP-26OCT30) with latest GDPNow / NY Fed."
+    },
+    {
+      "date": "2026-10-28",
+      "time": "13:37",
+      "what": "FINAL event screen (GDP >3.5, core PCE >0.3). ETH out before 2:00pm FOMC unless >= +5%."
+    },
+    {
+      "date": "2026-10-29",
+      "time": "08:30",
+      "what": "GDP advance + Sept PCE release. Event contracts close 8:29am."
+    },
+    {
+      "date": "2026-11-18",
+      "time": "16:00",
+      "what": "Competition ends (~)."
+    }
   ],
   "plays": [
-    {"name": "Q3 GDP > 3.5% YES", "status": "No bet", "note": "RH 39/42c on 10/19 PM; locked model ~41%: no edge. Final screen 10/28 13:37."},
-    {"name": "Sept core PCE > 0.3% (printed >= 0.4)", "status": "No bet", "note": "RH 32/33c, OI 35; model P(YES) 0.31. NO passes if center <= 0.325; YES if >= 0.345."},
-    {"name": "Fed Oct 28", "status": "No bet", "note": "Hike 14/15c vs futures 16%: fair."}
+    {
+      "name": "Q3 GDP > 3.5% YES",
+      "status": "No bet",
+      "note": "RH 39/42c on 10/19 PM; locked model ~41%: no edge. Final screen 10/28 13:37."
+    },
+    {
+      "name": "Sept core PCE > 0.3% (printed >= 0.4)",
+      "status": "No bet",
+      "note": "RH 32/33c, OI 35; model P(YES) 0.31. NO passes if center <= 0.325; YES if >= 0.345."
+    },
+    {
+      "name": "Fed Oct 28",
+      "status": "No bet",
+      "note": "Hike 14/15c vs futures 16%: fair."
+    }
   ],
   "open_items": [
-    "FRED_API_KEY: not set in the assistant's shell on 10/19; confirm it is available to scheduled runs, then delete this line.",
+    "FRED: not found in env or ~/.config/fred_api_key (checked 10/19 evening). Tell Brennan to save the key to ~/.config/fred_api_key (chmod 600), then run `python3 tools/fred.py --check`; confirm series ids (GDPNOW, PCEPILFE) once with a real call. Delete this line when it works.",
     "Codex holdings are NOT available (user decision 10/19: the competition information is Codex's value only). Do not ask again; infer nothing beyond its value path.",
-    "Pending deposit of $200 still displays in Robinhood but is not in total_value; cash + holdings already reconcile to $480 contributed."
+    "Pending deposit of $200 still displays in Robinhood but is not in total_value; cash + holdings already reconcile to $480 contributed.",
+    "Phone path unverified: the test PushNotification was skipped because the terminal was active. Brennan should confirm ORDER notifications reach his phone (Remote Control / Robinhood app alerts), and keep the Mac awake and plugged in at 6:47am, 12:22pm and 5:13pm PT (`sudo pmset -c sleep 0`)."
   ],
   "rules": [
     "Execution: the assistant does NOT place/cancel/modify orders. It writes the exact order into ORDERS.md (and the thesis into trades.md) and PushNotifications 'ORDER for you: ...'; the user places it in the app.",
@@ -83,5 +198,11 @@
     "Floor: equity < $185 -> stop recommending trades, write postmortem.md. Ratchet: at >= $739 never risk below $640.",
     "Decision 10/19: keep ONE stop covering all 3 SOXL shares (no 2+1 split). T1/T2 and close rules reach the user as ORDER notifications.",
     "Log every probability used in a decision with `python3 tools/track.py cal add ...`; log the benchmark row at every CLOSE check-in."
+  ],
+  "alerts": [
+    "SOXL > 112 (T1) b55669b5 | SOXL > 118 (T2) 6fbffed2 | SOXL < 90 (early warning) 05d9d3d7 | SOXL < 80 (close-rule level touched) b3f7e487",
+    "SOXX < 495 (gap-and-fail rule) bc3e02d0 | SOXX < 490 (original trigger) f7393526",
+    "BTC > 84,500 e858f029 | BTC < 79,500 c1b38175 | ETH > 2,560 5e211c9d | ETH > 2,473 (+5%: waives pre-FOMC ETH exit) cbf622ab | ETH < 2,330 1d292efd",
+    "ZEC > 1,180 f6a7d946 and ZEC < 1,070 0e91afda are STALE (ZEC closed 10/19); harmless, left in place. Alerts reach the user's phone; they do not wake the assistant."
   ]
 }

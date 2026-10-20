@@ -305,3 +305,8 @@ Edge over Codex: entry by base rate at the open, sized to the 15% loss cap, not 
 - **Not done yet:** improvements #1 (pre-staged exits / order sheet in one sitting) and #2 (Codex holdings) need Brennan's input. Dashboard not re-uploaded this turn (no check-in); the next check-in appends the curve point.
 
 - **User decisions 10/19 ~7pm ET:** (1) keep one stop on all 3 SOXL shares, no 2+1 split (full downside protection over automatic T1). (2) Codex's holdings will not be shared: the only competitor information is its reported value. The end-game rule (ahead -> cut variance, behind -> take the least-correlated bet) therefore uses value only; treat any inference about Codex's book as a guess, and do not ask again.
+
+## 2026-10-19 ~20:10 ET: setup pass (no trades)
+- Read the account's alerts: crypto, SOXL > 112 and SOXX < 495/490 were already set; missing levels the rules depend on were not. With the user's approval created SOXL < 90 (05d9d3d7), SOXL < 80 (b3f7e487), SOXL > 118 (6fbffed2), ETH > 2,473 (cbf622ab). ZEC alerts are stale and left alone.
+- Test PushNotification not sent (terminal active), so the phone path is unverified; asked the user to confirm it.
+- `tools/fred.py` added (key from env or ~/.config/fred_api_key, never printed); no key found on this Mac, so FRED series ids are unverified.

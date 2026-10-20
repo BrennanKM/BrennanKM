@@ -24,6 +24,9 @@ Pull portfolio, equity/crypto/option positions and all open orders (equity, cryp
   Any FAIL (stop coverage, floor, floor-distance, event cap, PDT) is the first item in the notification and in `ORDERS.md`.
 - When you move a stop or change a position, update `rule_stop`, `gap_price`, `backstop_stop`, `price_rules` and `calendar` in `state.json` and re-render. `STATE.md` is generated; never hand-edit it.
 
+- Alerts: `get_alerts` must still contain the levels listed under `alerts` in state.json; if a rule level moves (stop, target), add the matching alert and update state.json.
+- FRED: if `open_items` still has the FRED line, run `python3 tools/fred.py --check` and report one line.
+
 ## 4. Apply the rules
 - Re-test every holding against its invalidation (`state.json` price_rules, `SCOREBOARD.md`, `trades.md`). Daily-close rules are judged at the CLOSE check-in using the live price at 3:22pm ET, before the 4pm close; send the order notification as early in the run as possible.
 - Execute nothing yourself. For each rule that fires, add a block to `ORDERS.md` (status PENDING): symbol, side, quantity, type, price, TIF, the existing order id to cancel first, why, and the deadline. PushNotification it.

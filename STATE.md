@@ -1,5 +1,5 @@
 # STATE (generated: do not edit; edit state.json, then `python3 tools/gates.py --render`)
-As of Mon 2026-10-19 19:30 ET · mandate v4 (+v3.1 events) · deadline 2026-11-18
+As of Mon 2026-10-19 20:10 ET · mandate v4 (+v3.1 events) · deadline 2026-11-18
 
 **Equity $470.64** (-1.95% on $480.00) · cash $122.20 · glide $482.00 (behind $11.36) · Codex $479.00 (behind $8.36, as of 2026-10-19 PM (user report))
 Targets $739.00 / $1,109.00 · floor $185.00 · floor-distance gate $272.00 · ratchet $640.00 once >= target 1 · event stake <= $72.00 ($50.00 if model-dependent)
@@ -59,6 +59,7 @@ Targets $739.00 / $1,109.00 · floor $185.00 · floor-distance gate $272.00 · r
 - Log every probability used in a decision with `python3 tools/track.py cal add ...`; log the benchmark row at every CLOSE check-in.
 
 ## Open items
-- FRED_API_KEY: not set in the assistant's shell on 10/19; confirm it is available to scheduled runs, then delete this line.
+- FRED: not found in env or ~/.config/fred_api_key (checked 10/19 evening). Tell Brennan to save the key to ~/.config/fred_api_key (chmod 600), then run `python3 tools/fred.py --check`; confirm series ids (GDPNOW, PCEPILFE) once with a real call. Delete this line when it works.
 - Codex holdings are NOT available (user decision 10/19: the competition information is Codex's value only). Do not ask again; infer nothing beyond its value path.
 - Pending deposit of $200 still displays in Robinhood but is not in total_value; cash + holdings already reconcile to $480 contributed.
+- Phone path unverified: the test PushNotification was skipped because the terminal was active. Brennan should confirm ORDER notifications reach his phone (Remote Control / Robinhood app alerts), and keep the Mac awake and plugged in at 6:47am, 12:22pm and 5:13pm PT (`sudo pmset -c sleep 0`).
